@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Josefin Sans", sans-serif;
+}
+:root{
+  --nsr-color1:#f4a462;
+  --nsr-color2:#ee9649;
+  --nsr-color3: #e76e50;
+  --nsr-color4: #e7e395;
+  --nsr-color5:#2a9d90;
+  --nsr-color6:black;
+  --nsr-color7:#B384C9;
+  --nsr-color8:#391F5B;
+  --nsr-color9:#0f0004;
+  --nsr-color10:#12007a;
+  --nsr-color11: #0082a3;
+  --nsr-color12: #f200f2;
+
+  /*borders y margins*/
+  --nsr-border1:10px;
+  --nsr-border2:20px;
+  --nsr-border3:30px;
+  --nsr-border4:40px;
+  --nsr-border5:50px;
+
+  --nsr-margin1:10px;
+  --nsr-margin2:20px;
+  --nsr-margin3:30px;
+  --nsr-margin4:40px;
+  --nsr-margin5:50px;
+
+  /*paddings*/
+  --nsr-padding1:10px;
+  --nsr-padding2:20px;
+  --nsr-padding3:30px;
+  --nsr-padding4:40px;
+  --nsr-padding5:50px;
+  --nsr-padding6:100px;
+  /*gaps*/
+  --nsr-gap1:10px;
+  --nsr-gap2:20px;
+  --nsr-gap3:30px;
+  --nsr-gap4:40px;
+  --nsr-gap5:50px;
+  /*Font Size*/
+  --nsr-font-size1:10px;
+  --nsr-font-size2:20px;
+  --nsr-font-size3:30px;
+  --nsr-font-size4:40px;
+  --nsr-font-size5:45px;
+  --nsr-font-size6:60px;
+  --nsr-font-size7:70px;
+  --nsr-font-size8:80px;
+  --nsr-font-size9:90px;
+  --nsr-font-size10:100px;
+  --nsr-font-size11:110px;
+  --nsr-font-size12:120px;
+  --nsr-font-size13:130px;
+  /*url images*/
+  --nsr-bimage1:url("https://www.transparenttextures.com/patterns/connected.png");
+  --nsr-bimage2:url("https://www.transparenttextures.com/patterns/brick-wall.png");
+  --nsr-bimage3:url("https://www.transparenttextures.com/patterns/binding-light.png");
+  --nsr-bimage4:url("https://www.transparenttextures.com/patterns/brick-wall.png");
+  /*Border Radius*/
+  --nsr-bradius1:10px;
+  --nsr-bradius2:20px;
+  --nsr-bradius3:30px;
+  --nsr-bradius4:40px;
+  --nsr-bradius5:50px;
+
+  /*Cursor*/
+  --nsr-cursor1:pointer;
+}

@@ -1,11 +1,15 @@
-import StarField from "./components/StarField/StarField";
+import { Route, Routes } from "react-router";
+import StartPage from "./pages/StartPage/StartPage";
+
 
 
 const App = () => {
   return (
-    <div>
-      <StarField numStars={300} />
-    </div>
+   <>
+   <Routes>
+    <Route path="/" element={<StartPage/>}/>
+   </Routes>
+   </>
   );
 };
 
