@@ -1,4 +1,4 @@
-import { Image, Box } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 
 const slideFromLeft = keyframes`
@@ -23,28 +23,28 @@ const slideFromRight = keyframes`
   }
 `;
 
-const ImageStarField = () => {
+const ImageStartPage = () => {
   return (
    <>
       <Image
         src="/assets/star1.png"
         alt="starIcon"
-        w="50px"
-        h="50px"
+        w="40px"
+        h="40px"
         position="absolute"
-        top="20px"
-        right="20px"
+        top="30px"
+        right="30px"
         opacity="0"
         animation={`${slideFromRight} 2s ease forwards`}
       />
       <Image
         src="/assets/star1.png"
         alt="starIcon"
-        w="50px"
-        h="50px"
+        w="40px"
+        h="40px"
         position="absolute"
-        bottom="20px"
-        left="20px"
+        bottom="10px"
+        left="30px"
         opacity="0"
         animation={`${slideFromLeft} 2s ease forwards`}
         style={{ animationDelay: "0.5s" }} 
@@ -53,4 +53,4 @@ const ImageStarField = () => {
   );
 };
 
-export default ImageStarField;
+export default ImageStartPage;

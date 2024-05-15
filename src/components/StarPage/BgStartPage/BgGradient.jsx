@@ -1,13 +1,13 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/react';
 
-const StarField = ({children}) => {
+const BgGradient = ({children}) => {
   return (
     <Flex
       align="center"
       justify="center"
       w="100%"
-      h="100vh"
+      minH="100vh"
       bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)"
     >
      {children}
@@ -15,4 +15,4 @@ const StarField = ({children}) => {
   );
 };
 
-export default StarField;
+export default BgGradient;

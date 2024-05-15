@@ -1,6 +1,6 @@
 import {  Button, Flex, Image} from "@chakra-ui/react"
 import { useState } from "react"
-import FormLoginRegister from "../FormLoginRegister/FormLoginRegister"
+import Forms from "../Forms/Forms"
 
 
 const GifStartPage = () => {
@@ -28,7 +28,7 @@ const GifStartPage = () => {
           >START</Button>
        </Flex>
     ):(  
-       <FormLoginRegister/>    
+       <Forms/>    
     )}
    
     </>

@@ -1,13 +1,13 @@
-import StarField from '../../components/StarPage/BgStartPage/StarField'
-import ImageStarField from '../../components/StarPage/ImageStarPage/ImageStarField'
+import BgGradient from '../../components/StarPage/BgStartPage/BgGradient'
 import GifStartPage from '../../components/StarPage/GifStarPage/GifStartPage'
+import ImageStartPage from '../../components/StarPage/ImageStarPage/ImageStartPage'
 
 const StartPage = () => {
   return (
-    <StarField >
-      <ImageStarField/>
+    <BgGradient>
+      <ImageStartPage/>
       <GifStartPage/>
-    </StarField>
+    </BgGradient>
   )
 }
 export default StartPage
