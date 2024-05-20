@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import GoBack from "../../components/GoBack/GoBack";
+import { fetchMovies } from "../../reducer/movies.action";
+import MoviesCard from "../../components/Movies/MoviesCard/MoviesCard";
+import MenuComponent from "../../components/Menu/Menu";
 
 
 const Movies = () => {
@@ -11,38 +14,18 @@ const Movies = () => {
   const [moviesComedy, setMoviesComedy] = useState([]);
   const [moviesHorror, setMoviesHorror] = useState([]);
   const [moviesKids, setMoviesKids] = useState([]);
-  const user = localStorage.getItem('userName');  
-  const categories = ["Action", "Comedy", "Horror", "Kids"];
+  console.log(platformName);
+  
+  const user = localStorage.getItem('userName'); 
+  
 
   useEffect(() => {
     if (!user) {
       window.location.href = "/"; 
       return;
     }
-
-    const fetchMovies = async () => {
-      try {
-        const fetchPromises = categories.map(category =>
-          fetch(`http://localhost:3000/api/v1/movies/platform_category/${platformName}/${category}`)
-            .then(response => response.json())
-        );
-
-        const [actionMovies, comedyMovies, horrorMovies, kidsMovies] = await Promise.all(fetchPromises);
-
-        setMoviesAction(actionMovies);
-        setMoviesComedy(comedyMovies);
-        setMoviesHorror(horrorMovies);
-        setMoviesKids(kidsMovies);
-        console.log(moviesAction);
-      } catch (error) {
-        console.error("Failed to fetch movies:", error);
-      }
-    };
-
-    fetchMovies();
-  }, []);
-
- 
+    fetchMovies(setMoviesAction, setMoviesComedy, setMoviesHorror, setMoviesKids, platformName)
+  }, [platformName, user]);
 
   return (
     <>
@@ -50,58 +33,18 @@ const Movies = () => {
       {(moviesAction.length || moviesComedy.length || moviesHorror.length || moviesKids.length) && (
         <Flex direction="column" w="100%" minH="100svh" align="center" justify="center" pos="relative"
         bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)" gap="20px">
-          <Text fontSize="30px" fontWeight="bold" color="white" mt="20px">
+          <Text fontSize="40px" fontWeight="bold" color="white" mt="20px" 
+          textShadow="4px 4px 2px rgba(0,0,0,0.6)">
             {platformName} Movies
           </Text>
-          {moviesAction.length > 0 && (
-            <Flex w="600px" h="300px" overflowX="auto" direction="row" 
-            align="center"  bgColor="red" mb="20px" mt="20px"  outline="4px solid black" borderRadius="10px">
-              <Text pos="absolute" top="70px" left="30%" fontWeight="bold" >{moviesAction[0].category}</Text>
-              <Text pos="absolute" top="70px" right="30%" fontWeight="bold" > {moviesAction[0].name}</Text>
-              {moviesAction.map((movie) => (
-                <Flex key={movie._id} w="200px" h="200px" bgColor="red" flexShrink={0} margin="10px" borderRadius="10px">
-                  <Image cursor="pointer" src={movie.image} alt={movie.name} w="100%" h="100%" 
-                  objectFit="contain" borderRadius="10px" transition="all 0.5s"
-                  _hover={{ transform: "scale(0.8)"}} />
-                </Flex>
-              ))}
-            </Flex>
-          )}
-          {moviesComedy.length > 0 && (
-            <Flex w="600px" h="300px" overflowX="auto" direction="row" align="center"  bgColor="green" mb="20px">
-              {moviesComedy.map((movie) => (
-                <Flex key={movie._id} w="200px" h="200px" bgColor="green" flexShrink={0} margin="10px" borderRadius="10px">
-                  <Image src={movie.image} alt={movie.name} w="100%" h="100%" objectFit="contain" borderRadius="10px" />
-                </Flex>
-              ))}
-            </Flex>
-          )}
-          {moviesHorror.length > 0 && (
-            <Flex w="600px" h="300px" overflowX="auto" direction="row" align="center"  bgColor="blue" mb="20px">
-              {moviesHorror.map((movie) => (
-                <Flex key={movie._id} w="200px" h="200px" bgColor="blue" flexShrink={0} margin="10px" borderRadius="10px">
-                  <Image src={movie.image} alt={movie.name} w="100%" h="100%" objectFit="contain" borderRadius="10px" />
-                </Flex>
-              ))}
-            </Flex>
-          )}
-          {moviesKids.length > 0 && (
-            <Flex w="600px" h="300px" overflowX="auto" direction="row" align="center"  bgColor="yellow" mb="20px">
-              {moviesKids.map((movie) => (
-                <Flex key={movie._id} w="200px" h="200px" bgColor="yellow" flexShrink={0} margin="10px" borderRadius="10px" overflow="hidden">
-                  <Image src={movie.image} alt={movie.name} w="100%" h="100%" objectFit="contain" 
-                  borderRadius="10px" transition="all 0.5s"
-                  _hover={{ transform: "scale(0.8)"}}/>
-                </Flex>
-              ))}
-            </Flex>
-          )}
+       <MoviesCard moviesAction={moviesAction} moviesComedy={moviesComedy}
+        moviesHorror={moviesHorror} moviesKids={moviesKids} platformName={platformName}/>
         </Flex>
-      )}
-      <GoBack goto="/platforms"/>
+      )}  
+      <GoBack goTo="/platforms"/>
+      <MenuComponent/>
     </>
   );
 };
-
 export default Movies;
 

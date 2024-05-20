@@ -1,12 +1,9 @@
 import { Button, FormControl, FormLabel, Input, Stack, useToast } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import { handleSubmitLogin } from "../../../reducer/movies.action";
-
-
+import {  handleSubmitRegister } from "../../../reducer/movies.action";
 
 const Register = () => {
-
   const toast = useToast();
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -15,63 +12,8 @@ const Register = () => {
   const emailRef = useRef(null);
   const imageRef = useRef(null);
   const navigate = useNavigate();
-
   const [isButtonDisabledRegister, setIsButtonDisabledRegister] = useState(true);
-
-  const handleSubmitRegister = async () => {
-    try {
-      const userName = userNameRef.current.value;
-      const password = passwordRef.current.value;
-      const name = nameRef.current.value;
-      const lastName = lastNameRef.current.value;
-      const email = emailRef.current.value;
-      const image = imageRef.current.files[0] || "/assets/fotoperfil.jpg";
-
-      const formData = new FormData();
-      formData.set('userName', userName);
-      formData.set('password', password);
-      formData.set('name', name);
-      formData.set('lastName', lastName);
-      formData.set('email', email);
-      formData.set('image', image);
-          
-    /*   const requestOptions = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ userName, password, name, lastName, email, image })
-      }; */
-      const requestOptions = {
-        method: 'POST',
-        body: formData,
-    };
-
-      const response = await fetch('https://project-13-back.vercel.app/api/v1/users/register', requestOptions);
-      console.log(response);
-
-      if (response.status === 201) {
-          toast({
-            title: 'Account created.',
-            description: "We've created your account for you.",
-            status: 'success',
-            duration: 1500,
-            isClosable: true,
-          })
-          handleSubmitLogin(userName, password, toast, navigate)
-      } else {
-          
-          toast({
-              title: "Error",
-              description: "Account has not been created successfully",
-              status: "error",
-              duration: 3000,
-              isClosable: true,
-          });
-      }
-  } catch (error) {
-      console.error('Error:', error);
-  }
-  }
-   
+  const [isLoadingRegister, setIsLoadingRegister] = useState(false);  
   const handleInputChangeRegister = () => {
     const userName = userNameRef.current.value;
     const password = passwordRef.current.value;
@@ -116,12 +58,19 @@ const Register = () => {
       }}
       isDisabled={isButtonDisabledRegister}
       onClick={()=>{
-        handleSubmitRegister();
+        handleSubmitRegister(userNameRef.current.value, passwordRef.current.value,nameRef.current.value,lastNameRef.current.value
+          ,emailRef.current.value,imageRef.current.files[0] || "/assets/fotoperfil.jpg", 
+          toast, navigate, setIsLoadingRegister
+        );
       }}
+      isLoading={isLoadingRegister}
+                     loadingText='Loading'
+                     colorScheme='teal'
+                     variant='outline'
+                     spinnerPlacement='start'
     >SEND</Button>
     </FormControl>
 </Stack>
   )
 }
-
 export default Register

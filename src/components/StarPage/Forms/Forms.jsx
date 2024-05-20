@@ -1,11 +1,11 @@
-import { Button, Flex} from "@chakra-ui/react";
+import {  Flex, Tab, TabList, Tabs} from "@chakra-ui/react";
 import { useState } from "react";
 import Login from "./Login";
 import Register from "./Register";
 
 const Forms = () => {
   const [form, setForm] = useState("Login")
-  const handleClick = (info) => {
+  const handleClickForm = (info) => {
     if(info === "Login"){
       setForm("Login")
     }else{
@@ -16,22 +16,12 @@ const Forms = () => {
   return (
     <Flex justify="center" align="center" flexDir="column" gap="10">
     <Flex justify="center" align="center" flexDir="row" gap="10" marginTop="40px">
-    <Button
-    colorScheme='teal'
-    _hover={{
-        transform: "scale(1.1)",
-        transition: "all 0.5s",
-      }}
-      onClick={()=>{handleClick("Login")}}
-    >Login</Button>
-    <Button 
-    colorScheme='teal'
-    _hover={{
-        transform: "scale(1.1)",
-        transition: "all 0.5s",
-      }}
-      onClick={()=>{handleClick("Register")}}
-    >Register</Button>
+    <Tabs variant='soft-rounded' colorScheme='teal' transition="all 0.5s">
+  <TabList>
+    <Tab color="white" transition="all 0.5s" onClick={()=>{handleClickForm("Login")}}>Login</Tab>
+    <Tab color="white" transition="all 0.5s" onClick={()=>{handleClickForm("Register")}}>Register</Tab>
+  </TabList>
+</Tabs>
     </Flex>
       {form === "Login" ? (
         <Login/>

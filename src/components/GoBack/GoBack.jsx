@@ -2,10 +2,11 @@ import { Flex, Image } from "@chakra-ui/react"
 import { useNavigate } from "react-router"
 
 
-const GoBack = ({goto}) => {
+const GoBack = ({goTo}) => {
     const navigate = useNavigate()
+
     const handleGoBack = () => {
-        navigate(`/${goto}`)
+        navigate(goTo)
     }
   return (
     <Flex>
