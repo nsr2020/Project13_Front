@@ -91,7 +91,6 @@ export const fetchMovies = async (setMoviesAction, setMoviesComedy, setMoviesHor
         fetch(`https://project-13-back.vercel.app/api/v1/movies/platform_category/${platformName}/${category}`)
           .then(response => response.json())
       );
-      console.log(response);
 
       const [actionMovies, comedyMovies, horrorMovies, kidsMovies] = await Promise.all(fetchPromises);
 
@@ -101,5 +100,6 @@ export const fetchMovies = async (setMoviesAction, setMoviesComedy, setMoviesHor
       setMoviesKids(kidsMovies);
     } catch (error) {
       console.error("Failed to fetch movies:", error);
+      console.log(error);
     }
   };

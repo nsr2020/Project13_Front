@@ -3,14 +3,14 @@ import { Image } from "@chakra-ui/react"
 const ImagesPlatform = ({navigate, platforms}) => {
     
     const handleClickPlatform = (platformName) => {
-        console.log(platformName);
+       
         navigate(`/movies/${platformName}`);
       }
   return (
     <>
      {platforms.map((platform) =>
-       <> 
         <Image
+        key={platform._id}
         src={platform.image}
         w="180px"
         h="180px"
@@ -21,7 +21,7 @@ const ImagesPlatform = ({navigate, platforms}) => {
         transition="all 0.5s"
         _hover={{ transform: "scale(0.8)"}}
       />
-      </>
+    
     )}
 
          </>
