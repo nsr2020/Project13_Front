@@ -25,7 +25,7 @@ const MenuComponent = ({platform, id=null, place}) => {
   {!platform && (
        <>
       <MenuVideo placement={placement} setPlacement={setPlacement}
-       navigate={navigate} isOpen={isOpen} onClose={onClose} onOpen={onOpen} id={id}/>
+       navigate={navigate} isOpen={isOpen} onClose={onClose} onOpen={onOpen} id={id} />
        </>
   )}
   

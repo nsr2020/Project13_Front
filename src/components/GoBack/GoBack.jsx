@@ -4,7 +4,7 @@ import { useNavigate } from "react-router"
 
 const GoBack = ({goTo}) => {
     const navigate = useNavigate()
-console.log(goTo);
+
     const handleGoBack = () => {
         navigate(goTo)
     }

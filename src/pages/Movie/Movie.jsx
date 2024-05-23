@@ -32,7 +32,7 @@ const Movie = () => {
      <MovieCardInfo movie={movie}/>
     )}
     <GoBack goTo={`/movies/${movie?.platform}`} />
-    <MenuComponent id={movie?._id} />
+    <MenuComponent id={movie?._id}/>
     </>
   )
 }

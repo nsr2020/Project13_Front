@@ -1,25 +1,77 @@
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, 
     DrawerOverlay, Flex, Image, RadioGroup, 
-    Text} from "@chakra-ui/react"
+    Text,
+    useToast} from "@chakra-ui/react"
 import { handleClickButtonTrailer } from "../../utils/Movie/MovieFunctions";
 
+
 const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, id}) => {
-    
+  const  user = JSON.parse(localStorage.getItem('userName'))
+  const toast = useToast()
+console.log(id);
     const handleClickMenuVideo = (type) => {
+     
         switch (type) {
             case "trailer":
                 handleClickButtonTrailer(id,navigate)
                 break;
             case "add":
-                console.log("Hola");
+                handleAddMovieToList(id)
                 break;
             case "user":
                 navigate(`/user/${id}`)
                 break;
             default:
                 break;
-        }
+        }   
+    }
+    const handleAddMovieToList = async (id) => {
+      
+      if (user.seenMovies.includes(id)) {
+        toast({
+            title: 'Error',
+            description: "Movie already in list",
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+        });
+        return;
+    }
+
+    user.seenMovies = [...user.seenMovies, id]
+
+        const res = await fetch(`https://project-13-back.vercel.app/api/v1/users/${user._id}`,{
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          method: "PUT",
+          body: JSON.stringify({ 
+              seenMovies: [id]
+          }),
+        });
+        const answer = await res.json();
+        localStorage.setItem("userName",JSON.stringify(answer))
         
+        if(res.status === 400){
+          toast({
+            title: 'Error',
+            description: "Movies could not be added to list",
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+          })
+        }
+        if(res.status === 200){
+          toast({
+            title: 'Success!',
+            description: "Movies has been successfully",
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          })
+          
+        }
     }
 
   return (
