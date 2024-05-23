@@ -11,10 +11,10 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
                 handleClickButtonTrailer(id,navigate)
                 break;
             case "add":
-                handleClickMenuVideo("add")
+                console.log("Hola");
                 break;
             case "user":
-                navigate("/user")
+                navigate(`/user/${id}`)
                 break;
             default:
                 break;
@@ -33,18 +33,19 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
        right="20px" w="50px" h="50px" 
        transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
        pos="fixed"
+       zIndex="1"
        onClick={onOpen}
    ></Image>
    <Drawer placement={placement} onClose={onClose} isOpen={isOpen} >
          <DrawerOverlay />
          <DrawerContent>
            <DrawerHeader display="flex" alignItems="center" justifyContent="center" bgColor="#f9d81a"
-           borderBottomWidth='1px'>VIDEO OPTIONS</DrawerHeader>
+           borderBottomWidth='1px'userSelect="none">VIDEO OPTIONS</DrawerHeader>
            <DrawerCloseButton />
            <DrawerBody display="flex" flexDirection="column" alignItems="center" bgColor="#ffdb9e"
            justifyContent="space-around">
             <Flex flexDir="column" align="center">
-            <Text fontWeight="bold">Trailer</Text>
+            <Text fontWeight="bold" userSelect="none">Trailer</Text>
              <Image src="/assets/trailer.png"  w="100px" h="100px" cursor="pointer" 
              transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
@@ -53,7 +54,7 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
              />
             </Flex>
            <Flex flexDir="column" align="center">
-           <Text fontWeight="bold">Add to Movie seen List</Text>
+           <Text fontWeight="bold" userSelect="none">Add to Movie seen List</Text>
              <Image src="/assets/checked.png" w="100px" h="100px" cursor="pointer"
              transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
@@ -62,7 +63,7 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
              />
            </Flex>
           <Flex flexDir="column" align="center">
-          <Text fontWeight="bold">User Info</Text>
+          <Text fontWeight="bold" userSelect="none">User Info</Text>
              <Image src="/assets/usericon.png" w="100px" h="100px" cursor="pointer"
              transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{

@@ -1,8 +1,8 @@
 import { Box, Flex } from "@chakra-ui/react"
 import { useEffect, useState } from "react";
-import ImagesPlatform from "../../components/Platforms/ImagesPlatform";
+import ImagesPlatform from "../../components/PlatformsItems/ImagesPlatform";
 import { useNavigate } from "react-router";
-import TitlePlatform from "../../components/Platforms/TitlePlatform";
+import TitlePlatform from "../../components/PlatformsItems/TitlePlatform";
 import Loading from "../../components/Loading/Loading";
 
 const Platforms = () => {

@@ -8,7 +8,6 @@ import MoviesCard from "../../components/Movies/MoviesCard/MoviesCard";
 import MenuComponent from "../../components/MenuItems/Menu";
 import SearchMovies from "../../components/Movies/MoviesCard/SearchMovies";
 
-
 const Movies = () => {
   const { platformName } = useParams();
   const [moviesAction, setMoviesAction] = useState([]);
@@ -33,7 +32,7 @@ const Movies = () => {
         <Flex direction="column" w="100%" minH="100svh" align="center" justify="center" pos="relative"
         bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)" gap="20px">
           <Text fontSize="40px" fontWeight="bold" color="white" mt="40px" 
-          textShadow="4px 4px 2px rgba(0,0,0,0.6)">
+          textShadow="4px 4px 2px rgba(0,0,0,0.6)" userSelect="none">
             {platformName} Movies
           </Text>
         <SearchMovies platformName={platformName}/>  

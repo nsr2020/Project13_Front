@@ -5,6 +5,10 @@ import { handleClickButtonTrailer } from "../../utils/Movie/MovieFunctions";
 
 const MovieCardInfo = ({movie}) => {
     const navigate = useNavigate();
+    const customStyle = {
+      fontSize: '22px',
+      backgroundColor: 'transparent',
+    };
 
   return (
     <>
@@ -17,11 +21,18 @@ const MovieCardInfo = ({movie}) => {
           h="500px"
         />
         <Stack mt='6' spacing='3' display="flex" align="center">
-          <Heading size='md' color="white">{movie?.name}</Heading>
-          <Text color="yellow">
+          <Heading size='md' color="white" userSelect="none">{movie?.name}</Heading>
+          <Text color="yellow" userSelect="none">
            This movie from {movie?.platform} belongs to category of {movie?.category}
           </Text>
-          <Rate disabled defaultValue={movie?.stars} />
+          <Rate
+        disabled
+        defaultValue={movie.stars}
+        style={customStyle}
+        character={({ index }) => (
+          <span style={index + 1 <= movie.stars ? { color: '#faad14' } : { color: '#d1d1d1' }}>★</span>
+        )}
+      />
         </Stack>
       </CardBody>
       <Divider  />

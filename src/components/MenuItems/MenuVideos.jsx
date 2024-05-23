@@ -1,6 +1,5 @@
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Image, RadioGroup } from "@chakra-ui/react"
 
-
 const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, place}) => {
 
     const handleClickMenuVideos =  (platformName) => {
@@ -10,7 +9,6 @@ const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen,
         navigate(`/movies_Search/${platformName}`)
     }
     }
-
 
   return (
     <>
@@ -23,13 +21,14 @@ const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen,
      right="20px" w="50px" h="50px" 
      transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
      pos="fixed"
+     zIndex="1"
      onClick={onOpen}
  ></Image>
  <Drawer placement={placement} onClose={onClose} isOpen={isOpen} >
        <DrawerOverlay />
        <DrawerContent>
          <DrawerHeader display="flex" alignItems="center" justifyContent="center" bgColor="#f9d81a"
-         borderBottomWidth='1px'>PLATFORMS</DrawerHeader>
+         borderBottomWidth='1px' userSelect="none">PLATFORMS</DrawerHeader>
          <DrawerCloseButton />
          <DrawerBody display="flex" flexDirection="column" alignItems="center" bgColor="#ffdb9e"
          justifyContent="center">
