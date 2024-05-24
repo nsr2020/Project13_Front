@@ -6,7 +6,7 @@ import MenuVideo from "./MenuVideo"
 
 
 
-const MenuComponent = ({platform, id=null, place}) => {
+const MenuComponent = ({platform, id=null, place, nameMovieRef }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [placement, setPlacement] = useState("right") 
     const navigate = useNavigate()
@@ -19,7 +19,7 @@ const MenuComponent = ({platform, id=null, place}) => {
    {platform && (
     <>
     <MenuVideos placement={placement} setPlacement={setPlacement}
-     navigate={navigate} isOpen={isOpen} onClose={onClose} onOpen={onOpen} place={place}/>
+     navigate={navigate} isOpen={isOpen} onClose={onClose} onOpen={onOpen} place={place} nameMovieRef={nameMovieRef}/>
     </>
   )}
   {!platform && (

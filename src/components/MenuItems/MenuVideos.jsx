@@ -1,11 +1,12 @@
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Image, RadioGroup } from "@chakra-ui/react"
 
-const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, place}) => {
+const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, place, nameMovieRef}) => {
 
     const handleClickMenuVideos =  (platformName) => {
         if(place === "Movies")
         navigate(`/movies/${platformName}`)
     else{
+        nameMovieRef.current.value = ""
         navigate(`/movies_Search/${platformName}`)
     }
     }

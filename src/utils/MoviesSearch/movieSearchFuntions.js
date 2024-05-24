@@ -17,9 +17,7 @@ export const getMovieSearch = (platformName, setMoviesSearch, noMovies, toast) =
 
    export const handleInputMovieSearch = (nameMovie, setMoviesSearch, platformName, toast) => {
     
-    if(!nameMovie.current.value){
-    let noMovies = false
-      getMovieSearch(platformName, setMoviesSearch, noMovies)
+    if(nameMovie.current.value === ""){
       return
     }
     fetch(`https://project-13-back.vercel.app/api/v1/movies/name/${nameMovie.current.value}`)
@@ -30,16 +28,18 @@ export const getMovieSearch = (platformName, setMoviesSearch, noMovies, toast) =
         let noMovies = true;
         getMovieSearch(platformName, setMoviesSearch, noMovies, toast);
       }
-     
     })
     
     }
 
     export const handleCleanInputMovieSearch = (nameMovie, setMoviesSearch, platformName) => {
-        if(nameMovie.current){
+        if(nameMovie.current.value !== ""){
             nameMovie.current.value = ""
+            getMovieSearch(platformName, setMoviesSearch) 
+        }else if(nameMovie.current.value === ""){
+            return
         }
-        getMovieSearch(platformName, setMoviesSearch) 
+        
         
       }
 

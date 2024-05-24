@@ -4,9 +4,7 @@ import { useNavigate, useParams } from 'react-router'
 import GoBack from '../../components/GoBack/GoBack'
 import MenuComponent from '../../components/MenuItems/Menu'
 import Loading from '../../components/Loading/Loading'
-import { getMovieSearch, handleCleanInputMovieSearch, handleInputMovieSearch } from '../../utils/MoviesSearch/movieSearchFuntions'
-import { handleClickIconInfoMovie } from '../../utils/MoviesFunctions/movies'
-import { DeleteIcon, SearchIcon } from '@chakra-ui/icons'
+import { getMovieSearch} from '../../utils/MoviesSearch/movieSearchFuntions'
 import SearchAreaInput from '../../components/MovieSearchItems/SearchAreaInput'
 import SearchMovieImage from '../../components/MovieSearchItems/SearchMovieImage'
 import SearchMoviesCardItems from '../../components/MovieSearchItems/SearchMoviesCardItems'
@@ -36,7 +34,7 @@ const MoviesSearch = () => {
         >
         <SearchAreaInput nameMovieRef={nameMovieRef} setMoviesSearch={setMoviesSearch} 
         platformName={platformName} toast={toast}/>
-         <Flex w="90%" minH="100svh" justify="center" wrap="wrap" >
+         <Flex w="90%" minH="60svh" justify="center" wrap="wrap" >
           { moviesSearch.map((movie)=>(
             <Flex
             key={movie._id}
@@ -59,7 +57,7 @@ const MoviesSearch = () => {
 
          </Flex>
         <GoBack goTo={`/movies/${platformName}`}/>
-        <MenuComponent platform={platformName} place="MovieSearch"/>
+        <MenuComponent platform={platformName} place="MovieSearch" nameMovieRef={nameMovieRef}/>
         </Flex>
     )}
     </>

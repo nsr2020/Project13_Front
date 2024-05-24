@@ -8,7 +8,7 @@ import { handleClickButtonTrailer } from "../../utils/Movie/MovieFunctions";
 const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, id}) => {
   const  user = JSON.parse(localStorage.getItem('userName'))
   const toast = useToast()
-console.log(id);
+
     const handleClickMenuVideo = (type) => {
      
         switch (type) {
