@@ -2,77 +2,14 @@ import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader,
     DrawerOverlay, Flex, Image, RadioGroup, 
     Text,
     useToast} from "@chakra-ui/react"
-import { handleClickButtonTrailer } from "../../utils/Movie/MovieFunctions";
+import { handleClickMenuVideo } from "../../utils/Menu/menuFunctions";
 
 
 const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, id}) => {
   const  user = JSON.parse(localStorage.getItem('userName'))
   const toast = useToast()
 
-    const handleClickMenuVideo = (type) => {
-     
-        switch (type) {
-            case "trailer":
-                handleClickButtonTrailer(id,navigate)
-                break;
-            case "add":
-                handleAddMovieToList(id)
-                break;
-            case "user":
-                navigate(`/user/${id}`)
-                break;
-            default:
-                break;
-        }   
-    }
-    const handleAddMovieToList = async (id) => {
-      
-      if (user.seenMovies.includes(id)) {
-        toast({
-            title: 'Error',
-            description: "Movie already in list",
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-        });
-        return;
-    }
-
-    user.seenMovies = [...user.seenMovies, id]
-
-        const res = await fetch(`https://project-13-back.vercel.app/api/v1/users/${user._id}`,{
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          method: "PUT",
-          body: JSON.stringify({ 
-              seenMovies: [id]
-          }),
-        });
-        const answer = await res.json();
-        localStorage.setItem("userName",JSON.stringify(answer))
-        
-        if(res.status === 400){
-          toast({
-            title: 'Error',
-            description: "Movies could not be added to list",
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-          })
-        }
-        if(res.status === 200){
-          toast({
-            title: 'Success!',
-            description: "Movies has been successfully",
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-          })
-          
-        }
-    }
+   
 
   return (
     <>
@@ -103,7 +40,7 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
              <Image src="/assets/trailer.png"  w="100px" h="100px" cursor="pointer" 
              transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
-                handleClickMenuVideo("trailer")
+                handleClickMenuVideo("trailer", id, navigate)
              }}
              />
             </Flex>
@@ -112,7 +49,7 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
              <Image src="/assets/checked.png" w="100px" h="100px" cursor="pointer"
              transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
-                handleClickMenuVideo("add")
+                handleClickMenuVideo("add", id, navigate, user, toast)
              }}
              />
            </Flex>
@@ -121,7 +58,7 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
              <Image src="/assets/usericon.png" w="100px" h="100px" cursor="pointer"
              transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
-                handleClickMenuVideo("user")
+                handleClickMenuVideo("user", id, navigate)
              }}
              />
           </Flex>

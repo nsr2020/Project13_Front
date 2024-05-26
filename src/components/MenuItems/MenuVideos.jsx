@@ -1,37 +1,8 @@
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Image, RadioGroup, useToast } from "@chakra-ui/react"
+import { handleClickMenuVideos } from "../../utils/Menu/menuFunctions"
 
 const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, place, nameMovieRef, moviesSearch , moviesAction}) => {
   const toast = useToast()
-    const handleClickMenuVideos =  (platformName) => {
-        if(place === "Movies")
-          if(moviesAction[0].platform === platformName){
-            toast({
-              title: "You already are at platform" +" "+ platformName,
-              status: "warning",
-              duration: 3000,
-              isClosable: true,
-            })
-            return
-          } else{
-            navigate(`/movies/${platformName}`)
-          }
-        
-    else{
-      
-      if(moviesSearch[0].platform === platformName){
-        toast({
-          title: "You already are at platform" +" "+ platformName,
-          status: "warning",
-          duration: 3000,
-          isClosable: true,
-        })
-        return
-      }else if(moviesSearch[0].platform !== platformName){
-        nameMovieRef.current.value = ""
-        navigate(`/movies_Search/${platformName}`)
-      }
-    }
-    }
 
   return (
     <>
@@ -60,19 +31,19 @@ const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen,
            <Image src="/assets/hbologo1.png"  w="150px" h="150px" cursor="pointer" 
            transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
            onClick={()=>{
-            handleClickMenuVideos("Hbo Max")
+            handleClickMenuVideos("Hbo Max",place, moviesAction,toast,navigate, moviesSearch, nameMovieRef)
            }}
            />
            <Image src="/assets/primelogo1.png" w="150px" h="150px" cursor="pointer"
            transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
            onClick={()=>{
-            handleClickMenuVideos("Prime Video")
+            handleClickMenuVideos("Prime Video", place, moviesAction,toast,navigate, moviesSearch, nameMovieRef)
            }}
            />
            <Image src="/assets/net.png" w="150px" h="150px" cursor="pointer"
            transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
            onClick={()=>{
-            handleClickMenuVideos("Netflix")
+            handleClickMenuVideos("Netflix", place, moviesAction,toast,navigate, moviesSearch, nameMovieRef)
            }}
            />
          </DrawerBody>
