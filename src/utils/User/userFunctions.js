@@ -38,7 +38,8 @@ export const handleDeleteMovie = async (id, user, setUserMovies, toast) => {
     }
 };
 
-export const handleLogOutClick = () => {
+export const handleLogOutClick = (navigate) => {
+    console.log("hola");
     localStorage.removeItem("userName");
     localStorage.removeItem("token");
     navigate("/");
