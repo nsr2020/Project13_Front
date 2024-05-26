@@ -1,9 +1,8 @@
-const categories = ["Action", "Comedy", "Horror", "Kids"];
 
-export const handleSubmitLogin = async ( userName, password, toast, navigate, isLoading) => {
-    isLoading(true)
+
+export const handleSubmitLogin = async ( userName, password, toast, navigate, dispatch) => {
+    dispatch({type:"IS_LOADING_LOGIN", payload:true})
     try {
-        
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -28,7 +27,7 @@ export const handleSubmitLogin = async ( userName, password, toast, navigate, is
               },2000)
             
         } else { 
-            isLoading(false)
+          dispatch({type:"IS_LOADING_LOGIN", payload:false})
            toast({
             title: "Error",
             description: "User or password incorrect",
@@ -42,7 +41,8 @@ export const handleSubmitLogin = async ( userName, password, toast, navigate, is
     }
 };
 
-export const handleSubmitRegister = async (userName, password, name, lastName, email, image, toast, navigate, isButtonDisable, isLoading) => {
+export const handleSubmitRegister = async (userName, password, name, lastName, email, image, toast, navigate, dispatch) => {
+    dispatch({type: "IS_LOADING_REGISTER" , payload: true})
     try {
       const formData = new FormData();
       formData.set('userName', userName);
@@ -58,7 +58,6 @@ export const handleSubmitRegister = async (userName, password, name, lastName, e
     };
 
       const response = await fetch('https://project-13-back.vercel.app/api/v1/users/register', requestOptions);
-      console.log(response);
 
       if (response.status === 201) {
           toast({
@@ -68,9 +67,9 @@ export const handleSubmitRegister = async (userName, password, name, lastName, e
             duration: 500,
             isClosable: true,
           })
-          handleSubmitLogin(userName, password, toast, navigate, isButtonDisable,isLoading)
+          handleSubmitLogin(userName, password, toast, navigate, dispatch)
       } else {
-          
+        dispatch({type: "IS_LOADING_REGISTER" , payload: false})
           toast({
               title: "Error",
               description: "Account has not been created successfully",
@@ -84,22 +83,3 @@ export const handleSubmitRegister = async (userName, password, name, lastName, e
   }
   }
 
-export const fetchMovies = async (setMoviesAction, setMoviesComedy, setMoviesHorror, setMoviesKids, platformName) => {
-    
-    try {
-      const fetchPromises = categories.map(category =>
-        fetch(`https://project-13-back.vercel.app/api/v1/movies/platform_category/${platformName}/${category}`)
-          .then(response => response.json())
-      );
-
-      const [actionMovies, comedyMovies, horrorMovies, kidsMovies] = await Promise.all(fetchPromises);
-
-      setMoviesAction(actionMovies);
-      setMoviesComedy(comedyMovies);
-      setMoviesHorror(horrorMovies);
-      setMoviesKids(kidsMovies);
-    } catch (error) {
-      console.error("Failed to fetch movies:", error);
-      console.log(error);
-    }
-  };

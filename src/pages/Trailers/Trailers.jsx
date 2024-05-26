@@ -1,17 +1,19 @@
-import { Button, Flex, scaleFadeConfig } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { Button, Flex } from '@chakra-ui/react'
+import { useEffect, useReducer } from 'react'
 import ReactPlayer from 'react-player/youtube'
 import { useParams } from 'react-router'
 import GoBack from '../../components/GoBack/GoBack'
+import { INITIAL_STATE_TRAILER, trailerReducer } from '../../reducer/TrailerReducer/trailer.reducer'
+import { fetchTrailer } from '../../reducer/TrailerReducer/trailer.action'
 
 const Trailers = () => {
-  const [trailer, setTrailer] = useState()
-  const [playing, setPlaying] = useState(false)
+  const [state, dispatch] = useReducer(trailerReducer, INITIAL_STATE_TRAILER)
+  const {trailer, playing }= state;
   const {id} = useParams()
   const user = localStorage.getItem("userName")
 
   const handlePlay = () =>{
-    setPlaying(!playing)
+    dispatch({type:"SET_PLAYING"})
   }
 
   useEffect(()=>{
@@ -19,12 +21,7 @@ const Trailers = () => {
       navigate("/")
       return
     }
-    fetch(`https://project-13-back.vercel.app/api/v1/movies/${id}`)
-    .then(response => response.json())
-    .then(data =>{
-      setTrailer(data)
-    
-    });
+    fetchTrailer(id,dispatch)
   },[user])
 
   return (

@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react"
 
 
-const SearchMovies = ({platformName}) => {
+const AllMoviesText = ({platformName}) => {
 
     const handleClickAllMovies = () => {
         window.location.href = `/movies_Search/${platformName}`
@@ -9,7 +9,8 @@ const SearchMovies = ({platformName}) => {
   return (
     <>
     <Flex align="center" justify="center" bgColor="transparent"  >
-        <Text color="blue" fontWeight="bold" fontSize="25px" cursor="pointer"
+        <Text color="yellow" fontWeight="bold"fontSize={["20px", "25px", "30px", "34px"]}  
+        cursor="pointer"
         _hover={{transform:"scale(0.8)",
                  transition:"all 0.5s" }}
         onClick={()=>{
@@ -21,4 +22,4 @@ const SearchMovies = ({platformName}) => {
   )
 }
 
-export default SearchMovies
+export default AllMoviesText

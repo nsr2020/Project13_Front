@@ -4,6 +4,7 @@ import Loading from '../../components/Loading/Loading'
 import GoBack from '../../components/GoBack/GoBack'
 import MenuComponent from '../../components/MenuItems/Menu'
 import MovieCardInfo from '../../components/MovieItems/MovieCardInfo'
+import { fetchMovie } from '../../utils/Movie/MovieFunctions'
 
 const Movie = () => {
   const {id} = useParams()
@@ -16,12 +17,7 @@ const Movie = () => {
       navigate("/")
       return
     }
-    fetch(`https://project-13-back.vercel.app/api/v1/movies/${id}`)
-     .then(response => response.json())
-     .then(data =>{
-      setMovie(data)
-     
-     });
+     fetchMovie(id, setMovie)
 
     },[ user])
 

@@ -1,4 +1,4 @@
-import { Button, Divider, Flex, Image, Input, Text, useToast} from '@chakra-ui/react'
+import { Flex, useToast} from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import GoBack from '../../components/GoBack/GoBack'
@@ -34,13 +34,13 @@ const MoviesSearch = () => {
         >
         <SearchAreaInput nameMovieRef={nameMovieRef} setMoviesSearch={setMoviesSearch} 
         platformName={platformName} toast={toast}/>
-         <Flex w="90%" minH="60svh" justify="center" wrap="wrap" >
+         <Flex w="100%" minH="60svh" justify="center" wrap="wrap" >
           { moviesSearch.map((movie)=>(
             <Flex
             key={movie._id}
             direction="column"
-            w="200px"
-            h="300px"
+            w={{ base: "120px", sm: "180px", md: "200px" }}
+            h={{ base: "170px", sm: "220px", md: "250px" }}
             bg="grey"
             borderRadius="md"
             margin="10px"
@@ -51,13 +51,15 @@ const MoviesSearch = () => {
             style={{boxShadow:"rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset"}}
           >
          <SearchMovieImage movie={movie}/>
+         <Flex w="100%" h="30%" align="start" justifyContent="center">
           <SearchMoviesCardItems movie={movie} navigate={navigate}/>
+          </Flex>
           </Flex>
           ))}
 
          </Flex>
         <GoBack goTo={`/movies/${platformName}`}/>
-        <MenuComponent platform={platformName} place="MovieSearch" nameMovieRef={nameMovieRef}/>
+        <MenuComponent platform={platformName} place="MovieSearch" nameMovieRef={nameMovieRef} moviesSearch={moviesSearch}/>
         </Flex>
     )}
     </>

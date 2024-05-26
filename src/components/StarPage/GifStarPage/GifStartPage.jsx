@@ -1,18 +1,11 @@
 import {  Button, Flex, Image} from "@chakra-ui/react"
-import { useState } from "react"
 import Forms from "../Forms/Forms"
 
-
-const GifStartPage = () => {
-    const [click, setClick] = useState(false)
-    const handleClick = () => {
-        setClick(true)
-    }
-    
-
+const GifStartPage = ({IsFormsArea, dispatch, form, isLoadingLogin, isButtonDisabledLogin, isLoadingRegister, isButtonDisabledRegister}) => {
+ 
   return (
     <>
-    {!click ? (
+    {!IsFormsArea ? (
          <Flex w='350px' h='350px' flexDir='column' gap='15px' align='center'>
          <Image src='/assets/cinema.png' alt='starIcon' w='350px' h='350px' borderRadius='md' />
          <Button bgGradient="linear(to-b, var(--nsr-color1), var(--nsr-color2), var(--nsr-color3), var(--nsr-color4), var(--nsr-color5))"
@@ -24,11 +17,13 @@ const GifStartPage = () => {
         }}
         transition="all 0.5s"
         borderRadius="md"
-        onClick={handleClick}
+        onClick={() => dispatch({ type: 'IS_FORMS_AREA' })}
           >START</Button>
        </Flex>
     ):(  
-       <Forms/>    
+       <Forms dispatch={dispatch} form={form} isLoadingLogin={isLoadingLogin} isButtonDisabledLogin={isButtonDisabledLogin}
+       isLoadingRegister={isLoadingRegister} isButtonDisabledRegister={isButtonDisabledRegister}
+       />    
     )}
    
     </>

@@ -12,8 +12,8 @@ const ImagesPlatform = ({navigate, platforms}) => {
         <Image
         key={platform._id}
         src={platform.image}
-        w="180px"
-        h="180px"
+        w={{ base: "75px", md: "120px", lg: "150px", xl: "180px" }}
+        h={{ base: "75px", md: "120px", lg: "150px", xl: "180px" }}
         borderRadius="50%"
         border="2px groove red"
         cursor="pointer"

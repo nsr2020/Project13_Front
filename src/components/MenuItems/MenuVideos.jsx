@@ -1,13 +1,35 @@
-import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Image, RadioGroup } from "@chakra-ui/react"
+import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Image, RadioGroup, useToast } from "@chakra-ui/react"
 
-const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, place, nameMovieRef}) => {
-
+const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, place, nameMovieRef, moviesSearch , moviesAction}) => {
+  const toast = useToast()
     const handleClickMenuVideos =  (platformName) => {
         if(place === "Movies")
-        navigate(`/movies/${platformName}`)
+          if(moviesAction[0].platform === platformName){
+            toast({
+              title: "You already are at platform" +" "+ platformName,
+              status: "warning",
+              duration: 3000,
+              isClosable: true,
+            })
+            return
+          } else{
+            navigate(`/movies/${platformName}`)
+          }
+        
     else{
+      
+      if(moviesSearch[0].platform === platformName){
+        toast({
+          title: "You already are at platform" +" "+ platformName,
+          status: "warning",
+          duration: 3000,
+          isClosable: true,
+        })
+        return
+      }else if(moviesSearch[0].platform !== platformName){
         nameMovieRef.current.value = ""
         navigate(`/movies_Search/${platformName}`)
+      }
     }
     }
 
@@ -19,7 +41,9 @@ const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen,
      alt="menu" 
      cursor="pointer"
      top="20px"
-     right="20px" w="50px" h="50px" 
+     right="20px" 
+     w={{ base: "30px", md: "50px", lg: "50px", xl: "50px" }}
+     h={{ base: "30px", md: "50px", lg: "50px", xl: "50px" }}
      transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
      pos="fixed"
      zIndex="1"

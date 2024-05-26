@@ -36,7 +36,7 @@ return (
         bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)"
       >
         <TitlePlatform />
-        <Box display="flex" gap="100px" transition="all 0.5s">
+        <Box display="flex" gap={{ base: "20px", md: "40px", lg: "60px", xl: "80px" }} transition="all 0.5s">
           <ImagesPlatform navigate={navigate} platforms={platforms} />
         </Box>
       </Flex>

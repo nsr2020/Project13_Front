@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import { Divider, Flex, Text } from "@chakra-ui/react";
 import GoBack from "../../components/GoBack/GoBack";
-import { fetchMovies } from "../../reducer/movies.action";
 import MoviesCard from "../../components/Movies/MoviesCard/MoviesCard";
 import MenuComponent from "../../components/MenuItems/Menu";
-import SearchMovies from "../../components/Movies/MoviesCard/SearchMovies";
+import AllMoviesText from "../../components/Movies/MoviesCard/AllMoviesText";
+import { fetchMovies } from "../../reducer/MoviesReducer/movies.action";
+import { INITIAL_STATE_MOVIES, moviesReducer } from "../../reducer/MoviesReducer/movies.reducer";
 
 const Movies = () => {
+  const [state, dispatch] = useReducer(moviesReducer, INITIAL_STATE_MOVIES)
+  const {indexAction, indexComedy, indexHorror, indexKids, moviesAction, moviesComedy, moviesHorror, moviesKids }= state;
   const { platformName } = useParams();
-  const [moviesAction, setMoviesAction] = useState([]);
-  const [moviesComedy, setMoviesComedy] = useState([]);
-  const [moviesHorror, setMoviesHorror] = useState([]);
-  const [moviesKids, setMoviesKids] = useState([]);
-  
+  console.log(moviesAction);
   const user = localStorage.getItem('userName'); 
 
   useEffect(() => {
@@ -22,7 +21,7 @@ const Movies = () => {
       window.location.href = "/"; 
       return;
     }
-    fetchMovies(setMoviesAction, setMoviesComedy, setMoviesHorror, setMoviesKids, platformName)
+    fetchMovies(platformName, dispatch)
   }, [platformName, user]);
 
   return (
@@ -30,23 +29,26 @@ const Movies = () => {
       {!moviesAction.length && !moviesComedy.length && !moviesHorror.length && !moviesKids.length && <Loading />}
       {(moviesAction.length || moviesComedy.length || moviesHorror.length || moviesKids.length) && (
         <Flex direction="column" w="100%" minH="100svh" align="center" justify="center" pos="relative"
-        bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)" gap="20px">
-          <Text fontSize="40px" fontWeight="bold" color="white" mt="40px" 
-          textShadow="4px 4px 2px rgba(0,0,0,0.6)" userSelect="none">
+        bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)" gap="20px" userSelect="none">
+          <Flex flexDir="column" gap="20px" bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)"
+           w="100%" align="center" pos="sticky" top="0" zIndex="1" opacity="0.9">
+          <Text fontWeight="bold" color="white" mt="70px" 
+          textShadow="4px 4px 2px rgba(0,0,0,0.6)" userSelect="none" fontSize={["24px", "30px", "36px", "46px"]} >
             {platformName} Movies
           </Text>
-        <SearchMovies platformName={platformName}/>  
-       <MoviesCard movies={moviesAction} platformName={platformName}/>
+        <AllMoviesText platformName={platformName}/>  
+        </Flex>
+       <MoviesCard movies={moviesAction} platformName={platformName}indexAction={indexAction} dispatch={dispatch}/>
        <Divider w="80%"/>
-       <MoviesCard movies={moviesComedy} platformName={platformName}/> 
+       <MoviesCard movies={moviesComedy} platformName={platformName} indexComedy={indexComedy} dispatch={dispatch}/> 
        <Divider w="80%"/>
-       <MoviesCard movies={moviesHorror} platformName={platformName}/> 
+       <MoviesCard movies={moviesHorror} platformName={platformName} indexHorror={indexHorror} dispatch={dispatch}/> 
        <Divider w="80%"/>
-       <MoviesCard movies={moviesKids} platformName={platformName}/> 
+       <MoviesCard movies={moviesKids} platformName={platformName} indexKids={indexKids} dispatch={dispatch}/> 
         </Flex>
       )}  
       <GoBack goTo="/platforms"/>
-      <MenuComponent platform={platformName} place="Movies"/>
+      <MenuComponent platform={platformName} place="Movies" moviesAction={moviesAction}/>
     </>
   );
 };

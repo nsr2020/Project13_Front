@@ -1,9 +1,9 @@
 import { Button, FormControl, FormLabel, Input, Stack, useToast } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router";
-import {  handleSubmitRegister } from "../../../reducer/movies.action";
+import {  handleSubmitRegister } from "../../../reducer/StartPageReducer/startPage.action";
 
-const Register = () => {
+const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
   const toast = useToast();
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -12,8 +12,7 @@ const Register = () => {
   const emailRef = useRef(null);
   const imageRef = useRef(null);
   const navigate = useNavigate();
-  const [isButtonDisabledRegister, setIsButtonDisabledRegister] = useState(true);
-  const [isLoadingRegister, setIsLoadingRegister] = useState(false);  
+
   const handleInputChangeRegister = () => {
     const userName = userNameRef.current.value;
     const password = passwordRef.current.value;
@@ -24,13 +23,16 @@ const Register = () => {
     const isValidPassword = /^(?=.*[A-Z]).{5,}$/.test(password);
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    setIsButtonDisabledRegister(
-        !(userName.length >= 5 && isValidPassword && name.length > 0 && lastName.length > 0 && isValidEmail)
-    );
+        if(userName.length >= 5 && isValidPassword && name.length > 0 && lastName.length > 0 && isValidEmail){
+          dispatch({type: "IS_REGISTER_BUTTON", payload:false})
+        }else{
+          dispatch({type: "IS_REGISTER_BUTTON", payload:true})
+        }
 };
 
   return (
-    <Stack mb="10" outline='3px solid black' padding='20px' borderRadius='20px' gap="10px" background="linear-gradient(135deg, #391F5B, #12007a)">
+    <Stack mb="20" outline='3px solid black' padding='20px' borderRadius='20px' gap="10px"
+     background="linear-gradient(135deg, #391F5B, #12007a)">
     <h2 style={{color:"yellow"}}>REGISTER</h2>
     <FormControl display="flex" flexDir="column" align="center" background="linear-gradient(135deg, #391F5B, #12007a)" color="white">
     <FormLabel  htmlFor="userNameRef">User: </FormLabel>
@@ -60,7 +62,7 @@ const Register = () => {
       onClick={()=>{
         handleSubmitRegister(userNameRef.current.value, passwordRef.current.value,nameRef.current.value,lastNameRef.current.value
           ,emailRef.current.value,imageRef.current.files[0] || "/assets/fotoperfil.jpg", 
-          toast, navigate, setIsLoadingRegister
+          toast, navigate, dispatch
         );
       }}
       isLoading={isLoadingRegister}

@@ -16,26 +16,35 @@ const SearchMovieImage = ({movie}) => {
    <Image
               src={movie.image}
               alt={movie.name}
-              w="70%"
-              h="70%"
+              w={{ base: "100%", sm: "100%", md: "100%" }}
+              h={{ base: "70%", sm: "70%", md: "70%" }}
               borderRadius="md"
               boxShadow="md"
               transition="all 0.5s"
               cursor="pointer"
-              _hover={{transform:"scale(0.8) rotate(30deg)"}}
+              _hover={{transform:"scale(0.7) rotate(30deg)"}}
               onClick={onOpen}
             />
             <Drawer placement={placement} onClose={onClose} isOpen={isOpen} size="full" >
        <DrawerOverlay />
        <DrawerContent>
-         <DrawerHeader display="flex" alignItems="center" justifyContent="center" bgColor="#6c3e1e"
+         <DrawerHeader display="flex" alignItems="center" fontSize={["14px", "16px", "19px", "20px"]}
+         justifyContent="center" bgColor="#6c3e1e" p="30px" 
          bgImage="url(https://www.transparenttextures.com/patterns/brick-wall-dark.png)"
-         borderBottomWidth='2px' color="white">{movie.name}</DrawerHeader>
-         <DrawerCloseButton mt="10px" color="white" border="3px solid white"/>
+         borderBottomWidth='2px' color="white" 
+         overflow="hidden"
+         whiteSpace="nowrap"
+         textOverflow="ellipsis"
+         >{movie.name}</DrawerHeader>
+         <DrawerCloseButton  color="white" border="3px solid white" />
          <DrawerBody display="flex" flexDirection="column" alignItems="center" bgColor="#a68059"
          bgImage="url(https://www.transparenttextures.com/patterns/brick-wall-dark.png)"
          justifyContent="center">
-           <Image src={movie.image}  w="500px" minWidth="280px" h="75svh" borderRadius="20px" mb="20px"
+           <Image src={movie.image} 
+            w={{ base: "80%", sm: "80%", md: "500px" }}
+            minWidth={{ base: "200px", sm: "250px", md: "280px" }}
+            h={{base:"60svh", sm:"70svh", md:"75svh"}}
+            borderRadius="20px" mb="20px"
            />
               <Rate
         disabled

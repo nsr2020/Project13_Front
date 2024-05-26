@@ -82,7 +82,9 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
        alt="menu" 
        cursor="pointer"
        top="20px"
-       right="20px" w="50px" h="50px" 
+       right="20px"
+       w={{ base: "30px", md: "50px", lg: "50px", xl: "50px" }}
+       h={{ base: "30px", md: "50px", lg: "50px", xl: "50px" }}
        transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
        pos="fixed"
        zIndex="1"

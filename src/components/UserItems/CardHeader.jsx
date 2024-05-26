@@ -1,0 +1,35 @@
+import { Avatar, Box, CardHeader, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { handleLogOutClick } from '../../utils/User/userFunctions'
+
+const CardHeaderUser = ({user, navigate}) => {
+  return (
+    <>
+    <CardHeader >
+                            <Flex direction={{ base: "column", md: "row" }} align="center" spacing="4">
+                                <Flex flex="1" alignItems='center' flexWrap='wrap'  gap={{ base: "20px", md: "40px", lg: "80px" }}>
+                                    <Avatar name={user?.name} src={user?.image}
+                                        w={{ base: "60px", md: "80px", lg: "100px" }}
+                                        h={{ base: "60px", md: "80px", lg: "100px" }}
+                                    />
+                                    <Box display="flex" flexDir="column" alignItems="center" justifyContent="center"mt="10px">
+                                        <Heading size={{ base: "md", md: "lg", lg: "xl" }} mb="15px"
+                                        >{user?.name} {user?.lastName}</Heading>
+                                        <Text color="black" fontSize={{ base: "12px", md: "md", lg: "lg" }}
+                                        fontWeight="bold" textAlign="center"> User Info, keep in mind that you can modify your details at any time, please send us an email.</Text>
+                                    </Box>
+                                    <Image pos="absolute"
+                                     top={{ base: "10px", md: "20px" }}
+                                     right={{ base: "10px", md: "20px" }}
+                                     cursor="pointer"
+                                    src="/assets/logOut.png"w={{ base: "30px", md: "40px", lg: "50px" }} title="LogOut"
+                                    transition="all 0.5s"
+                                    _hover={{transform:"scale(1.1)"}}
+                                    onClick={()=>handleLogOutClick(navigate)}
+                                    />
+                                </Flex>
+                            </Flex>
+                        </CardHeader></>
+  )
+}
+
+export default CardHeaderUser
