@@ -10,18 +10,26 @@
   font-family: "Josefin Sans", sans-serif;
 }
 :root{
-  --nsr-color1:#f4a462;
-  --nsr-color2:#ee9649;
-  --nsr-color3: #e76e50;
-  --nsr-color4: #e7e395;
-  --nsr-color5:#2a9d90;
+  --nsr-color1:white;
+  --nsr-color2:yellow;
+  --nsr-color3:#f9d81a;
+  --nsr-color4: #ffdb9e;
+  --nsr-color5:teal;
   --nsr-color6:black;
-  --nsr-color7:#B384C9;
-  --nsr-color8:#391F5B;
-  --nsr-color9:#0f0004;
-  --nsr-color10:#12007a;
-  --nsr-color11: #0082a3;
-  --nsr-color12: #f200f2;
+  --nsr-color7:#F0B66B;
+  --nsr-color8:#0B7072;
+  --nsr-color9:#EFE081;
+  --nsr-color10:#F1713F;
+  --nsr-color11: #87C19B;
+  --nsr-color12: #4e2d1d;
+  --nsr-color13:#f9eb0a;
+  --nsr-color14:#ec008c;
+  --nsr-color15:#005caf;
+  --nsr-color16:#6c3e1e;
+  --nsr-color17:#faad14;
+  --nsr-color18:#d1d1d1;
+  --nsr-color19:#391F5B;
+  --nsr-color20:#12007a;
 
   /*borders y margins*/
   --nsr-border1:10px;
@@ -35,6 +43,7 @@
   --nsr-margin3:30px;
   --nsr-margin4:40px;
   --nsr-margin5:50px;
+  --nsr-margin6:70px;
 
   /*paddings*/
   --nsr-padding1:10px;
@@ -77,4 +86,24 @@
 
   /*Cursor*/
   --nsr-cursor1:pointer;
+  /* directions*/
+  --nsr-direction1:column;
+  /*opacity*/
+
+  --nsr-opacity1:0.9;
+  /*fontWeigth*/
+  --nsr-fweight1:bold;
+
+  /*positions*/
+  --nsr-pos1:relative;
+  --nsr-pos2:absolute;
+  --nsr-pos3:fixed;
+  --nsr-pos4:sticky;
+
+  /*userSelect*/
+  --nsr-userSelect:none;
+  /*transition*/
+  --nsr-transition: all 0.5s;
+ 
+ 
 }

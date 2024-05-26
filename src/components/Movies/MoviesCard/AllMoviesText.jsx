@@ -9,10 +9,11 @@ const AllMoviesText = ({platformName}) => {
   return (
     <>
     <Flex align="center" justify="center" bgColor="transparent"  >
-        <Text color="yellow" fontWeight="bold"fontSize={["20px", "25px", "30px", "34px"]}  
-        cursor="pointer"
+        <Text color="var(--nsr-color2)" fontWeight="var(--nsr-fweight1)"
+        fontSize={["20px", "25px", "30px", "34px"]}  
+        cursor="var(--nsr-cursor1)"
         _hover={{transform:"scale(0.8)",
-                 transition:"all 0.5s" }}
+                 transition:"var(--nsr-transition)" }}
         onClick={()=>{
             handleClickAllMovies()
         }}

@@ -31,32 +31,35 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
 };
 
   return (
-    <Stack mb="20" outline='3px solid black' padding='20px' borderRadius='20px' gap="10px"
-     background="linear-gradient(135deg, #391F5B, #12007a)">
-    <h2 style={{color:"yellow"}}>REGISTER</h2>
-    <FormControl display="flex" flexDir="column" align="center" background="linear-gradient(135deg, #391F5B, #12007a)" color="white">
+    <Stack mb="var(--nsr-margin2)" outline='3px solid black' 
+    padding='var(--nsr-padding2)' borderRadius='var(--nsr-bradius2)' 
+    gap="var(--nsr-gap1)"
+     background="linear-gradient(135deg,var(--nsr-color19), var(--nsr-color20))">
+    <h2 style={{color:"var(--nsr-color2)"}}>REGISTER</h2>
+    <FormControl display="flex" flexDir="var(--nsr-direction1)" 
+    align="center" background="linear-gradient(135deg, var(--nsr-color19), var(--nsr-color20))" color="white">
     <FormLabel  htmlFor="userNameRef">User: </FormLabel>
     <Input id="userNameRef"  type="text" placeholder='Debe tener mas de 5 letras..' 
     title="Debe tener mas de 5 letras.." isRequired  pattern=".{5,}" onChange={handleInputChangeRegister} ref={userNameRef}/>
-    <FormLabel htmlFor="passwordRef" marginTop="20px" >Password: </FormLabel>
+    <FormLabel htmlFor="passwordRef" marginTop="var(--nsr-margin2)" >Password: </FormLabel>
     <Input id="passwordRef" type="password" placeholder='Debe tener min 5 letras y una mayúscula' pattern="^(?=.*[A-Z]).{5,}$"
     title="Debe contener al menos 5 letras y una mayúscula"
      isRequired onChange={handleInputChangeRegister} ref={passwordRef}/>
-    <FormLabel htmlFor="nameRef" marginTop="20px">Name: </FormLabel>
+    <FormLabel htmlFor="nameRef" marginTop="var(--nsr-margin2)">Name: </FormLabel>
     <Input id="nameRef" type="text" placeholder='Escribe tu nombre' isRequired onChange={handleInputChangeRegister} ref={nameRef}/>
-    <FormLabel htmlFor="lastNameRef" marginTop="20px">LastName: </FormLabel>
+    <FormLabel htmlFor="lastNameRef" marginTop="var(--nsr-margin2)">LastName: </FormLabel>
     <Input id="lastNameRef" type="text" placeholder='Escribe tu apellido' isRequired onChange={handleInputChangeRegister} ref={lastNameRef}/>
-    <FormLabel htmlFor="emailRef" marginTop="20px">Email: </FormLabel>
+    <FormLabel htmlFor="emailRef" marginTop="var(--nsr-margin2)">Email: </FormLabel>
     <Input id="emailRef" type="email" placeholder='Escribe tu email' isRequired onChange={handleInputChangeRegister} ref={emailRef}/>
-    <FormLabel htmlFor="imageRef" marginTop="20px">Picture: </FormLabel>
+    <FormLabel htmlFor="imageRef" marginTop="var(--nsr-margin2)">Picture: </FormLabel>
     <Input id="imageRef" type="file" isRequired onChange={handleInputChangeRegister} accept="image/*" ref={imageRef}/>
     <Button 
-    bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)" 
-    marginTop="20px" 
-    color="white"
+    bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))" 
+    marginTop="var(--nsr-margin2)" 
+    color="var(--nsr-color1)"
     _hover={{
         transform: "scale(1.1)",
-        transition: "all 0.5s",
+        transition: "var(--nsr-transition)",
       }}
       isDisabled={isButtonDisabledRegister}
       onClick={()=>{
@@ -67,7 +70,7 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
       }}
       isLoading={isLoadingRegister}
                      loadingText='Loading'
-                     colorScheme='teal'
+                     colorScheme='var(--nsr-color5)'
                      variant='outline'
                      spinnerPlacement='start'
     >SEND</Button>

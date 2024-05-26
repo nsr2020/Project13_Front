@@ -7,8 +7,9 @@ const MovieCardInfo = ({movie}) => {
     const navigate = useNavigate();
   return (
     <>
-     <Card maxW='100%' minH="100svh" bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)"  >
-      <CardBody display="flex" flexDir="column" alignItems="center" justifyContent="center" mt="40px">
+     <Card maxW='100%' minH="100svh" 
+     bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))"  >
+      <CardBody display="flex" flexDir="var(--nsr-direction1)" alignItems="center" justifyContent="center" mt="var(--nsr-margin4)">
         <Image
           src={movie?.image}
           borderRadius='lg'
@@ -17,8 +18,9 @@ const MovieCardInfo = ({movie}) => {
         />
         <Stack mt='6' spacing='3' display="flex" align="center" justifyContent="center">
           <Heading fontSize={{ base: "12px", md: "md", lg: "lg" }} textTransform="uppercase"
-          color="white" userSelect="none">{movie?.name}</Heading>
-          <Text color="yellow" userSelect="none" textAlign="center" fontSize={{ base: "12px", md: "md", lg: "lg" }}>
+          color="var(--nsr-color1)" userSelect="var(--nsr-userSelect)">{movie?.name}</Heading>
+          <Text color="var(--nsr-color2)" userSelect="var(--nsr-userSelect)" textAlign="center" 
+          fontSize={{ base: "12px", md: "md", lg: "lg" }}>
            This movie from {movie?.platform} belongs to category of {movie?.category}
           </Text>
           <Rate
@@ -33,7 +35,7 @@ const MovieCardInfo = ({movie}) => {
       </CardBody>
       <Divider  />
       <CardFooter display="flex" align="center" justify="center" >
-          <Button variant='solid' colorScheme='teal'
+          <Button variant='solid' colorScheme='var(--nsr-color5)'
           onClick={()=>{
             handleClickButtonTrailer(movie._id, navigate);
           }}

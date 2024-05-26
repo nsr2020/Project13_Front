@@ -9,14 +9,13 @@ const GoBack = ({goTo}) => {
         navigate(goTo)
     }
   return (
-    <Flex pos="relative">
+    <Flex pos="var(--nsr-pos1)">
         <Image src="/assets/goBack.png"
          w={{ base: "30px", md: "50px", lg: "50px", xl: "50px" }}
          h={{ base: "30px", md: "50px", lg: "50px", xl: "50px" }}
-        position="fixed" top="15px" left="15px" zIndex="1"
-        cursor="pointer"
-        transition="all 0.5s" _hover={{ transform: "scale(0.8)"}}
-        
+        position="var(--nsr-pos3)" top="15px" left="15px" zIndex="1"
+        cursor="var(--nsr-cursor1)"
+        transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
         onClick={handleGoBack}
         ></Image>
     </Flex>

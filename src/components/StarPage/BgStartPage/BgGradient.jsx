@@ -8,7 +8,7 @@ const BgGradient = ({children}) => {
       justify="center"
       w="100%"
       minH="100vh"
-      bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)"
+      bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))"
     >
      {children}
     </Flex>

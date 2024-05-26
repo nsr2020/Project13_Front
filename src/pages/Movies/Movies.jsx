@@ -13,7 +13,6 @@ const Movies = () => {
   const [state, dispatch] = useReducer(moviesReducer, INITIAL_STATE_MOVIES)
   const {indexAction, indexComedy, indexHorror, indexKids, moviesAction, moviesComedy, moviesHorror, moviesKids }= state;
   const { platformName } = useParams();
-  console.log(moviesAction);
   const user = localStorage.getItem('userName'); 
 
   useEffect(() => {
@@ -28,12 +27,12 @@ const Movies = () => {
     <>
       {!moviesAction.length && !moviesComedy.length && !moviesHorror.length && !moviesKids.length && <Loading />}
       {(moviesAction.length || moviesComedy.length || moviesHorror.length || moviesKids.length) && (
-        <Flex direction="column" w="100%" minH="100svh" align="center" justify="center" pos="relative"
-        bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)" gap="20px" userSelect="none">
-          <Flex flexDir="column" gap="20px" bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)"
-           w="100%" align="center" pos="sticky" top="0" zIndex="1" opacity="0.9">
-          <Text fontWeight="bold" color="white" mt="70px" 
-          textShadow="4px 4px 2px rgba(0,0,0,0.6)" userSelect="none" fontSize={["24px", "30px", "36px", "46px"]} >
+        <Flex direction="var(--nsr-direction1)"w="100%" minH="100svh" align="center" justify="center" pos="var(--nsr-pos1)"
+        bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))"  gap="var(--nsr-gap2)" userSelect="none">
+          <Flex flexDir="var(--nsr-direction1)" gap="var(--nsr-gap2)" bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))"
+           w="100%" align="center" pos="sticky" top="0" zIndex="1" opacity="var(--nsr-opacity1)">
+          <Text fontWeight="var(--nsr-fweight1)" color="var(--nsr-color1)" mt="var(--nsr-margin6)" 
+          textShadow="4px 4px 2px rgba(0,0,0,0.6)" userSelect="var(--nsr-userSelect)" fontSize={["24px", "30px", "36px", "46px"]} >
             {platformName} Movies
           </Text>
         <AllMoviesText platformName={platformName}/>  

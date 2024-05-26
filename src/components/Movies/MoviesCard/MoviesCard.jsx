@@ -21,9 +21,9 @@ const MoviesCard = ({movies, platformName, indexAction, indexComedy, indexHorror
         h="15px"
         align="center"
         justify="space-around"
-        fontWeight="bolder"
+        fontWeight="var(--nsr-fweight1)"
         fontSize={{ base: "14px", md: "18px", lg: "20px" }}
-        mt="40px"
+        mt="var(--nsr-margin4)"
         marginBottom="-25px"
        
       >
@@ -38,17 +38,17 @@ const MoviesCard = ({movies, platformName, indexAction, indexComedy, indexHorror
           overflowX="auto"
           direction="row"
           align="center"
-          bgColor={movies[0].category === "Action" ? "#F0B66B"
-            : movies[0].category === "Comedy" ? "#0B7072"
-            : movies[0].category === "Horror"? "#EFE081"
-            : movies[0].category === "Kids"? "#F1713F"
-            :"#87C19B"
+          bgColor={movies[0].category === "Action" ? "var(--nsr-color7)"
+            : movies[0].category === "Comedy" ? "var(--nsr-color8)"
+            : movies[0].category === "Horror"? "var(--nsr-color9)"
+            : movies[0].category === "Kids"? "var(--nsr-color10)"
+            :"var(--nsr-color11)"
           }
-          mb="20px"
-          mt="20px"
-          bgImage="url('https://www.transparenttextures.com/patterns/brick-wall.png')"
+          mb="var(--nsr-margin2)"
+          mt="var(--nsr-margin2)"
+          bgImage="var(--nsr-bimage2)"
           outline="4px solid black"
-          borderRadius="10px"
+          borderRadius="var(--nsr-bradius1)"
           sx={customScrollStyles}
          
         >
@@ -64,24 +64,24 @@ const MoviesCard = ({movies, platformName, indexAction, indexComedy, indexHorror
               pos="relative"
             >
               <Image
-                cursor="pointer"
+                cursor="var(--nsr-pos1)"
                 src={movie.image}
                 alt={movie.name}
                 w="100%"
                 h="100%"
                 outline="2px solid black"
                 objectFit="cover"
-                borderRadius="10px"
-                transition="all 0.5s"
+                borderRadius="var(--nsr-bradius1)"
+                transition="var(--nsr-transition)"
                 _hover={{ transform: "scale(0.8)" }}
                 onClick={() => 
                 handleClickCardImage(idx, movie.category,dispatch)}
               />
-                <Image pos="absolute" src="/assets/informa.png"
+                <Image pos="var(--nsr-pos2)" src="/assets/informa.png"
                  w={{ base: "20px", md: "25px", lg: "30px" }}
                  h={{ base: "20px", md: "25px", lg: "30px" }} 
-                bottom="10px" right="10px" cursor="pointer"
-                transition="all 0.5s"
+                bottom="10px" right="10px" cursor="var(--nsr-cursor1)"
+                transition="var(--nsr-transition)"
                 _hover={{ transform: "scale(1.1)" }}
                 onClick={()=>{
                     handleClickIconInfoMovie(movie._id, navigate)
