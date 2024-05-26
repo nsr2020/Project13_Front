@@ -41,11 +41,13 @@ const Trailers = () => {
     }}
     />
     <Flex align="center" justify="center">
-      <Button bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)" color="white" 
+      <Button 
+      bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))"
+       color="var(--nsr-color1)" 
        _hover={{
         transform: "scale(0.9)",
-        color:"black",
-        transition: "transform 0.2s"
+        color:"var(--nsr-color6)",
+        transition: "var(--nsr-transition)"
       }}
       onClick={()=>{
         handlePlay()

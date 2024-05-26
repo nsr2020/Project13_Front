@@ -35,7 +35,7 @@ const MovieCardInfo = ({movie}) => {
       </CardBody>
       <Divider  />
       <CardFooter display="flex" align="center" justify="center" >
-          <Button variant='solid' colorScheme='var(--nsr-color5)'
+          <Button variant='solid' colorScheme='teal'
           onClick={()=>{
             handleClickButtonTrailer(movie._id, navigate);
           }}

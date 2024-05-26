@@ -26,17 +26,19 @@ return (
     {!platforms.length && <Loading />}
     {platforms.length && (
       <Flex
-        direction="column"
+        direction="var(--nsr-direction1)"
         align="center"
         justify="center"
         w="100%"
         h="100svh"
         gap="120px"
-        transition="all 0.5s"
-        bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)"
+        transition="var(--nsr-transition)"
+        bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))"
       >
         <TitlePlatform />
-        <Box display="flex" gap={{ base: "20px", md: "40px", lg: "60px", xl: "80px" }} transition="all 0.5s">
+        <Box display="flex"
+         gap={{ base: "20px", md: "40px", lg: "60px", xl: "80px" }} 
+         transition="var(--nsr-transition)">
           <ImagesPlatform navigate={navigate} platforms={platforms} />
         </Box>
       </Flex>

@@ -11,7 +11,12 @@ const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen,
      <Image src="/assets/menu4.png" 
      alt="menu" 
      cursor="var(--nsr-cursor1)"
-     
+     w={{ base: "30px", md: "50px", lg: "50px", xl: "50px" }}
+     h={{ base: "30px", md: "50px", lg: "50px", xl: "50px" }}
+     pos="var(--nsr-pos3)"
+     transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
+     top="20px"
+     right="20px"
      zIndex="1"
      onClick={onOpen}
  ></Image>

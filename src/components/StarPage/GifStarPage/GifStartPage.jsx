@@ -6,16 +6,18 @@ const GifStartPage = ({IsFormsArea, dispatch, form, isLoadingLogin, isButtonDisa
   return (
     <>
     {!IsFormsArea ? (
-         <Flex w='350px' h='350px' flexDir='column' gap='15px' align='center'>
-         <Image src='/assets/cinema.png' alt='starIcon' w='350px' h='350px' borderRadius='md' />
+         <Flex w='350px' h='350px' flexDir='var(--nsr-direction1)' 
+         gap='15px' align='center'>
+         <Image src='/assets/cinema.png' alt='starIcon' w='350px' h='350px' 
+         borderRadius='md' />
          <Button bgGradient="linear(to-b, var(--nsr-color1), var(--nsr-color2), var(--nsr-color3), var(--nsr-color4), var(--nsr-color5))"
          padding='25px'
         _hover={{
           bgGradient: 'linear(to-b, var(--nsr-color6), var(--nsr-color7), var(--nsr-color8), var(--nsr-color9), var(--nsr-color10))',
           border: '2px solid var(--nsr-color11)',
-          color:'yellow'
+          color:'var(--nsr-color2)'
         }}
-        transition="all 0.5s"
+        transition="var(--nsr-transition)"
         borderRadius="md"
         onClick={() => dispatch({ type: 'IS_FORMS_AREA' })}
           >START</Button>

@@ -29,8 +29,12 @@ const MoviesSearch = () => {
     <>
     {!moviesSearch.length && <Loading/>}
     {moviesSearch.length && (
-        <Flex w="100%" minH="100svh" bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)" align="center"flexDir="column" 
-        gap="20px" pos="relative"
+        <Flex w="100%" minH="100svh" 
+        bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))"
+        align="center"
+        flexDir="var(--nsr-direction1)" 
+        gap="var(--nsr-gap2)"
+        pos="var(--nsr-pos1)"
         >
         <SearchAreaInput nameMovieRef={nameMovieRef} setMoviesSearch={setMoviesSearch} 
         platformName={platformName} toast={toast}/>
@@ -38,16 +42,16 @@ const MoviesSearch = () => {
           { moviesSearch.map((movie)=>(
             <Flex
             key={movie._id}
-            direction="column"
+            direction="var(--nsr-direction1)"
             w={{ base: "120px", sm: "180px", md: "200px" }}
             h={{ base: "170px", sm: "220px", md: "250px" }}
-            bg="grey"
+            bg="var(--nsr-color22)"
             borderRadius="md"
-            margin="10px"
-            padding="10px"
+            margin="var(--nsr-margin1)"
+            padding="var(--nsr-padding1)"
             alignItems="center"
-            pos="relative"
-            bgImage= "url(https://www.transparenttextures.com/patterns/45-degree-fabric-light.png)"
+            pos="var(--nsr-pos1)"
+            bgImage= "var(--nsr-bimage4)"
             style={{boxShadow:"rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset"}}
           >
          <SearchMovieImage movie={movie}/>

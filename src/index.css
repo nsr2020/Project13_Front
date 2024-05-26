@@ -30,6 +30,9 @@
   --nsr-color18:#d1d1d1;
   --nsr-color19:#391F5B;
   --nsr-color20:#12007a;
+  --nsr-color21:#d0b08a;
+  --nsr-color22:grey;
+  --nsr-color23:#f7d792;
 
   /*borders y margins*/
   --nsr-border1:10px;
@@ -73,10 +76,10 @@
   --nsr-font-size12:120px;
   --nsr-font-size13:130px;
   /*url images*/
-  --nsr-bimage1:url("https://www.transparenttextures.com/patterns/connected.png");
+  --nsr-bimage1:url("https://www.transparenttextures.com/patterns/buried.png");
   --nsr-bimage2:url("https://www.transparenttextures.com/patterns/brick-wall.png");
   --nsr-bimage3:url("https://www.transparenttextures.com/patterns/binding-light.png");
-  --nsr-bimage4:url("https://www.transparenttextures.com/patterns/brick-wall.png");
+  --nsr-bimage4:url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
   /*Border Radius*/
   --nsr-bradius1:10px;
   --nsr-bradius2:20px;
