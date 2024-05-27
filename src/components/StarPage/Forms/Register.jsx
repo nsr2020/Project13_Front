@@ -31,9 +31,9 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
 };
 
   return (
-    <Stack mb="var(--nsr-margin2)" outline='3px solid black' 
+    <Stack mb="var(--nsr-margin7)" outline='3px solid black' 
     padding='var(--nsr-padding2)' borderRadius='var(--nsr-bradius2)' 
-    gap="var(--nsr-gap1)"
+    gap="var(--nsr-gap1)" 
      background="linear-gradient(135deg,var(--nsr-color19), var(--nsr-color20))">
     <h2 style={{color:"var(--nsr-color2)"}}>REGISTER</h2>
     <FormControl display="flex" flexDir="var(--nsr-direction1)" 
