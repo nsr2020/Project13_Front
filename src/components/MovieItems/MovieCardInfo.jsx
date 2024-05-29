@@ -14,7 +14,7 @@ const MovieCardInfo = ({movie}) => {
           src={movie?.image}
           borderRadius='lg'
           w={{ base: "200px", md: "400px", lg: "500px" }}
-          h={{ base: "200px", md: "400px", lg: "500px" }}
+          h={{ base: "300px", md: "500px", lg: "600px" }}
         />
         <Stack mt='6' spacing='3' display="flex" align="center" justifyContent="center">
           <Heading fontSize={{ base: "12px", md: "md", lg: "lg" }} textTransform="uppercase"
