@@ -1,8 +1,9 @@
 import { useDisclosure } from "@chakra-ui/react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, memo } from "react"
 import { useNavigate } from "react-router"
 import MenuVideos from "./MenuVideos"
 import MenuVideo from "./MenuVideo"
+
 
 const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch, moviesAction }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -31,4 +32,4 @@ const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch, mo
 </> 
   )
 }
-export default MenuComponent
+export default memo(MenuComponent)
