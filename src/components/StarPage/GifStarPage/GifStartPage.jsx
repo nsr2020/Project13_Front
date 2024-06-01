@@ -10,12 +10,13 @@ const GifStartPage = ({IsFormsArea, dispatch, form, isLoadingLogin, isButtonDisa
          gap='15px' align='center'>
          <Image src='/assets/cinema.png' alt='starIcon' w='350px' h='350px' 
          borderRadius='md' />
-         <Button bgGradient="linear(to-b, var(--nsr-color1), var(--nsr-color2), var(--nsr-color3), var(--nsr-color4), var(--nsr-color5))"
-         padding='25px'
+         <Button bgGradient="linear-gradient(116.49deg, #7000ff, #e700b7 47.4%, #ffa000)"
+         padding='var(--nsr-padding3)'
+         color='var(--nsr-color18)'
+         fontSize="var(--nsr-font-size2)"
+         outline=" 3px solid var(--nsr-color3)"
         _hover={{
-          bgGradient: 'linear(to-b, var(--nsr-color6), var(--nsr-color7), var(--nsr-color8), var(--nsr-color9), var(--nsr-color10))',
-          border: '2px solid var(--nsr-color11)',
-          color:'var(--nsr-color2)'
+          transform:"scale(0.8)"
         }}
         transition="var(--nsr-transition)"
         borderRadius="md"
