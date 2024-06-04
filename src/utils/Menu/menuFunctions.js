@@ -6,7 +6,7 @@ export const handleClickMenuVideos =  (platformName,place, moviesAction,toast,na
         toast({
           title: "You already are at platform" +" "+ platformName,
           status: "warning",
-          duration: 3000,
+          duration: 500,
           isClosable: true,
         })
         return
@@ -20,7 +20,7 @@ else{
     toast({
       title: "You already are at platform" +" "+ platformName,
       status: "warning",
-      duration: 3000,
+      duration: 500,
       isClosable: true,
     })
     return
