@@ -54,7 +54,7 @@ export const handleAddMovieToList = async (id, user, toast) => {
         title: 'Error',
         description: "Movie already in list",
         status: 'error',
-        duration: 5000,
+        duration: 500,
         isClosable: true,
     });
     return;
@@ -80,16 +80,16 @@ user.seenMovies = [...user.seenMovies, id]
         title: 'Error',
         description: "Movies could not be added to list",
         status: 'error',
-        duration: 5000,
+        duration: 500,
         isClosable: true,
       })
     }
     if(res.status === 200){
       toast({
         title: 'Success!',
-        description: "Movies has been successfully",
+        description: "Movie has been added successfully",
         status: 'success',
-        duration: 5000,
+        duration: 500,
         isClosable: true,
       })
       
