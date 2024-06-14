@@ -9,6 +9,7 @@ const Login = ({dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
     const navigate = useNavigate();
     const userNameRef = useRef(null);
     const passwordRef = useRef(null);
+    console.log(passwordRef.current);
    
     const handleChangeInputLogin = () => {
         const userName = userNameRef.current.value;
@@ -47,9 +48,9 @@ const Login = ({dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
                      onChange={()=>{
                         handleChangeInputLogin()
                         }} />
-                    {((passwordRef.current.value !== "" && !/^(?=.*[A-Z]).{5,}$/.test(passwordRef.current.value))) && (
+                    {((passwordRef?.current?.value.trim() !== "" && !(/^(?=.*[A-Z]).{5,}$/.test(passwordRef?.current?.value)))) && (
                     <p style={{ color: "var(--nsr-color3)", fontWeight: "bold", fontSize: "12px", marginTop: "var(--nsr-margin1)" }}>
-                        1ª mayúscula y min 5 letras...
+                       1ª mayúscula y min 5 letras...
                     </p>
                     )}
                  <Button
