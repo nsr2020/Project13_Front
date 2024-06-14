@@ -47,9 +47,9 @@ const Login = ({dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
                      onChange={()=>{
                         handleChangeInputLogin()
                         }} />
-                    {(passwordRef?.current?.value.length < 5 && passwordRef.current.value !== "") && (
-                    <p style={{ color: "var(--nsr-color3)", fontWeight: "bold", fontSize:"12px", marginTop:"var(--nsr-margin1)"  }}>
-                        1ª con mayúscula y min 5 letras...
+                    {((passwordRef.current.value !== "" && !/^(?=.*[A-Z]).{5,}$/.test(passwordRef.current.value))) && (
+                    <p style={{ color: "var(--nsr-color3)", fontWeight: "bold", fontSize: "12px", marginTop: "var(--nsr-margin1)" }}>
+                        1ª mayúscula y min 5 letras...
                     </p>
                     )}
                  <Button
