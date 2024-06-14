@@ -1,23 +1,65 @@
 import { Button, FormControl, FormLabel, Input, Stack, useToast } from '@chakra-ui/react';
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from 'react-router';
 import { handleSubmitLogin } from '../../../reducer/StartPageReducer/startPage.action';
+import debounce from 'lodash.debounce';
 
 const Login = ({dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
     const toast = useToast();
     const navigate = useNavigate();
     const userNameRef = useRef(null);
     const passwordRef = useRef(null);
+    const lastToastTimeRef = useRef(0);
+    const [debounceTimer, setDebounceTimer] = useState(null);
 
+    const showToast = () => {
+        toast({
+            title: "User y password deben tener min de 5 letras y una mayúscula al principio",
+            status: "error",
+            duration: 1500,
+            isClosable: true,
+        });
+        lastToastTimeRef.current = Date.now();
+    };
+   
     const handleChange = () => {
         const userName = userNameRef.current.value;
         const password = passwordRef.current.value;
-        if(userName.length >= 5 && /^(?=.*[A-Z]).{5,}$/.test(password)){
-            dispatch({type: "IS_LOGIN_BUTTON", payload:false})
-          }else{
-            dispatch({type: "IS_LOGIN_BUTTON", payload:true})
-          }
+
+        const now = Date.now();
+        const debounceInterval = 5000; // Interval after which the toast can reappear
+
+        if (userName.length < 5 || !(/^(?=.*[A-Z]).{5,}$/.test(password))) {
+            if (now - lastToastTimeRef.current > debounceInterval) {
+                showToast();
+            }
+        }
+
+        if (userName.length >= 5 && /^(?=.*[A-Z]).{5,}$/.test(password)) {
+            dispatch({ type: "IS_LOGIN_BUTTON", payload: false });
+            if (debounceTimer) {
+                clearTimeout(debounceTimer);
+                setDebounceTimer(null);
+            }
+        } else {
+            dispatch({ type: "IS_LOGIN_BUTTON", payload: true });
+            if (!debounceTimer) {
+                setDebounceTimer(setTimeout(() => {
+                    if (userName.length < 5 || !(/^(?=.*[A-Z]).{5,}$/.test(password))) {
+                        showToast();
+                    }
+                }, debounceInterval));
+            }
+        }
     };
+
+    useEffect(() => {
+        return () => {
+            if (debounceTimer) {
+                clearTimeout(debounceTimer);
+            }
+        };
+    }, [debounceTimer]);
 
     return (
         <>
@@ -30,10 +72,11 @@ const Login = ({dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
              background="linear-gradient(135deg, var(--nsr-color19), var(--nsr-color20))" 
              color="var(--nsr-color1)">
                  <FormLabel htmlFor="userName">User: </FormLabel>
-                 <Input id="userName" type="text" placeholder='Escribe tu usuario...' 
+                 <Input id="userName" type="text" placeholder='Debe tener 5 letras min' 
                  isRequired ref={userNameRef} onChange={handleChange} title='Debe tener 5 letras o mas..'/>
+                 
                  <FormLabel htmlFor="password" marginTop="var(--nsr-margin2)">Password: </FormLabel>
-                 <Input id="password" type="password" placeholder='Escribe tu contraseña...' pattern="^(?=.*[A-Z]).{5,}$"
+                 <Input id="password" type="password" placeholder='5 letras y una mayúscula' pattern="^(?=.*[A-Z]).{5,}$"
                      title="Debe contener al menos 5 letras y una mayúscula" isRequired ref={passwordRef} 
                      onChange={()=>{
                         handleChange()
