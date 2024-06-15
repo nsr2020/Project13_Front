@@ -31,7 +31,7 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
   };
 
   const handleFileInputClick = () => {
-    avatar?.click();
+    avatar.click();
   };
 
   return (
