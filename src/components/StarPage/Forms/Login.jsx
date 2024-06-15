@@ -9,21 +9,18 @@ const Login = ({dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
     const navigate = useNavigate();
     const userNameRef = useRef(null);
     const passwordRef = useRef(null);
-    console.log(passwordRef.current);
+    const userName = userNameRef?.current?.value || "";
+    const password = passwordRef?.current?.value || "";
+    const isValidPassword = /^(?=.*[A-Z]).{5,}$/.test(password)
    
     const handleChangeInputLogin = () => {
-        const userName = userNameRef.current.value;
-        const password = passwordRef.current.value;
-
-        if (userName.length >= 5 && /^(?=.*[A-Z]).{5,}$/.test(password)) {
+        if (userName.length >= 5 && isValidPassword) {
             dispatch({ type: "IS_LOGIN_BUTTON", payload: false });
-          
         } else {
             dispatch({ type: "IS_LOGIN_BUTTON", payload: true });
          
         }
     };
-
     return (
         <>
              <Stack border='3px solid black' width="100%"
@@ -36,19 +33,19 @@ const Login = ({dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
              color="var(--nsr-color1)">
                  <FormLabel htmlFor="userName">User: </FormLabel>
                  <Input id="userName" type="text" placeholder='Debe tener 5 letras min' 
-                 isRequired ref={userNameRef} onChange={handleChangeInputLogin} title='Debe tener 5 letras o mas..'/>
-                 {(userNameRef?.current?.value.length < 5 && userNameRef.current.value !== "") && (
+                 isRequired ref={userNameRef} onChange={handleChangeInputLogin}/>
+                 {(userName.length < 5 && userName !== "") && (
                      <p style={{ color: "var(--nsr-color3)", fontWeight: "bold", 
                         marginTop:"var(--nsr-margin1)", fontSize:"11px" }}>Min 5 letras....</p>
                  ) }
                  
                  <FormLabel htmlFor="password" marginTop="var(--nsr-margin2)">Password: </FormLabel>
                  <Input id="password" type="password" placeholder='5 letras y una mayúscula' pattern="^(?=.*[A-Z]).{5,}$"
-                     title="Debe contener al menos 5 letras y una mayúscula" isRequired ref={passwordRef} 
+                      isRequired ref={passwordRef} 
                      onChange={()=>{
                         handleChangeInputLogin()
                         }} />
-                    {((passwordRef?.current?.value.trim() !== "" && !(/^(?=.*[A-Z]).{5,}$/.test(passwordRef?.current?.value)))) && (
+                    {((!isValidPassword && password !== "")) && (
                     <p style={{ color: "var(--nsr-color3)", fontWeight: "bold", fontSize: "12px", marginTop: "var(--nsr-margin1)" }}>
                        1ª mayúscula y min 5 letras...
                     </p>
@@ -62,7 +59,7 @@ const Login = ({dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
                          transition: "var(--nsr-transition)",
                      }}
                      onClick={()=>{
-                         handleSubmitLogin(userNameRef.current.value, passwordRef.current.value, toast, navigate, dispatch);
+                         handleSubmitLogin(userName, password, toast, navigate, dispatch);
                      }}
                      isDisabled={isButtonDisabledLogin}
                      isLoading={isLoadingLogin}

@@ -12,17 +12,17 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
   const emailRef = useRef(null);
   const imageRef = useRef(null);
   const navigate = useNavigate();
+  const userName = userNameRef?.current?.value;
+  const password = passwordRef?.current?.value;
+  const name = nameRef?.current?.value;
+  const lastName = lastNameRef?.current?.value;
+  const email = emailRef?.current?.value;
+  const avatar = imageRef?.current
 
+  const isValidPassword = /^(?=.*[A-Z]).{5,}$/.test(password);
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  
   const handleInputChangeRegister = () => {
-    const userName = userNameRef.current.value;
-    const password = passwordRef.current.value;
-    const name = nameRef.current.value;
-    const lastName = lastNameRef.current.value;
-    const email = emailRef.current.value;
-
-    const isValidPassword = /^(?=.*[A-Z]).{5,}$/.test(password);
-    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
     if (userName.length >= 5 && isValidPassword && name.length > 0 && lastName.length > 0 && isValidEmail) {
       dispatch({type: "IS_REGISTER_BUTTON", payload: false});
     } else {
@@ -31,7 +31,7 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
   };
 
   const handleFileInputClick = () => {
-    imageRef.current.click();
+    avatar.click();
   };
 
   return (
@@ -68,8 +68,8 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
         >
           Select Picture
         </Button>
-        {imageRef?.current?.files[0] ? (
-          <p style={{color: "white", marginTop: "var(--nsr-margin1)"}}>{imageRef.current.files[0].name}</p>
+        {avatar?.files[0] ? (
+          <p style={{color: "white", marginTop: "var(--nsr-margin1)"}}>{avatar?.files[0].name}</p>
         ):(
           <p style={{color: "white", marginTop: "var(--nsr-margin1)"}}>No file selected</p>
         )}
@@ -85,12 +85,12 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
           isDisabled={isButtonDisabledRegister}
           onClick={() => {
             handleSubmitRegister(
-              userNameRef.current.value, 
-              passwordRef.current.value,
-              nameRef.current.value,
-              lastNameRef.current.value,
-              emailRef.current.value,
-              imageRef.current.files[0] || "/assets/fotoperfil.jpg", 
+              userName, 
+              password,
+              name,
+              lastName,
+              email,
+              avatar.files[0] || "/assets/fotoperfil.jpg", 
               toast, 
               navigate, 
               dispatch
