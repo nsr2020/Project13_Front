@@ -12,9 +12,10 @@ const Login = ({dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
     const passwordRef = useRef(null);
     const userName = userNameRef?.current?.value || "";
     const password = passwordRef?.current?.value || "";
-    const isValidPassword = /^(?=.*[A-Z]).{5,}$/.test(password)
+    const isValidPassword = /^(?=.*[A-Z]).{5,}$/.test(password);
    
     const handleChangeInputLogin = () => {
+       
         if (userName.length >= 5 && isValidPassword) {
             dispatch({ type: "IS_LOGIN_BUTTON", payload: false });
         } else {
