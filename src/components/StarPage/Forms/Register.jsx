@@ -64,7 +64,9 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
             transform: "scale(1.1)",
             transition: "var(--nsr-transition)",
           }}
-          onClick={handleFileInputClick}
+          onClick={()=>{
+            handleFileInputClick();
+          }}
         >
           Select Picture
         </Button>
