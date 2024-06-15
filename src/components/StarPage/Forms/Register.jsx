@@ -12,18 +12,18 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
   const emailRef = useRef(null);
   const imageRef = useRef(null);
   const navigate = useNavigate();
-  const userName = userNameRef?.current?.value;
-  const password = passwordRef?.current?.value;
-  const name = nameRef?.current?.value;
-  const lastName = lastNameRef?.current?.value;
-  const email = emailRef?.current?.value;
-  const avatar = imageRef?.current
-
-  const isValidPassword = /^(?=.*[A-Z]).{5,}$/.test(password);
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  
+  const isValidPassword = (password) => /^(?=.*[A-Z]).{5,}$/.test(password);
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   
   const handleInputChangeRegister = () => {
-    if (userName.length >= 5 && isValidPassword && name.length > 0 && lastName.length > 0 && isValidEmail) {
+    const userName = userNameRef.current.value;
+    const password = passwordRef.current.value;
+    const name = nameRef.current.value;
+    const lastName = lastNameRef.current.value;
+    const email = emailRef.current.value;
+
+    if (userName.length >= 5 && isValidPassword(password) && name.length > 0 && lastName.length > 0 && isValidEmail(email)) {
       dispatch({type: "IS_REGISTER_BUTTON", payload: false});
     } else {
       dispatch({type: "IS_REGISTER_BUTTON", payload: true});
@@ -31,7 +31,18 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
   };
 
   const handleFileInputClick = () => {
-    avatar.click();
+    imageRef.current.click();
+  };
+
+  const handleSubmitClick = () => {
+    const userName = userNameRef.current.value;
+    const password = passwordRef.current.value;
+    const name = nameRef.current.value;
+    const lastName = lastNameRef.current.value;
+    const email = emailRef.current.value;
+    const avatar = imageRef.current.files[0] || "/assets/fotoperfil.jpg";
+    
+    handleSubmitRegister(userName, password, name, lastName, email, avatar, toast, navigate, dispatch);
   };
 
   return (
@@ -64,14 +75,12 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
             transform: "scale(1.1)",
             transition: "var(--nsr-transition)",
           }}
-          onClick={()=>{
-            handleFileInputClick();
-          }}
+          onClick={handleFileInputClick}
         >
           Select Picture
         </Button>
-        {avatar?.files[0] ? (
-          <p style={{color: "white", marginTop: "var(--nsr-margin1)"}}>{avatar?.files[0].name}</p>
+        {imageRef.current?.files[0] ? (
+          <p style={{color: "white", marginTop: "var(--nsr-margin1)"}}>{imageRef.current.files[0].name}</p>
         ):(
           <p style={{color: "white", marginTop: "var(--nsr-margin1)"}}>No file selected</p>
         )}
@@ -85,19 +94,7 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
             transition: "var(--nsr-transition)",
           }}
           isDisabled={isButtonDisabledRegister}
-          onClick={() => {
-            handleSubmitRegister(
-              userName, 
-              password,
-              name,
-              lastName,
-              email,
-              avatar.files[0] || "/assets/fotoperfil.jpg", 
-              toast, 
-              navigate, 
-              dispatch
-            );
-          }}
+          onClick={handleSubmitClick}
           isLoading={isLoadingRegister}
           loadingText='Loading'
           colorScheme='var(--nsr-color5)'
@@ -112,3 +109,4 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
 };
 
 export default Register;
+
