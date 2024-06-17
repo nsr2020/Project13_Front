@@ -58,8 +58,7 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
                 handleClickMenuVideo("user", id, navigate)
              }}
              />
-          </Flex>
-            
+          </Flex>     
            </DrawerBody>
          </DrawerContent>
        </Drawer>
