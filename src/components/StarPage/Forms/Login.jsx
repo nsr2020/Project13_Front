@@ -8,12 +8,11 @@ const Login = ({ dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
     const navigate = useNavigate();
     const userNameRef = useRef(null);
     const passwordRef = useRef(null);
+    const userName = userNameRef?.current?.value || "";
+    const password = passwordRef?.current?.value || "";
+    const isValidPassword = /^(?=.*[A-Z]).{5,}$/.test(password);
 
     const handleChangeInputLogin = () => {
-        const userName = userNameRef?.current?.value || "";
-        const password = passwordRef?.current?.value || "";
-        const isValidPassword = /^(?=.*[A-Z]).{5,}$/.test(password);
-
         if (userName.length >= 5 && isValidPassword) {
             dispatch({ type: "IS_LOGIN_BUTTON", payload: false });
         } else {
@@ -38,7 +37,7 @@ const Login = ({ dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
                     <Box position="relative" width="100%">
                         <Input id="userName" type="text" placeholder='Debe tener 5 letras min'
                             isRequired ref={userNameRef} onChange={handleChangeInputLogin} />
-                        {(userNameRef?.current?.value.length < 5 && userNameRef?.current?.value !== "") && (
+                        {(userName.length< 5 && userName !== "") && (
                             <Text color="var(--nsr-color3)" fontWeight="bold"
                                 fontSize="11px" position="absolute" top="45px" left="0">
                                 MIN 5 LETRAS
@@ -51,7 +50,7 @@ const Login = ({ dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
                         <Input id="password" type="password" placeholder='5 letras y una mayúscula' pattern="^(?=.*[A-Z]).{5,}$"
                             isRequired ref={passwordRef}
                             onChange={handleChangeInputLogin} />
-                        {((!(/^(?=.*[A-Z]).{5,}$/.test(passwordRef?.current?.value)) && passwordRef?.current?.value !== "")) && (
+                        {((!(/^(?=.*[A-Z]).{5,}$/.test(password)) && password !== "")) && (
                             <Text color="var(--nsr-color3)" fontWeight="bold" fontSize="12px"
                                 position="absolute" top="45px" left="0">
                                 1ª MAYUS Y MIN 5 LETRAS
