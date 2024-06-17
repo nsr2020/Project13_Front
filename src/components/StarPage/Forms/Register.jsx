@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Input, Stack, useToast } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, Input, Stack, Text, useToast } from "@chakra-ui/react";
 import { useRef } from "react";
 import { useNavigate } from "react-router";
 import { handleSubmitRegister } from "../../../reducer/StartPageReducer/startPage.action";
@@ -12,17 +12,17 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
   const emailRef = useRef(null);
   const imageRef = useRef(null);
   const navigate = useNavigate();
-  
+
+  const userName = userNameRef?.current?.value || "";
+  const password = passwordRef?.current?.value || "";
+  const name = nameRef?.current?.value || "";
+  const lastName = lastNameRef?.current?.value || "";
+  const email = emailRef?.current?.value || "";
+  const avatar = imageRef?.current?.files[0] || "/assets/fotoperfil.jpg";
   const isValidPassword = (password) => /^(?=.*[A-Z]).{5,}$/.test(password);
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   
   const handleInputChangeRegister = () => {
-    const userName = userNameRef.current.value;
-    const password = passwordRef.current.value;
-    const name = nameRef.current.value;
-    const lastName = lastNameRef.current.value;
-    const email = emailRef.current.value;
-
     if (userName.length >= 5 && isValidPassword(password) && name.length > 0 && lastName.length > 0 && isValidEmail(email)) {
       dispatch({type: "IS_REGISTER_BUTTON", payload: false});
     } else {
@@ -34,17 +34,6 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
     imageRef.current.click();
   };
 
-  const handleSubmitClick = () => {
-    const userName = userNameRef.current.value;
-    const password = passwordRef.current.value;
-    const name = nameRef.current.value;
-    const lastName = lastNameRef.current.value;
-    const email = emailRef.current.value;
-    const avatar = imageRef.current.files[0] || "/assets/fotoperfil.jpg";
-    
-    handleSubmitRegister(userName, password, name, lastName, email, avatar, toast, navigate, dispatch);
-  };
-
   return (
     <Stack mb="var(--nsr-margin7)" outline='3px solid black' 
       padding='var(--nsr-padding2)' borderRadius='var(--nsr-bradius2)' 
@@ -54,11 +43,27 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
       <FormControl display="flex"  flexDir="var(--nsr-direction1)" 
         align="center" background="linear-gradient(135deg, var(--nsr-color19), var(--nsr-color20))" color="white">
         <FormLabel htmlFor="userNameRef">User: </FormLabel>
-        <Input id="userNameRef" type="text" placeholder='Debe tener min de 5 letras..' 
-          title="Debe tener más de 5 letras.." isRequired pattern=".{5,}" onChange={handleInputChangeRegister} ref={userNameRef} />
+        <Box position="relative" width="100%">
+                        <Input id="userName" type="text" placeholder='Debe tener 5 letras min'
+                            isRequired ref={userNameRef} onChange={handleInputChangeRegister} />
+                        {(userName.length< 5 && userName !== "") && (
+                            <Text color="var(--nsr-color3)" fontWeight="bold"
+                                fontSize="11px" position="absolute" top="45px" left="0">
+                                MIN 5 LETRAS
+                            </Text>
+                        )}
+          </Box>
         <FormLabel htmlFor="passwordRef" marginTop="var(--nsr-margin2)">Password: </FormLabel>
-        <Input id="passwordRef" type="password" placeholder=' 5 letras min y una mayúscula' pattern="^(?=.*[A-Z]).{5,}$"
-          title="Debe contener al menos 5 letras y una mayúscula" isRequired onChange={handleInputChangeRegister} ref={passwordRef} />
+        <Box position="relative" width="100%">
+                        <Input id="password" type="text" placeholder='1º MAYUS Y 5 LETRAS'
+                            isRequired ref={passwordRef} onChange={handleInputChangeRegister} />
+                        {((!(/^(?=.*[A-Z]).{5,}$/.test(password)) && password !== "")) && (
+                            <Text color="var(--nsr-color3)" fontWeight="bold"
+                                fontSize="11px" position="absolute" top="45px" left="0">
+                                1º MAYUS Y 5 LETRAS
+                            </Text>
+                        )}
+          </Box>
         <FormLabel htmlFor="nameRef" marginTop="var(--nsr-margin2)">Name: </FormLabel>
         <Input id="nameRef" type="text" placeholder='Escribe tu nombre' isRequired onChange={handleInputChangeRegister} ref={nameRef} />
         <FormLabel htmlFor="lastNameRef" marginTop="var(--nsr-margin2)">LastName: </FormLabel>
@@ -94,7 +99,7 @@ const Register = ({dispatch, isLoadingRegister, isButtonDisabledRegister}) => {
             transition: "var(--nsr-transition)",
           }}
           isDisabled={isButtonDisabledRegister}
-          onClick={handleSubmitClick}
+          onClick={()=>{handleSubmitRegister(userName, password, name, lastName, email, avatar, toast, navigate, dispatch)}}
           isLoading={isLoadingRegister}
           loadingText='Loading'
           colorScheme='var(--nsr-color5)'

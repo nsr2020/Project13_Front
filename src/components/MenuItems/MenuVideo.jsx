@@ -12,7 +12,7 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
     <>
      <RadioGroup defaultValue={placement} onChange={setPlacement}>
        </RadioGroup>
-       <Image src="/assets/menu4.png" 
+       <Image src="/assets/settings.png" 
        alt="menu" 
        cursor="var(--nsr-cursor1)"
        top="20px"
