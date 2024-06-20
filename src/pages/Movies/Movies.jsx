@@ -14,6 +14,7 @@ const Movies = () => {
   const {indexAction, indexComedy, indexHorror, indexKids, moviesAction, moviesComedy, moviesHorror, moviesKids }= state;
   const { platformName } = useParams();
   const user = localStorage.getItem('userName'); 
+  
 
   useEffect(() => {
     if (!user) {
@@ -47,7 +48,7 @@ const Movies = () => {
         </Flex>
       )}  
       <GoBack goTo="/platforms"/>
-      <MenuComponent platform={platformName} place="Movies" moviesAction={moviesAction}/>
+      <MenuComponent platform={platformName} place="Movies" moviesAction={moviesAction} platformName={platformName}/>
     </>
   );
 };

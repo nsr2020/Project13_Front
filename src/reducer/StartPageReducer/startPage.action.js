@@ -1,3 +1,4 @@
+import { urlLogin, urlRegister } from "../../utils/infoFetchUrl/fetchUrl";
 
 
 export const handleSubmitLogin = async ( userName, password, toast, navigate, dispatch) => {
@@ -9,7 +10,7 @@ export const handleSubmitLogin = async ( userName, password, toast, navigate, di
             body: JSON.stringify({ userName, password })
         };
 
-        const response = await fetch('https://project-13-back.vercel.app/api/v1/users/login', requestOptions);
+        const response = await fetch(urlLogin, requestOptions);
         const data = await response.json();
 
         if (data.userName || data.token) {
@@ -57,7 +58,7 @@ export const handleSubmitRegister = async (userName, password, name, lastName, e
         body: formData,
     };
 
-      const response = await fetch('https://project-13-back.vercel.app/api/v1/users/register', requestOptions);
+      const response = await fetch(urlRegister, requestOptions);
 
       if (response.status === 201) {
           toast({

@@ -37,7 +37,7 @@ const MovieCardInfo = ({movie}) => {
       <CardFooter display="flex" align="center" justify="center" >
           <Button variant='solid' colorScheme='teal'
           onClick={()=>{
-            handleClickButtonTrailer(movie._id, navigate);
+            handleClickButtonTrailer(movie._id,movie.platform ,navigate);
           }}
           >
             Watch Trailer

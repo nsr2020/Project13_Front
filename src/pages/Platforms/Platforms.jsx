@@ -4,6 +4,7 @@ import ImagesPlatform from "../../components/PlatformsItems/ImagesPlatform";
 import { useNavigate } from "react-router";
 import TitlePlatform from "../../components/PlatformsItems/TitlePlatform";
 import Loading from "../../components/Loading/Loading";
+import { urlPlatforms } from "../../utils/infoFetchUrl/fetchUrl";
 
 const Platforms = () => {
   const navigate = useNavigate()
@@ -14,11 +15,10 @@ useEffect(()=>{
   if(user === null){
     navigate("/")
     }
-    setTimeout(()=>{
-      fetch("https://project-13-back.vercel.app/api/v1/platforms")
+      fetch(urlPlatforms)
       .then((res)=> res.json())
       .then((data)=> setPlatforms(data))
-      },200) 
+    
 },[user])
  
 return (

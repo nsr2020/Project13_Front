@@ -1,3 +1,4 @@
+import { urlUserInfo } from "../infoFetchUrl/fetchUrl"
 import { handleClickButtonTrailer } from "../Movie/MovieFunctions"
 
 export const handleClickMenuVideos =  (platformName,place, moviesAction,toast,navigate, moviesSearch, nameMovieRef) => {
@@ -31,11 +32,12 @@ else{
 }
 }
 
-export const handleClickMenuVideo = (type, id, navigate, user, toast) => {
+export const handleClickMenuVideo = (type, id, navigate, user, toast, platformName) => {
+  console.log(platformName);
      
     switch (type) {
         case "trailer":
-            handleClickButtonTrailer(id,navigate)
+            handleClickButtonTrailer(id,platformName,navigate)
             break;
         case "add":
             handleAddMovieToList(id, user, toast)
@@ -58,11 +60,11 @@ export const handleAddMovieToList = async (id, user, toast) => {
         isClosable: true,
     });
     return;
-}
+  }
 
-user.seenMovies = [...user.seenMovies, id]
+  user.seenMovies = [...user.seenMovies, id]
 
-    const res = await fetch(`https://project-13-back.vercel.app/api/v1/users/${user._id}`,{
+    const res = await fetch(`${urlUserInfo}${user._id}`,{
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,

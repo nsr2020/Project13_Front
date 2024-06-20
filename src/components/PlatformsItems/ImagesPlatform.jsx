@@ -1,11 +1,8 @@
 import { Image } from "@chakra-ui/react"
+import { handleClickPlatform } from "../../utils/PlatformsFunctions/platforms"
 
 const ImagesPlatform = ({navigate, platforms}) => {
     
-    const handleClickPlatform = (platformName) => {
-       
-        navigate(`/movies/${platformName}`);
-      }
   return (
     <>
      {platforms.map((platform) =>
@@ -17,7 +14,7 @@ const ImagesPlatform = ({navigate, platforms}) => {
         borderRadius="50%"
         border="2px groove red"
         cursor="var(--nsr-cursor1)"
-        onClick={() => handleClickPlatform(platform.name)}
+        onClick={() => handleClickPlatform(platform.name, navigate)}
         transition="var(--nsr-transition)"
         _hover={{ transform: "scale(0.8)"}}
       />

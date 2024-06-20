@@ -1,6 +1,7 @@
 export const INITIAL_STATE_TRAILER = {
     trailer: null,
-    playing: false
+    playing: false,
+    gif:[]
 }
 
 export const trailerReducer = (state = INITIAL_STATE_TRAILER, action) =>{
@@ -14,6 +15,11 @@ export const trailerReducer = (state = INITIAL_STATE_TRAILER, action) =>{
             return{
                ...state,
                 playing: !state.playing
+            }
+            case"SET_GIF":
+            return{
+               ...state,
+                gif: action.payload
             }
         default:
             return state;

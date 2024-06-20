@@ -11,7 +11,7 @@ const Movie = () => {
   const user = localStorage.getItem('userName')
   const [ movie, setMovie] = useState()
   const navigate = useNavigate()
-
+  
   useEffect(() =>{
     if(!user){
       navigate("/")
@@ -28,7 +28,7 @@ const Movie = () => {
      <MovieCardInfo movie={movie}/>
     )}
     <GoBack goTo={`/movies/${movie?.platform}`} />
-    <MenuComponent id={movie?._id}/>
+    <MenuComponent id={movie?._id} platformName={movie?.platform}/>
     </>
   )
 }

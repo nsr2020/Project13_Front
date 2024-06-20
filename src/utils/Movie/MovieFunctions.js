@@ -1,9 +1,11 @@
-export const handleClickButtonTrailer = (id, navigate) =>{
-    navigate(`/trailer/${id}`)
+import { urlMovieById } from "../infoFetchUrl/fetchUrl";
+
+export const handleClickButtonTrailer = (id, platformName ,navigate) =>{
+    navigate(`/trailer/${id}/${platformName}`)
 }
 
 export const fetchMovie =(id, setMovie)=>{
-    fetch(`https://project-13-back.vercel.app/api/v1/movies/${id}`)
+    fetch(`${urlMovieById}${id}`)
     .then(response => response.json())
     .then(data =>{
      setMovie(data)

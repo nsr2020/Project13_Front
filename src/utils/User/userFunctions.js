@@ -1,5 +1,7 @@
+import { urlDeleteSeenMovie, urlUserInfo } from "../infoFetchUrl/fetchUrl";
+
 export const getUserInfo = (id, setUserMovies) =>{
-    fetch(`https://project-13-back.vercel.app/api/v1/users/${id}`)
+    fetch(`${urlUserInfo}${id}`)
     .then((res)=> res.json())
     .then((data)=> setUserMovies(data.seenMovies))
 }
@@ -8,7 +10,7 @@ export const handleDeleteMovie = async (id, user, setUserMovies, toast) => {
     user.seenMovies = user.seenMovies.filter((idseen) => idseen !== id);
     localStorage.setItem("userName", JSON.stringify(user));
 
-    const res = await fetch(`https://project-13-back.vercel.app/api/v1/users/remove-seenMovies/${user._id}`, {
+    const res = await fetch(`${urlDeleteSeenMovie}${user._id}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

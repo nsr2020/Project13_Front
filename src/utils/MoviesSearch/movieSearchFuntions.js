@@ -1,5 +1,7 @@
+import { urlMoviesbyName, urlMoviesByPlatformAndCategory } from "../infoFetchUrl/fetchUrl";
+
 export const getMovieSearch = (platformName, setMoviesSearch, noMovies, toast) =>{
-    fetch(`https://project-13-back.vercel.app/api/v1/movies/platform/${platformName}`)
+    fetch(`${urlMoviesByPlatformAndCategory}${platformName}/*`)
     .then(response => response.json())
     .then(data =>{
      setMoviesSearch(data)
@@ -20,7 +22,7 @@ export const getMovieSearch = (platformName, setMoviesSearch, noMovies, toast) =
     if(nameMovie.current.value === ""){
       return
     }
-    fetch(`https://project-13-back.vercel.app/api/v1/movies/name/${nameMovie.current.value}`)
+    fetch(`${urlMoviesbyName}${nameMovie.current.value}/*/*`)
     .then(response =>response.json())
     .then(data =>{
       setMoviesSearch(data)

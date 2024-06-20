@@ -4,9 +4,10 @@ import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader,
     useToast} from "@chakra-ui/react"
 import { handleClickMenuVideo } from "../../utils/Menu/menuFunctions";
 
-const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, id}) => {
+const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, id, platformName}) => {
   const  user = JSON.parse(localStorage.getItem('userName'))
   const toast = useToast()
+  console.log(platformName)
 
   return (
     <>
@@ -37,7 +38,7 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
              <Image src="/assets/trailer.png"  w="100px" h="100px" cursor="var(--nsr-cursor1)" 
              transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
-                handleClickMenuVideo("trailer", id, navigate)
+                handleClickMenuVideo("trailer", id, navigate,user,toast, platformName)
              }}
              />
             </Flex>
@@ -46,7 +47,7 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
              <Image src="/assets/checked.png" w="100px" h="100px" cursor="var(--nsr-cursor1)"
              transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
-                handleClickMenuVideo("add", id, navigate, user, toast)
+                handleClickMenuVideo("add", id, navigate, user, toast,platformName)
              }}
              />
            </Flex>
@@ -55,7 +56,7 @@ const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, 
              <Image src="/assets/usericon.png" w="100px" h="100px" cursor="var(--nsr-cursor)"
              transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
-                handleClickMenuVideo("user", id, navigate)
+                handleClickMenuVideo("user", id, navigate, user, toast,platformName)
              }}
              />
           </Flex>     

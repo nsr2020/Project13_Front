@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import GoBack from "../../components/GoBack/GoBack"
 import { Divider } from "antd"
-
 import Loading from "../../components/Loading/Loading"
 import { getUserInfo} from "../../utils/User/userFunctions"
 import CardHeaderUser from "../../components/UserItems/CardHeader"

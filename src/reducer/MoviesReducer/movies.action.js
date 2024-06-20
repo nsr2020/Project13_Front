@@ -1,10 +1,12 @@
+import { urlMoviesByPlatformAndCategory } from "../../utils/infoFetchUrl/fetchUrl";
+
 const categories = ["Action", "Comedy", "Horror", "Kids"];
 
 export const fetchMovies = async( platformName, dispatch) => {
     
     try {
       const fetchPromises = categories.map(category =>
-        fetch(`https://project-13-back.vercel.app/api/v1/movies/platform_category/${platformName}/${category}`)
+        fetch(`${urlMoviesByPlatformAndCategory}${platformName}/${category}`)
           .then(response => response.json())
       );
 
