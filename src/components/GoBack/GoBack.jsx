@@ -1,13 +1,10 @@
 import  { memo } from 'react';
 import { Flex, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
+import { handleGoBack } from '../../utils/GoBack/goBackFunctions';
 
 const GoBack = ({ goTo }) => {
     const navigate = useNavigate();
-
-    const handleGoBack = () => {
-        navigate(goTo);
-    };
 
     return (
         <Flex pos="var(--nsr-pos1)">
@@ -22,7 +19,7 @@ const GoBack = ({ goTo }) => {
                 cursor="var(--nsr-cursor1)"
                 transition="var(--nsr-transition)"
                 _hover={{ transform: "scale(0.8)" }}
-                onClick={handleGoBack}
+                onClick={()=>handleGoBack(goTo, navigate)}
             />
         </Flex>
     );

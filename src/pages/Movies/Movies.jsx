@@ -14,8 +14,6 @@ const Movies = () => {
   const {indexAction, indexComedy, indexHorror, indexKids, moviesAction, moviesComedy, moviesHorror, moviesKids }= state;
   const { platformName } = useParams();
   const user = localStorage.getItem('userName'); 
-  
-
   useEffect(() => {
     if (!user) {
       window.location.href = "/"; 

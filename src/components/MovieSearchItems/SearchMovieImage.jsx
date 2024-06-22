@@ -1,14 +1,11 @@
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Image, RadioGroup, useDisclosure } from "@chakra-ui/react"
 import { Rate } from "antd"
 import { useState } from "react"
+import { customStyle } from "../../utils/MoviesSearch/movieSearchFuntions"
 
 const SearchMovieImage = ({movie}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
     const [placement, setPlacement] = useState("left") 
-    const customStyle = {
-      fontSize: '22px',
-      backgroundColor: 'transparent',
-    };
   return (
     <>
     <RadioGroup defaultValue={placement} onChange={setPlacement}>

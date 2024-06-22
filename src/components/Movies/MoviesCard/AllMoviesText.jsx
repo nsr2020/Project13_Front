@@ -1,11 +1,9 @@
 import { Flex, Text } from "@chakra-ui/react"
+import { handleClickAllMovies } from "../../../utils/MoviesFunctions/movies"
 
 
 const AllMoviesText = ({platformName}) => {
 
-    const handleClickAllMovies = () => {
-        window.location.href = `/movies_Search/${platformName}`
-    }
   return (
     <>
     <Flex align="center" justify="center" bgColor="transparent"  >
@@ -15,7 +13,7 @@ const AllMoviesText = ({platformName}) => {
         _hover={{transform:"scale(0.8)",
                  transition:"var(--nsr-transition)" }}
         onClick={()=>{
-            handleClickAllMovies()
+            handleClickAllMovies(platformName)
         }}
         >SEE ALL MOVIES</Text>
     </Flex>

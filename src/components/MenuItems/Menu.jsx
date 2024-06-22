@@ -8,7 +8,6 @@ const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch, mo
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [placement, setPlacement] = useState("right") 
     const navigate = useNavigate()
-   console.log(platformName);
 
     useEffect(() => {},[platform])
 
@@ -21,7 +20,6 @@ const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch, mo
       nameMovieRef={nameMovieRef} moviesSearch={moviesSearch} moviesAction={moviesAction}/>
     </>
   )}
-  {console.log(platformName)}
   {!platform && (
        <>
       <MenuVideo placement={placement} setPlacement={setPlacement}

@@ -7,7 +7,6 @@ import { handleClickMenuVideo } from "../../utils/Menu/menuFunctions";
 const MenuVideo = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, id, platformName}) => {
   const  user = JSON.parse(localStorage.getItem('userName'))
   const toast = useToast()
-  console.log(platformName)
 
   return (
     <>

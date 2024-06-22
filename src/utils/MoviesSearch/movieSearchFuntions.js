@@ -45,3 +45,8 @@ export const getMovieSearch = (platformName, setMoviesSearch, noMovies, toast) =
         
       }
 
+      export  const customStyle = {
+        fontSize: '22px',
+        backgroundColor: 'transparent',
+      };
+
