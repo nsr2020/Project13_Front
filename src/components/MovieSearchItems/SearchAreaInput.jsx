@@ -3,7 +3,7 @@ import { handleCleanInputMovieSearch, handleInputMovieSearch } from "../../utils
 import { SearchIcon, DeleteIcon } from "@chakra-ui/icons";
 
 
-const SearchAreaInput = ({nameMovieRef, setMoviesSearch, platformName, toast}) => {
+const SearchAreaInput = ({nameMovieRef, dispatch, platformName, toast}) => {
     return (
         <>
         <Flex w="100%" 
@@ -28,7 +28,7 @@ const SearchAreaInput = ({nameMovieRef, setMoviesSearch, platformName, toast}) =
          gap={{ base: "var(--nsr-gap2)", md: "var(--nsr-gap3)", lg: "var(--nsr-gap4)" }}
          align="center" justify="center" >
          <Button onClick={()=>{
-          handleInputMovieSearch(nameMovieRef ,setMoviesSearch, platformName, toast)
+          handleInputMovieSearch(nameMovieRef ,dispatch, platformName, toast)
          }}
          _hover={{transform:"scale(1.2)", transition:"var(--nsr-transition)"}}
          size={{ base: "sm", md: "md", lg: "lg" }}
@@ -36,7 +36,7 @@ const SearchAreaInput = ({nameMovieRef, setMoviesSearch, platformName, toast}) =
          
          >Search</Button>
          <Button onClick={()=>{
-          handleCleanInputMovieSearch(nameMovieRef, setMoviesSearch, platformName);
+          handleCleanInputMovieSearch(nameMovieRef, dispatch, platformName);
          }}
          _hover={{transform:"scale(1.2)", transition:"var(--nsr-transition)"}}
          size={{ base: "sm", md: "md", lg: "lg" }}

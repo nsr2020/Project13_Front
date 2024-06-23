@@ -1,21 +1,20 @@
-import { urlLogin, urlRegister } from "../../utils/infoFetchUrl/fetchUrl";
-
+import { API } from "../../API/API";
 
 export const handleSubmitLogin = async ( userName, password, toast, navigate, dispatch) => {
     dispatch({type:"IS_LOADING_LOGIN", payload:true})
     try {
-        const requestOptions = {
+       /*  const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userName, password })
-        };
+        }; */
 
-        const response = await fetch(urlLogin, requestOptions);
-        const data = await response.json();
+        const response = await API({endpoint:`/users/login`, method: 'POST',body:{ userName, password }});
+        /* const data = await response.json(); */
 
-        if (data.userName || data.token) {
-            localStorage.setItem('userName', JSON.stringify(data.user));
-            localStorage.setItem('token', data.token);
+        if (response.data.userName || response.data.token) {
+            localStorage.setItem('userName', JSON.stringify(response.data.user));
+            localStorage.setItem('token', response.data.token);
             toast({
                 title: 'Login success',
                 description: "The login was successful",
@@ -42,45 +41,57 @@ export const handleSubmitLogin = async ( userName, password, toast, navigate, di
     }
 };
 
-export const handleSubmitRegister = async (userName, password, name, lastName, email, image, toast, navigate, dispatch) => {
-    dispatch({type: "IS_LOADING_REGISTER" , payload: true})
-    try {
-      const formData = new FormData();
+
+
+  export const handleSubmitRegister = async (userName, password, name, lastName, email, image, toast, navigate, dispatch) => {
+    dispatch({ type: "IS_LOADING_REGISTER", payload: true });
+    const formData = new FormData();
       formData.set('userName', userName);
       formData.set('password', password);
       formData.set('name', name);
       formData.set('lastName', lastName);
       formData.set('email', email);
       formData.set('image', image);
-          
-      const requestOptions = {
-        method: 'POST',
-        body: formData,
-    };
+    
+    try {
+      const response = await API({
+        endpoint: "/users/register",
+        method: "POST",
+        body:formData,
+        CT: "multipart/form-data"
 
-      const response = await fetch(urlRegister, requestOptions);
-
+      });
+  
       if (response.status === 201) {
-          toast({
-            title: 'Account created.',
-            description: "We've created your account for you.",
-            status: 'success',
-            duration: 500,
-            isClosable: true,
-          })
-          handleSubmitLogin(userName, password, toast, navigate, dispatch)
+        toast({
+          title: 'Account created.',
+          description: "We've created your account for you.",
+          status: 'success',
+          duration: 500,
+          isClosable: true,
+        });
+        handleSubmitLogin(userName, password, toast, navigate, dispatch);
       } else {
-        dispatch({type: "IS_LOADING_REGISTER" , payload: false})
-          toast({
-              title: "Error",
-              description: "Account has not been created successfully",
-              status: "error",
-              duration: 3000,
-              isClosable: true,
-          });
+        dispatch({ type: "IS_LOADING_REGISTER", payload: false });
+        toast({
+          title: "Error",
+          description: "Account has not been created successfully",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
       }
-  } catch (error) {
+    } catch (error) {
       console.error('Error:', error);
-  }
-  }
+      dispatch({ type: "IS_LOADING_REGISTER", payload: false });
+      toast({
+        title: "Error",
+        description: "An error occurred while creating your account.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+  
 

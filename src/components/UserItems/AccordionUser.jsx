@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { handleDeleteMovie } from "../../utils/User/userFunctions";
 
-const AccordionUser = ({ user, setUserMovies, toast, userMovies }) => {
+const AccordionUser = ({ user, toast, dispatch,userMovies }) => {
 	return (
 		<>
 			<Accordion allowToggle>
@@ -45,7 +45,7 @@ const AccordionUser = ({ user, setUserMovies, toast, userMovies }) => {
 									color="var(--nsr-color6)"
 									fontWeight="var(--nsr-fweight1)"
 								>
-									You have not added any movie yet
+									No movies added yet
 								</Text>
 							</Flex>
 						)}
@@ -80,7 +80,7 @@ const AccordionUser = ({ user, setUserMovies, toast, userMovies }) => {
 									w={{ base: "10px", md: "40px" }}
 									_hover={{ transform: "scale(1.5)" }}
 									onClick={() =>
-										handleDeleteMovie(movie._id, user, setUserMovies, toast)
+										handleDeleteMovie(movie._id, dispatch,user, toast)
 									}
 								/>
 							</Flex>

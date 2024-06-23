@@ -1,23 +1,27 @@
 import { Box, Flex } from "@chakra-ui/react"
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import ImagesPlatform from "../../components/PlatformsItems/ImagesPlatform";
 import { useNavigate } from "react-router";
 import TitlePlatform from "../../components/PlatformsItems/TitlePlatform";
 import Loading from "../../components/Loading/Loading";
-import { urlPlatforms } from "../../utils/infoFetchUrl/fetchUrl";
+import { INITIAL_STATE_PLATFORMS, PlatformsReducer } from "../../reducer/PlatformsReducer/platforms.reducer";
+import { getPlatforms } from "../../reducer/PlatformsReducer/platforms.action";
 
 const Platforms = () => {
   const navigate = useNavigate()
-  const [platforms, setPlatforms] = useState([])
+  const [state, dispatch] = useReducer(PlatformsReducer, INITIAL_STATE_PLATFORMS)
+  const {platforms} = state;
+  
   const user = localStorage.getItem("userName");
 
 useEffect(()=>{
   if(user === null){
     navigate("/")
     }
-      fetch(urlPlatforms)
+    /*   fetch(urlPlatforms)
       .then((res)=> res.json())
-      .then((data)=> setPlatforms(data))
+      .then((data)=> setPlatforms(data)) */
+      getPlatforms(dispatch)
     
 },[user])
  

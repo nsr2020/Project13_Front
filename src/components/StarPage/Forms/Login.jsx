@@ -110,8 +110,8 @@ const Login = ({ dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
 						}}
 						onClick={() => {
 							handleSubmitLogin(
-								userNameRef?.current?.value,
-								passwordRef?.current?.value,
+								userName,
+								password,
 								toast,
 								navigate,
 								dispatch

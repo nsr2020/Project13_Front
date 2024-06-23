@@ -1,27 +1,28 @@
-import { urlMoviesByPlatformAndCategory } from "../../utils/infoFetchUrl/fetchUrl";
+import { API } from "../../API/API";
 
 const categories = ["Action", "Comedy", "Horror", "Kids"];
 
-export const fetchMovies = async( platformName, dispatch) => {
+export const fetchMovies = async (platformName, dispatch) => {
+  try {
+    const fetchPromises = categories.map(category =>
+      API({ endpoint: `/movies/search/*/${platformName}/${category}` })
+    );
+    const responses = await Promise.all(fetchPromises);
+
+    const actionMovies = responses[0].data;
+    const comedyMovies = responses[1].data;
+    const horrorMovies = responses[2].data;
+    const kidsMovies = responses[3].data;
+
     
-    try {
-      const fetchPromises = categories.map(category =>
-        fetch(`${urlMoviesByPlatformAndCategory}${platformName}/${category}`)
-          .then(response => response.json())
-      );
-
-      const [actionMovies, comedyMovies, horrorMovies, kidsMovies] = await Promise.all(fetchPromises);
-
-      dispatch({type:"MOVIES_ACTION", payload:actionMovies});
-      dispatch({type:"MOVIES_COMEDY", payload:comedyMovies});
-      dispatch({type:"MOVIES_HORROR", payload:horrorMovies});
-      dispatch({type:"MOVIES_KIDS", payload:kidsMovies});
-    } catch (error) {
-      console.error("Failed to fetch movies:", error);
-     
-    }
-  };
-
+    dispatch({ type: "MOVIES_ACTION", payload: actionMovies });
+    dispatch({ type: "MOVIES_COMEDY", payload: comedyMovies });
+    dispatch({ type: "MOVIES_HORROR", payload: horrorMovies });
+    dispatch({ type: "MOVIES_KIDS", payload: kidsMovies });
+  } catch (error) {
+    console.error("Failed to fetch movies:", error);
+  }
+};
   export const handleClickCardImage = (newIndex,category, dispatch) => {
     switch (category) {
         case "Action":

@@ -1,23 +1,25 @@
-import  { useEffect, useState } from 'react'
+import  { useEffect, useReducer } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import Loading from '../../components/Loading/Loading'
 import GoBack from '../../components/GoBack/GoBack'
 import MenuComponent from '../../components/MenuItems/Menu'
 import MovieCardInfo from '../../components/MovieItems/MovieCardInfo'
-import { fetchMovie } from '../../utils/Movie/MovieFunctions'
+import { INITIAL_STATE_MOVIE, MovieReducer } from '../../reducer/MovieReducer/movie.reducer'
+import { fetchMovie } from '../../reducer/MovieReducer/movie.action'
 
 const Movie = () => {
   const {id} = useParams()
   const user = localStorage.getItem('userName')
-  const [ movie, setMovie] = useState()
   const navigate = useNavigate()
+  const [state, dispatch] = useReducer(MovieReducer, INITIAL_STATE_MOVIE)
+  const {movie}=state;
   
   useEffect(() =>{
     if(!user){
       navigate("/")
       return
     }
-     fetchMovie(id, setMovie)
+     fetchMovie(id, dispatch)
 
     },[ user])
 

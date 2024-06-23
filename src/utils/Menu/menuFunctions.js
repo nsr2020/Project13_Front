@@ -1,3 +1,4 @@
+import { API } from "../../API/API"
 import { urlUserInfo } from "../infoFetchUrl/fetchUrl"
 import { handleClickButtonTrailer } from "../Movie/MovieFunctions"
 
@@ -33,7 +34,6 @@ else{
 }
 
 export const handleClickMenuVideo = (type, id, navigate, user, toast, platformName) => {
-  console.log(platformName);
      
     switch (type) {
         case "trailer":
@@ -64,18 +64,11 @@ export const handleAddMovieToList = async (id, user, toast) => {
 
   user.seenMovies = [...user.seenMovies, id]
 
-    const res = await fetch(`${urlUserInfo}${user._id}`,{
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      method: "PUT",
-      body: JSON.stringify({ 
-          seenMovies: [id]
-      }),
+    const res = await API({endpoint:`/users/${user._id}`, method:"PUT",body:{seenMovies:[id]} },{
+
     });
-    const answer = await res.json();
-    localStorage.setItem("userName",JSON.stringify(answer))
+    
+    localStorage.setItem("userName",JSON.stringify(res.data))
     
     if(res.status === 400){
       toast({

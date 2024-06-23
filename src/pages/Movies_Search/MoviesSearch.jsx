@@ -1,28 +1,32 @@
 import { Flex, useToast} from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useReducer, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import GoBack from '../../components/GoBack/GoBack'
 import MenuComponent from '../../components/MenuItems/Menu'
 import Loading from '../../components/Loading/Loading'
-import { getMovieSearch} from '../../utils/MoviesSearch/movieSearchFuntions'
 import SearchAreaInput from '../../components/MovieSearchItems/SearchAreaInput'
 import SearchMovieImage from '../../components/MovieSearchItems/SearchMovieImage'
 import SearchMoviesCardItems from '../../components/MovieSearchItems/SearchMoviesCardItems'
+import { INITIAL_STATE_M_SEARCH, MoviesSearchReducer } from '../../reducer/MoviesSearchReducer/moviesSearch.reducer'
+import { getMovieSearch } from '../../reducer/MoviesSearchReducer/moviesSearch.action'
+
 
 
 const MoviesSearch = () => {
   const {platformName} = useParams()
   const user = localStorage.getItem('userName')
-  const [moviesSearch, setMoviesSearch] = useState([])
+  const [state, dispatch] = useReducer(MoviesSearchReducer, INITIAL_STATE_M_SEARCH)
+  const {moviesSearch} = state;
   const nameMovieRef = useRef(null);
   const toast = useToast();
   const navigate = useNavigate()
+  console.log(moviesSearch);
   
   useEffect(()=>{
     if(!user){
       window.location.href = '/'
     }
-    getMovieSearch(platformName, setMoviesSearch) 
+    getMovieSearch(platformName, dispatch) 
   },[user,platformName])
 
   return (
@@ -36,7 +40,7 @@ const MoviesSearch = () => {
         gap="var(--nsr-gap2)"
         pos="var(--nsr-pos1)"
         >
-        <SearchAreaInput nameMovieRef={nameMovieRef} setMoviesSearch={setMoviesSearch} 
+        <SearchAreaInput nameMovieRef={nameMovieRef} dispatch={dispatch}
         platformName={platformName} toast={toast}/>
          <Flex w="100%" minH="60svh" justify="center" wrap="wrap" >
           { moviesSearch.map((movie)=>(

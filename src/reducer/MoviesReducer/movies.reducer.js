@@ -35,22 +35,22 @@ export const moviesReducer = (state = INITIAL_STATE_MOVIES, action) => {
 		case "MOVIES_ACTION":
 			return {
 				...state,
-				moviesAction: action.payload,
+				moviesAction: [...action.payload],
 			};
 		case "MOVIES_COMEDY":
 			return {
 				...state,
-				moviesComedy: action.payload,
+				moviesComedy: [...action.payload],
 			};
 		case "MOVIES_HORROR":
 			return {
 				...state,
-				moviesHorror: action.payload,
+				moviesHorror:[...action.payload],
 			};
 		case "MOVIES_KIDS":
 			return {
 				...state,
-				moviesKids: action.payload,
+				moviesKids: [...action.payload],
 			};
 		default:
 			return state;

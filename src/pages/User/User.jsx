@@ -1,31 +1,33 @@
 import {  Card, CardBody, Flex, Text, useToast } from "@chakra-ui/react"
-import { useEffect, useState } from "react"
+import { useEffect, useReducer } from "react"
 import { useNavigate, useParams } from "react-router"
 import GoBack from "../../components/GoBack/GoBack"
 import { Divider } from "antd"
 import Loading from "../../components/Loading/Loading"
-import { getUserInfo} from "../../utils/User/userFunctions"
 import CardHeaderUser from "../../components/UserItems/CardHeader"
 import AccordionUser from "../../components/UserItems/AccordionUser"
+import { INITIAL_STATE_USER, UserReducer } from "../../reducer/UserInfoReducer/user.reducer"
+import { getUserInfo } from "../../reducer/UserInfoReducer/user.action"
 
 const User = () => {
-    const [userMovies, setUserMovies] = useState([]); 
     const user = JSON.parse(localStorage.getItem("userName"))
     const { id } = useParams();
     const navigate = useNavigate();
     const toast = useToast();
+    const [state, dispatch] = useReducer(UserReducer, INITIAL_STATE_USER)
+    const {userMovies} = state;
 
     useEffect(() => {
         if (!user) {
             navigate("/");
             return;
         }
-        getUserInfo(user._id, setUserMovies)
+        getUserInfo(user._id, dispatch)
     }, []);
   
     return (
         <>
-            {!user && <Loading />}
+            {!user  && <Loading />}
             {user && (
                 <Flex direction="var(--nsr-direction1)"
                     align="center"
@@ -50,7 +52,7 @@ const User = () => {
                              fontSize={{ base: "sm", md: "md", lg: "lg" }}
                             > {user?.email}</Text>
                         </CardBody>
-                       <AccordionUser user={user} setUserMovies={setUserMovies} toast={toast} userMovies={userMovies}/>
+                       <AccordionUser user={user} toast={toast} dispatch={dispatch} userMovies={userMovies}/>
                     </Card>
                     <GoBack goTo={`/movie/${id}`} />
                 </Flex>

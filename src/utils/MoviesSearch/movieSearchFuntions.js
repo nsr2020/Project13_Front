@@ -1,6 +1,7 @@
-import { urlMoviesbyName, urlMoviesByPlatformAndCategory } from "../infoFetchUrl/fetchUrl";
+import { API } from "../../API/API";
+import { getMovieSearch } from "../../reducer/MoviesSearchReducer/moviesSearch.action";
 
-export const getMovieSearch = (platformName, setMoviesSearch, noMovies, toast) =>{
+/* export const getMovieSearch = (platformName, setMoviesSearch, noMovies, toast) =>{
     fetch(`${urlMoviesByPlatformAndCategory}${platformName}/*`)
     .then(response => response.json())
     .then(data =>{
@@ -16,28 +17,25 @@ export const getMovieSearch = (platformName, setMoviesSearch, noMovies, toast) =
         });
     }
   }
-
-   export const handleInputMovieSearch = (nameMovie, setMoviesSearch, platformName, toast) => {
+ */
+   export const handleInputMovieSearch = async (nameMovie, dispatch, platformName, toast) => {
     
     if(nameMovie.current.value === ""){
       return
     }
-    fetch(`${urlMoviesbyName}${nameMovie.current.value}/*/*`)
-    .then(response =>response.json())
-    .then(data =>{
-      setMoviesSearch(data)
-      if (!data.length) {
+    const moviesInput = await API({endpoint:`/movies/search/${nameMovie.current.value}/*/*`})
+    console.log(moviesInput)
+      dispatch({type:'GET_MOVIES_SEARCH', payload:moviesInput.data})
+      if (moviesInput.status === 404) {
         let noMovies = true;
-        getMovieSearch(platformName, setMoviesSearch, noMovies, toast);
+        getMovieSearch(platformName, dispatch, noMovies, toast);
       }
-    })
-    
     }
 
-    export const handleCleanInputMovieSearch = (nameMovie, setMoviesSearch, platformName) => {
+    export const handleCleanInputMovieSearch = (nameMovie, dispatch, platformName) => {
         if(nameMovie.current.value !== ""){
             nameMovie.current.value = ""
-            getMovieSearch(platformName, setMoviesSearch) 
+            getMovieSearch(platformName, dispatch) 
         }else if(nameMovie.current.value === ""){
             return
         }
