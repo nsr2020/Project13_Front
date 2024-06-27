@@ -1,9 +1,10 @@
 import { API } from "../../API/API"
-import { urlUserInfo } from "../infoFetchUrl/fetchUrl"
 import { handleClickButtonTrailer } from "../Movie/MovieFunctions"
 
-export const handleClickMenuVideos =  (platformName,place, moviesAction,toast,navigate, moviesSearch, nameMovieRef) => {
-    if(place === "Movies")
+export const handleClickMenuVideos =  (platformName,place, moviesAction,toast,
+  navigate, moviesSearch, nameMovieRef,selectGenreRef, dispatch) => {
+
+  if(place === "Movies")
       if(moviesAction[0].platform === platformName){
         toast({
           title: "You already are at platform" +" "+ platformName,
@@ -28,6 +29,8 @@ else{
     return
   }else if(moviesSearch[0].platform !== platformName){
     nameMovieRef.current.value = ""
+    selectGenreRef.current.value ="All"
+    dispatch({ type: "SELECT_GENRE", payload: "All" }); 
     navigate(`/movies_Search/${platformName}`)
   }
 }

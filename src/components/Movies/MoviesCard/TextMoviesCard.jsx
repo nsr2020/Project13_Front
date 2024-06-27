@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react"
 
 
-const TextMoviesCard = ({movies, indexAction, indexComedy, indexHorror, indexKids}) => {
+const TextMoviesCard = ({movies, indexAction, indexComedy, indexHorror, indexKids, indexReleases}) => {
   return (
     <>
      <Text color="var(--nsr-color12)" textTransform="uppercase" 
@@ -10,7 +10,9 @@ const TextMoviesCard = ({movies, indexAction, indexComedy, indexHorror, indexKid
           {movies[0].category === "Action" ? "ACTION" 
           : movies[0].category === "Comedy" ? "COMEDY" 
           : movies[0].category === "Horror" ? "HORROR"
-          : movies[0].category === "Kids"? "KIDS" : ""}
+          : movies[0].category === "Kids"? "KIDS" 
+          :movies[0].category === "Releases" ? "RELEASES"
+          : ""}
         </Text>
         <Text color="var(--nsr-color1)" userSelect="var(--nsr-userSelect)" 
         fontSize={["10px", "15px", "15px", "15px"]}>
@@ -22,6 +24,8 @@ const TextMoviesCard = ({movies, indexAction, indexComedy, indexHorror, indexKid
              ? movies[indexHorror].name
               : movies[0].category === "Kids"
              ? movies[indexKids].name
+             : movies[0].category === "Releases"
+             ? movies[indexReleases].name
               : ""}
         </Text>
     </>

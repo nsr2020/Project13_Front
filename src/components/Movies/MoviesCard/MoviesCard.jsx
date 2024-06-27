@@ -6,13 +6,14 @@ import {  handleClickIconInfoMovie } from "../../../utils/MoviesFunctions/movies
 import { useNavigate } from "react-router";
 import { handleClickCardImage } from "../../../reducer/MoviesReducer/movies.action";
 
-const MoviesCard = ({movies, platformName, indexAction, indexComedy, indexHorror, indexKids, dispatch}) => { 
+const MoviesCard = ({movies, platformName, indexAction, indexComedy, indexHorror, indexKids, indexReleases,dispatch}) => { 
     const navigate = useNavigate()
     useEffect(() =>{
         dispatch({type:"INDEX_ACTION", payload:0})
         dispatch({type:"INDEX_COMEDY", payload:0})
         dispatch({type:"INDEX_HORROR", payload:0})
-        dispatch({type:"INDEX_KIDS", payload:0})  
+        dispatch({type:"INDEX_KIDS", payload:0})
+        dispatch({type:"INDEX_RELEASES",payload:0})  
     },[platformName])
 
   return (
@@ -28,7 +29,7 @@ const MoviesCard = ({movies, platformName, indexAction, indexComedy, indexHorror
        
       >
        <TextMoviesCard movies={movies} indexAction={indexAction} indexComedy={indexComedy} 
-       indexHorror={indexHorror} indexKids={indexKids}/>
+       indexHorror={indexHorror} indexKids={indexKids} indexReleases={indexReleases}/>
     
       </Flex>
       {movies.length && (
@@ -42,6 +43,7 @@ const MoviesCard = ({movies, platformName, indexAction, indexComedy, indexHorror
             : movies[0].category === "Comedy" ? "var(--nsr-color8)"
             : movies[0].category === "Horror"? "var(--nsr-color9)"
             : movies[0].category === "Kids"? "var(--nsr-color10)"
+            :movies[0].category === "Releases" ? "var(--nsr-color12)"
             :"var(--nsr-color11)"
           }
           mb="var(--nsr-margin2)"

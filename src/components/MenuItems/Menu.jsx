@@ -4,7 +4,8 @@ import { useNavigate } from "react-router"
 import MenuVideos from "./MenuVideos"
 import MenuVideo from "./MenuVideo"
 
-const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch, moviesAction, platformName }) => {
+const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch,
+   moviesAction, platformName,selectGenreRef, dispatch }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [placement, setPlacement] = useState("right") 
     const navigate = useNavigate()
@@ -17,7 +18,10 @@ const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch, mo
     <>
     <MenuVideos placement={placement} setPlacement={setPlacement}
      navigate={navigate} isOpen={isOpen} onClose={onClose} onOpen={onOpen} place={place}
-      nameMovieRef={nameMovieRef} moviesSearch={moviesSearch} moviesAction={moviesAction}/>
+      nameMovieRef={nameMovieRef} 
+      moviesSearch={moviesSearch} 
+      moviesAction={moviesAction} 
+      selectGenreRef={selectGenreRef} dispatch={dispatch}/>
     </>
   )}
   {!platform && (

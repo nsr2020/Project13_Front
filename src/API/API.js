@@ -4,7 +4,7 @@
     endpoint,
     body
   }) => {
-    console.log(method, endpoint, body);
+    
     const headers = {
       Authorization: `Bearer ${localStorage.getItem("token")}`
     };

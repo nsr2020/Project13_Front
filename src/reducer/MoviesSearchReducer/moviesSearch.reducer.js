@@ -1,5 +1,6 @@
 export const INITIAL_STATE_M_SEARCH = {
-    moviesSearch:[]
+    moviesSearch:[],
+    selectedGenre:"All"
     }
     
     export const MoviesSearchReducer = (state = INITIAL_STATE_M_SEARCH , action) =>{
@@ -8,6 +9,12 @@ export const INITIAL_STATE_M_SEARCH = {
                 return{
                    ...state,
                     moviesSearch:[...action.payload]
+                }
+                
+            case 'SELECT_GENRE':
+                return{
+                   ...state,
+                    selectedGenre:action.payload
                 }
                 
             default:

@@ -16,11 +16,12 @@ const MoviesSearch = () => {
   const {platformName} = useParams()
   const user = localStorage.getItem('userName')
   const [state, dispatch] = useReducer(MoviesSearchReducer, INITIAL_STATE_M_SEARCH)
-  const {moviesSearch} = state;
+  const {moviesSearch, selectedGenre} = state;
   const nameMovieRef = useRef(null);
+  const selectGenreRef = useRef(null);
   const toast = useToast();
   const navigate = useNavigate()
-  console.log(moviesSearch);
+ 
   
   useEffect(()=>{
     if(!user){
@@ -41,14 +42,14 @@ const MoviesSearch = () => {
         pos="var(--nsr-pos1)"
         >
         <SearchAreaInput nameMovieRef={nameMovieRef} dispatch={dispatch}
-        platformName={platformName} toast={toast}/>
+        platformName={platformName} toast={toast} selectedGenre={selectedGenre} selectGenreRef={selectGenreRef}/>
          <Flex w="100%" minH="60svh" justify="center" wrap="wrap" >
           { moviesSearch.map((movie)=>(
             <Flex
             key={movie._id}
             direction="var(--nsr-direction1)"
-            w={{ base: "120px", sm: "180px", md: "200px" }}
-            h={{ base: "170px", sm: "220px", md: "250px" }}
+            w={{ base: "100px", sm: "180px", md: "200px" }}
+            h={{ base: "150px", sm: "230px", md: "250px" }}
             bg="var(--nsr-color22)"
             borderRadius="md"
             margin="var(--nsr-margin1)"
@@ -67,7 +68,14 @@ const MoviesSearch = () => {
 
          </Flex>
         <GoBack goTo={`/movies/${platformName}`}/>
-        <MenuComponent platform={platformName} place="MovieSearch" nameMovieRef={nameMovieRef} moviesSearch={moviesSearch}/>
+        <MenuComponent 
+        platform={platformName} 
+        place="MovieSearch" 
+        nameMovieRef={nameMovieRef} 
+        moviesSearch={moviesSearch}
+        selectGenreRef={selectGenreRef}
+        dispatch={dispatch}
+        />
         </Flex>
     )}
     </>

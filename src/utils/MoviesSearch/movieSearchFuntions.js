@@ -18,13 +18,22 @@ import { getMovieSearch } from "../../reducer/MoviesSearchReducer/moviesSearch.a
     }
   }
  */
-   export const handleInputMovieSearch = async (nameMovie, dispatch, platformName, toast) => {
-    
-    if(nameMovie.current.value === ""){
+   export const handleInputMovieSearch = async (nameMovie, dispatch, platformName, toast, selectGenreRef) => {
+    const inputValue = nameMovie.current.value
+    const selectValue = selectGenreRef.current.value
+    if(inputValue === "" && selectValue === "All"){
       return
     }
-    const moviesInput = await API({endpoint:`/movies/search/${nameMovie.current.value}/*/*`})
-    console.log(moviesInput)
+   /*  if(selectGenreRef.current.value === "All" ){
+      selectGenreRef.current.value = "*"
+    }
+    if(nameMovie.current.value ===""){
+      nameMovie.current.value ="*"
+    } */
+    const moviesInput = await API(
+      {endpoint:`/movies/search/${inputValue === "" ? "*": inputValue}/*/${selectValue === "All" ? "*": selectValue}`
+
+      })
       dispatch({type:'GET_MOVIES_SEARCH', payload:moviesInput.data})
       if (moviesInput.status === 404) {
         let noMovies = true;
@@ -32,11 +41,13 @@ import { getMovieSearch } from "../../reducer/MoviesSearchReducer/moviesSearch.a
       }
     }
 
-    export const handleCleanInputMovieSearch = (nameMovie, dispatch, platformName) => {
-        if(nameMovie.current.value !== ""){
+    export const handleCleanInputMovieSearch = (nameMovie, dispatch, platformName,selectedGenreRef) => {
+        if(nameMovie.current.value !== "" || selectedGenreRef.current.value !== "All"){
             nameMovie.current.value = ""
+            selectedGenreRef.current.value = "All"
+            dispatch({type:"SELECT_GENRE", payload:"All"})
             getMovieSearch(platformName, dispatch) 
-        }else if(nameMovie.current.value === ""){
+        }else if(nameMovie.current.value === "" && selectedGenreRef.current.value === "All"){
             return
         }
         

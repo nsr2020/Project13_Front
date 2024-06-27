@@ -1,7 +1,8 @@
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Image, RadioGroup, useToast } from "@chakra-ui/react"
 import { handleClickMenuVideos } from "../../utils/Menu/menuFunctions"
 
-const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen, place, nameMovieRef, moviesSearch , moviesAction}) => {
+const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, 
+  onOpen, place, nameMovieRef, moviesSearch , moviesAction, selectGenreRef, dispatch}) => {
   const toast = useToast()
 
   return (
@@ -31,19 +32,19 @@ const MenuVideos = ({placement, setPlacement, navigate, isOpen, onClose, onOpen,
            <Image src="/assets/hbologo1.png"  w="150px" h="150px" cursor="var(--nsr-cursor1)" 
            transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
            onClick={()=>{
-            handleClickMenuVideos("Hbo Max",place, moviesAction,toast,navigate, moviesSearch, nameMovieRef)
+            handleClickMenuVideos("Hbo Max",place, moviesAction,toast,navigate, moviesSearch, nameMovieRef,selectGenreRef, dispatch)
            }}
            />
            <Image src="/assets/primelogo1.png" w="150px" h="150px" cursor="var(--nsr-cursor1)"
            transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
            onClick={()=>{
-            handleClickMenuVideos("Prime Video", place, moviesAction,toast,navigate, moviesSearch, nameMovieRef)
+            handleClickMenuVideos("Prime Video", place, moviesAction,toast,navigate, moviesSearch, nameMovieRef,selectGenreRef,dispatch)
            }}
            />
            <Image src="/assets/net.png" w="150px" h="150px" cursor="var(--nsr-cursor1)"
            transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
            onClick={()=>{
-            handleClickMenuVideos("Netflix", place, moviesAction,toast,navigate, moviesSearch, nameMovieRef)
+            handleClickMenuVideos("Netflix", place, moviesAction,toast,navigate, moviesSearch, nameMovieRef,selectGenreRef,dispatch)
            }}
            />
          </DrawerBody>

@@ -11,7 +11,8 @@ import { INITIAL_STATE_MOVIES, moviesReducer } from "../../reducer/MoviesReducer
 
 const Movies = () => {
   const [state, dispatch] = useReducer(moviesReducer, INITIAL_STATE_MOVIES)
-  const {indexAction, indexComedy, indexHorror, indexKids, moviesAction, moviesComedy, moviesHorror, moviesKids }= state;
+  const {indexAction, indexComedy, indexHorror, indexKids,indexReleases, 
+    moviesAction, moviesComedy, moviesHorror, moviesKids,moviesReleases }= state;
   const { platformName } = useParams();
   const user = localStorage.getItem('userName'); 
   useEffect(() => {
@@ -24,8 +25,9 @@ const Movies = () => {
 
   return (
     <>
-      {!moviesAction.length && !moviesComedy.length && !moviesHorror.length && !moviesKids.length && <Loading />}
-      {(moviesAction.length || moviesComedy.length || moviesHorror.length || moviesKids.length) && (
+      {!moviesAction.length && !moviesComedy.length && !moviesHorror.length && !moviesKids.length && !moviesReleases.length
+       && <Loading />}
+      {(moviesAction.length || moviesComedy.length || moviesHorror.length || moviesKids.length || moviesReleases.length) && (
         <Flex direction="var(--nsr-direction1)"w="100%" minH="100svh" align="center" justify="center" pos="var(--nsr-pos1)"
         bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))"  gap="var(--nsr-gap2)" userSelect="none">
           <Flex flexDir="var(--nsr-direction1)" gap="var(--nsr-gap2)" bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))"
@@ -43,6 +45,8 @@ const Movies = () => {
        <MoviesCard movies={moviesHorror} platformName={platformName} indexHorror={indexHorror} dispatch={dispatch}/> 
        <Divider w="80%"/>
        <MoviesCard movies={moviesKids} platformName={platformName} indexKids={indexKids} dispatch={dispatch}/> 
+       <Divider w="80%"/>
+       <MoviesCard movies={moviesReleases} platformName={platformName} indexReleases={indexReleases} dispatch={dispatch}/> 
         </Flex>
       )}  
       <GoBack goTo="/platforms"/>
