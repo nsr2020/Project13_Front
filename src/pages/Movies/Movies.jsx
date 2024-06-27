@@ -1,28 +1,15 @@
-import { useEffect, useReducer } from "react";
-import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import { Divider, Flex, Text } from "@chakra-ui/react";
 import GoBack from "../../components/GoBack/GoBack";
 import MoviesCard from "../../components/Movies/MoviesCard/MoviesCard";
 import MenuComponent from "../../components/MenuItems/Menu";
 import AllMoviesText from "../../components/Movies/MoviesCard/AllMoviesText";
-import { fetchMovies } from "../../reducer/MoviesReducer/movies.action";
-import { INITIAL_STATE_MOVIES, moviesReducer } from "../../reducer/MoviesReducer/movies.reducer";
+import useMovies from "../../services/useMovies";
 
 const Movies = () => {
-  const [state, dispatch] = useReducer(moviesReducer, INITIAL_STATE_MOVIES)
-  const {indexAction, indexComedy, indexHorror, indexKids,indexReleases, 
-    moviesAction, moviesComedy, moviesHorror, moviesKids,moviesReleases }= state;
-  const { platformName } = useParams();
-  const user = localStorage.getItem('userName'); 
-  useEffect(() => {
-    if (!user) {
-      window.location.href = "/"; 
-      return;
-    }
-    fetchMovies(platformName, dispatch)
-  }, [platformName, user]);
-
+ const {moviesAction,moviesComedy,moviesHorror,moviesKids,
+  moviesReleases,platformName,dispatch,indexAction,
+  indexComedy,indexHorror,indexKids,indexReleases} = useMovies()
   return (
     <>
       {!moviesAction.length && !moviesComedy.length && !moviesHorror.length && !moviesKids.length && !moviesReleases.length

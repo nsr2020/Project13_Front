@@ -41,8 +41,6 @@ export const handleSubmitLogin = async ( userName, password, toast, navigate, di
     }
 };
 
-
-
   export const handleSubmitRegister = async (userName, password, name, lastName, email, image, toast, navigate, dispatch) => {
     dispatch({ type: "IS_LOADING_REGISTER", payload: true });
     const formData = new FormData();
@@ -92,6 +90,26 @@ export const handleSubmitLogin = async ( userName, password, toast, navigate, di
         isClosable: true,
       });
     }
+  };
+
+  export const handleChangeInputLogin = (userName,isValidPassword,dispatch) => {
+		if (userName.length >= 5 && isValidPassword) {
+			dispatch({ type: "IS_LOGIN_BUTTON", payload: false });
+		} else {
+			dispatch({ type: "IS_LOGIN_BUTTON", payload: true });
+		}
+	};
+
+  export const handleInputChangeRegister = (userName,isValidPassword,name,lastName,email,isValidEmail,dispatch) => {
+    if (userName.length >= 5 && isValidPassword(password) && name.length > 0 && lastName.length > 0 && isValidEmail(email)) {
+      dispatch({type: "IS_REGISTER_BUTTON", payload: false});
+    } else {
+      dispatch({type: "IS_REGISTER_BUTTON", payload: true});
+    }
+  };
+
+  export const handleFileInputClick = (imageRef) => {
+    imageRef.current.click();
   };
   
 

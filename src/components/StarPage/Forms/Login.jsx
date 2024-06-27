@@ -4,31 +4,15 @@ import {
 	FormLabel,
 	Input,
 	Stack,
-	useToast,
 	Box,
 	Text,
 } from "@chakra-ui/react";
-import { useRef } from "react";
-import { useNavigate } from "react-router";
-import { handleSubmitLogin } from "../../../reducer/StartPageReducer/startPage.action";
+import { handleChangeInputLogin, handleSubmitLogin } from "../../../reducer/StartPageReducer/startPage.action";
+import { useLogin } from "../../../services/useLogin";
 
 const Login = ({ dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
-	const toast = useToast();
-	const navigate = useNavigate();
-	const userNameRef = useRef(null);
-	const passwordRef = useRef(null);
-	const userName = userNameRef?.current?.value || "";
-	const password = passwordRef?.current?.value || "";
-	const isValidPassword = /^(?=.*[A-Z]).{5,}$/.test(password);
-
-	const handleChangeInputLogin = () => {
-		if (userName.length >= 5 && isValidPassword) {
-			dispatch({ type: "IS_LOGIN_BUTTON", payload: false });
-		} else {
-			dispatch({ type: "IS_LOGIN_BUTTON", payload: true });
-		}
-	};
-
+    const {toast,navigate,userNameRef,passwordRef,
+        userName,password,isValidPassword} = useLogin()
 	return (
 		<>
 			<Stack
@@ -57,7 +41,9 @@ const Login = ({ dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
 							placeholder="Debe tener 5 letras min"
 							isRequired
 							ref={userNameRef}
-							onChange={handleChangeInputLogin}
+							onChange={()=>{
+                            handleChangeInputLogin(userName,isValidPassword,dispatch)
+                            }}
 						/>
 						{userName.length < 5 && userName !== "" && (
 							<Text
@@ -84,7 +70,9 @@ const Login = ({ dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
 							pattern="^(?=.*[A-Z]).{5,}$"
 							isRequired
 							ref={passwordRef}
-							onChange={handleChangeInputLogin}
+							onChange={()=>{
+                                handleChangeInputLogin(userName,isValidPassword,dispatch)
+                                }}
 						/>
 						{!/^(?=.*[A-Z]).{5,}$/.test(password) && password !== "" && (
 							<Text

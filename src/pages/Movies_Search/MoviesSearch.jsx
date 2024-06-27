@@ -1,34 +1,15 @@
-import { Flex, useToast} from '@chakra-ui/react'
-import { useEffect, useReducer, useRef } from 'react'
-import { useNavigate, useParams } from 'react-router'
+import { Flex } from '@chakra-ui/react'
 import GoBack from '../../components/GoBack/GoBack'
 import MenuComponent from '../../components/MenuItems/Menu'
 import Loading from '../../components/Loading/Loading'
 import SearchAreaInput from '../../components/MovieSearchItems/SearchAreaInput'
 import SearchMovieImage from '../../components/MovieSearchItems/SearchMovieImage'
 import SearchMoviesCardItems from '../../components/MovieSearchItems/SearchMoviesCardItems'
-import { INITIAL_STATE_M_SEARCH, MoviesSearchReducer } from '../../reducer/MoviesSearchReducer/moviesSearch.reducer'
-import { getMovieSearch } from '../../reducer/MoviesSearchReducer/moviesSearch.action'
-
-
+import useMoviesSearch from '../../services/useMoviesSearch'
 
 const MoviesSearch = () => {
-  const {platformName} = useParams()
-  const user = localStorage.getItem('userName')
-  const [state, dispatch] = useReducer(MoviesSearchReducer, INITIAL_STATE_M_SEARCH)
-  const {moviesSearch, selectedGenre} = state;
-  const nameMovieRef = useRef(null);
-  const selectGenreRef = useRef(null);
-  const toast = useToast();
-  const navigate = useNavigate()
- 
-  
-  useEffect(()=>{
-    if(!user){
-      window.location.href = '/'
-    }
-    getMovieSearch(platformName, dispatch) 
-  },[user,platformName])
+  const { moviesSearch,nameMovieRef,dispatch,platformName,
+  selectGenreRef, toast, navigate,selectedGenre }= useMoviesSearch()
 
   return (
     <>

@@ -1,6 +1,5 @@
 import { Text } from "@chakra-ui/react"
 
-
 const TitlePlatform = () => {
   return (
     <>

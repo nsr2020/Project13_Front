@@ -1,33 +1,35 @@
-import { useDisclosure } from "@chakra-ui/react"
-import { useEffect, useState, memo } from "react"
-import { useNavigate } from "react-router"
+import {  memo, useEffect } from "react"
 import MenuVideos from "./MenuVideos"
 import MenuVideo from "./MenuVideo"
+import { useMenu } from "../../services/useMenu"
 
 const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch,
-   moviesAction, platformName,selectGenreRef, dispatch }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const [placement, setPlacement] = useState("right") 
-    const navigate = useNavigate()
+   moviesAction, platformName,selectGenreRef }) => {
 
-    useEffect(() => {},[platform])
+    useEffect(() => {},[platform]) 
+    const {isOpen,onOpen,onClose,dispatch,toast,navigate,placement}=useMenu()
 
   return (
    <>
    {platform && (
     <>
-    <MenuVideos placement={placement} setPlacement={setPlacement}
+    <MenuVideos placement={placement} 
      navigate={navigate} isOpen={isOpen} onClose={onClose} onOpen={onOpen} place={place}
       nameMovieRef={nameMovieRef} 
       moviesSearch={moviesSearch} 
       moviesAction={moviesAction} 
-      selectGenreRef={selectGenreRef} dispatch={dispatch}/>
+      selectGenreRef={selectGenreRef} 
+      dispatch={dispatch}
+      toast={toast}
+      />
     </>
   )}
   {!platform && (
        <>
-      <MenuVideo placement={placement} setPlacement={setPlacement}
-       navigate={navigate} isOpen={isOpen} onClose={onClose} onOpen={onOpen} id={id} platformName={platformName}/>
+      <MenuVideo placement={placement} setPlacement={placement}
+       navigate={navigate} isOpen={isOpen} 
+       onClose={onClose} onOpen={onOpen} id={id} 
+       platformName={platformName} toast={toast}/>
        </>
   )}
   

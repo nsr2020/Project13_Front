@@ -1,30 +1,10 @@
 import { Button, Flex } from '@chakra-ui/react'
-import { useEffect, useReducer } from 'react'
 import ReactPlayer from 'react-player/youtube'
-import { useParams } from 'react-router'
 import GoBack from '../../components/GoBack/GoBack'
-import { INITIAL_STATE_TRAILER, trailerReducer } from '../../reducer/TrailerReducer/trailer.reducer'
-import { fetchGif, fetchTrailer } from '../../reducer/TrailerReducer/trailer.action'
+import { useTrailer } from '../../services/useTrailer'
 
 const Trailers = () => {
-  const [state, dispatch] = useReducer(trailerReducer, INITIAL_STATE_TRAILER)
-  const {trailer, playing , gif}= state;
-  const {id, platformName} = useParams()
-  const user = localStorage.getItem("userName")
-
-  const handlePlay = () =>{
-    dispatch({type:"SET_PLAYING"})
-  }
-
-  useEffect(()=>{
-    if(!user){
-      navigate("/")
-      return
-    }
-    fetchTrailer(id,dispatch)
-    fetchGif(platformName,dispatch)
-  },[user])
-
+  const { trailer,playing,gif,handlePlay}= useTrailer()
   return (
     <Flex align="center" justify="center" width="100%" minH="100svh" flexDir="column" gap="20px" 
     bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)">
