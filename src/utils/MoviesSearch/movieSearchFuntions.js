@@ -18,27 +18,40 @@ import { getMovieSearch } from "../../reducer/MoviesSearchReducer/moviesSearch.a
     }
   }
  */
+  let beforeSelectValue = ""
    export const handleInputMovieSearch = async (nameMovie, dispatch, platformName, toast, selectGenreRef) => {
     const inputValue = nameMovie.current.value
     const selectValue = selectGenreRef.current.value
+
+    if(beforeSelectValue !== "" && inputValue === "" && selectValue === "All"){
+      const moviesInput = await API(
+        {endpoint:`/movies/search/*/${platformName}/*`
+  
+        })
+        dispatch({type:'GET_MOVIES_SEARCH', payload:moviesInput.data})
+        if (moviesInput.status === 404) {
+          let noMovies = true;
+          getMovieSearch(platformName, dispatch, noMovies, toast);
+        }
+        beforeSelectValue = ""
+        return
+    }
+   
     if(inputValue === "" && selectValue === "All"){
       return
     }
-   /*  if(selectGenreRef.current.value === "All" ){
-      selectGenreRef.current.value = "*"
-    }
-    if(nameMovie.current.value ===""){
-      nameMovie.current.value ="*"
-    } */
-    const moviesInput = await API(
-      {endpoint:`/movies/search/${inputValue === "" ? "*": inputValue}/*/${selectValue === "All" ? "*": selectValue}`
-
-      })
-      dispatch({type:'GET_MOVIES_SEARCH', payload:moviesInput.data})
-      if (moviesInput.status === 404) {
-        let noMovies = true;
-        getMovieSearch(platformName, dispatch, noMovies, toast);
-      }
+       beforeSelectValue = selectValue
+      const moviesInput = await API(
+        {endpoint:`/movies/search/${inputValue === "" ? "*": inputValue}/*/${selectValue === "All" ? "*": selectValue}`
+  
+        })
+        dispatch({type:'GET_MOVIES_SEARCH', payload:moviesInput.data})
+        if (moviesInput.status === 404) {
+          let noMovies = true;
+          getMovieSearch(platformName, dispatch, noMovies, toast);
+        }
+    
+    
     }
 
     export const handleCleanInputMovieSearch = (nameMovie, dispatch, platformName,selectedGenreRef) => {
