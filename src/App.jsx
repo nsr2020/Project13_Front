@@ -7,8 +7,6 @@ import MoviesSearch from "./pages/Movies_Search/MoviesSearch";
 import Trailers from "./pages/Trailers/Trailers";
 import User from "./pages/User/User";
 
-
-
 const App = () => {
   
   return (

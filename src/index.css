@@ -9,6 +9,16 @@
   text-decoration: none;
   font-family: "Josefin Sans", sans-serif;
 }
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 :root{
   --nsr-color1:white;
   --nsr-color2:yellow;

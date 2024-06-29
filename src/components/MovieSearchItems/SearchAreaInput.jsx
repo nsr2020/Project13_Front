@@ -5,8 +5,7 @@ import { SearchIcon, DeleteIcon } from "@chakra-ui/icons";
 
 
 const SearchAreaInput = ({nameMovieRef, dispatch, platformName, toast, selectedGenre, selectGenreRef}) => {
-  console.log(selectGenreRef, selectedGenre);
-
+  
   const handleSelect = (e) => {
     dispatch({
       type: "SELECT_GENRE",

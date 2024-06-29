@@ -48,6 +48,7 @@ import { getMovieSearch } from "../../reducer/MoviesSearchReducer/moviesSearch.a
         dispatch({type:'GET_MOVIES_SEARCH', payload:moviesInput.data})
         if (moviesInput.status === 404) {
           let noMovies = true;
+          handleCleanInputMovieSearch(nameMovie, dispatch, platformName,selectGenreRef)
           getMovieSearch(platformName, dispatch, noMovies, toast);
         }
     
