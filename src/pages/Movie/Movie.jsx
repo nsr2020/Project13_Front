@@ -5,14 +5,15 @@ import MovieCardInfo from '../../components/MovieItems/MovieCardInfo'
 import useMovie from '../../services/useMovie'
 
 const Movie = () => {
-    const { movie} = useMovie();
+    const { movie, place} = useMovie();
+
   return (
     <>
     {!movie && <Loading/>}
     {movie && (
      <MovieCardInfo movie={movie}/>
     )}
-    <GoBack goTo={`/movies/${movie?.platform}`} />
+    <GoBack goTo={place === "movies" ?`/movies/${movie?.platform}` : `/movies_Search/${movie?.platform}`} />
     <MenuComponent id={movie?._id} platformName={movie?.platform}/>
     </>
   )

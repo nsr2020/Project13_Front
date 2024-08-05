@@ -3,18 +3,19 @@ import { useEffect } from "react";
 import { customScrollStyles } from "../../../utils/MoviesFunctions/customScroll";
 import TextMoviesCard from "./TextMoviesCard";
 import {  handleClickIconInfoMovie } from "../../../utils/MoviesFunctions/movies";
-import { useNavigate } from "react-router";
-import { handleClickCardImage } from "../../../reducer/MoviesReducer/movies.action";
 
-const MoviesCard = ({movies, platformName, indexAction, indexComedy, indexHorror, indexKids, indexReleases,dispatch}) => { 
-    const navigate = useNavigate()
-    useEffect(() =>{
+import { handleClickCardImage } from "../../../reducer/MoviesReducer/movies.action";
+import useMovies from "../../../services/useMovies";
+
+const MoviesCard = ({movies, /* platformName, indexAction, indexComedy, indexHorror, indexKids, indexReleases,dispatch, */ place}) => { 
+  const { navigate, platformName, indexAction, indexComedy, indexHorror, indexKids, indexReleases, dispatch } = useMovies()
+  /*   useEffect(() =>{
         dispatch({type:"INDEX_ACTION", payload:0})
         dispatch({type:"INDEX_COMEDY", payload:0})
         dispatch({type:"INDEX_HORROR", payload:0})
         dispatch({type:"INDEX_KIDS", payload:0})
         dispatch({type:"INDEX_RELEASES",payload:0})  
-    },[platformName])
+    },[platformName]) */
 
   return (
     <>
@@ -86,7 +87,7 @@ const MoviesCard = ({movies, platformName, indexAction, indexComedy, indexHorror
                 transition="var(--nsr-transition)"
                 _hover={{ transform: "scale(1.1)" }}
                 onClick={()=>{
-                    handleClickIconInfoMovie(movie._id, navigate)
+                    handleClickIconInfoMovie(movie._id, navigate, place)
                 }}
                 />
             </Flex>

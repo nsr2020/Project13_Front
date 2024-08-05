@@ -1,7 +1,7 @@
 import { Image, Text } from "@chakra-ui/react"
 import { handleClickIconInfoMovie } from "../../utils/MoviesFunctions/movies"
 
-const SearchMoviesCardItems = ({movie, navigate}) => {
+const SearchMoviesCardItems = ({movie, navigate, place}) => {
   return (
     <>
      <Text color="var(--nsr-color1)" mt="var(--nsr-margin1)" textAlign="center" 
@@ -20,7 +20,7 @@ const SearchMoviesCardItems = ({movie, navigate}) => {
             transition="var(--nsr-transition)"
             _hover={{transform:"scale(1.2)"}}
             onClick={()=>{
-              handleClickIconInfoMovie(movie._id, navigate,)
+              handleClickIconInfoMovie(movie._id, navigate, place)
             }}
             />
     </>

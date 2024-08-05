@@ -1,6 +1,6 @@
 
-  export const handleClickIconInfoMovie = (id, navigate) =>{
-    navigate(`/movie/${id}`)
+  export const handleClickIconInfoMovie = (id, navigate, place) =>{
+    navigate(`/movie/${id}/${place}`);
 }
 
 export  const handleClickAllMovies = (platformName) => {

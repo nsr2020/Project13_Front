@@ -25,15 +25,15 @@ const Movies = () => {
           </Text>
         <AllMoviesText platformName={platformName}/>  
         </Flex>
-       <MoviesCard movies={moviesAction} platformName={platformName}indexAction={indexAction} dispatch={dispatch}/>
+       <MoviesCard movies={moviesAction} platformName={platformName}indexAction={indexAction} dispatch={dispatch} place="movies"/>
        <Divider w="80%"/>
-       <MoviesCard movies={moviesComedy} platformName={platformName} indexComedy={indexComedy} dispatch={dispatch}/> 
+       <MoviesCard movies={moviesComedy} platformName={platformName} indexComedy={indexComedy} dispatch={dispatch} place="movies"/> 
        <Divider w="80%"/>
-       <MoviesCard movies={moviesHorror} platformName={platformName} indexHorror={indexHorror} dispatch={dispatch}/> 
+       <MoviesCard movies={moviesHorror} platformName={platformName} indexHorror={indexHorror} dispatch={dispatch} place="movies"/> 
        <Divider w="80%"/>
-       <MoviesCard movies={moviesKids} platformName={platformName} indexKids={indexKids} dispatch={dispatch}/> 
+       <MoviesCard movies={moviesKids} platformName={platformName} indexKids={indexKids} dispatch={dispatch} place="movies"/> 
        <Divider w="80%"/>
-       <MoviesCard movies={moviesReleases} platformName={platformName} indexReleases={indexReleases} dispatch={dispatch}/> 
+       <MoviesCard movies={moviesReleases} platformName={platformName} indexReleases={indexReleases} dispatch={dispatch} place="movies"/> 
         </Flex>
       )}  
       <GoBack goTo="/platforms"/>
