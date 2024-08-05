@@ -6,6 +6,7 @@ import Movie from "./pages/Movie/Movie";
 import MoviesSearch from "./pages/Movies_Search/MoviesSearch";
 import Trailers from "./pages/Trailers/Trailers";
 import User from "./pages/User/User";
+import NotFound from "./pages/NotFound/NotFound";
 
 const App = () => {
   
@@ -19,7 +20,7 @@ const App = () => {
     <Route path="/trailer/:id/:platformName" element={<Trailers/>}/>
     <Route path="/user/:id" element={<User/>}/>
     <Route path="/" element={<StartPage/>}/>
-    <Route path="*" element={<StartPage/>}/>
+    <Route path="*" element={<NotFound/>}/>
    </Routes>
    </>
   );
