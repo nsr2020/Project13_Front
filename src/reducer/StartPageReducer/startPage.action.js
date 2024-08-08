@@ -30,7 +30,7 @@ export const handleSubmitLogin = async ( userName, password, toast, navigate, di
                   
                 }else{
                   const platformName = "Netflix"
-                  navigate(`/movies_Admin/${platformName}`) 
+                  navigate(`/moviesAdmin/${platformName}`) 
                   dispatch({type:"IS_LOADING_LOGIN", payload:false})
                   dispatch({type:"IS_FORMS_AREA"})
                 }
