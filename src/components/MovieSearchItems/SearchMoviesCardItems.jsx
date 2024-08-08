@@ -16,7 +16,10 @@ const SearchMoviesCardItems = ({movie, navigate, place, rol, dispatch}) => {
  const handleDelete =  () => {
   try { 
        handleClickDeleteImage(movie._id, dispatch, toast, movie.platform, navigate); 
-       onClose()
+       setTimeout(()=>{
+        onClose()
+       },200)
+       
     
     
   } catch (error) {
@@ -75,16 +78,17 @@ const SearchMoviesCardItems = ({movie, navigate, place, rol, dispatch}) => {
         onClose={onClose}
       >
         <AlertDialogOverlay >
-          <AlertDialogContent backgroundColor='pink'>
-            <AlertDialogHeader fontSize='lg' fontWeight='bold' color='blue'>
+          <AlertDialogContent mt='200px'
+          background="linear-gradient(to right, red, green)" w={{base:'275px', sm:'475px'}}>
+            <AlertDialogHeader fontSize={{base:'s', sm:'lg'}} fontWeight='bold' color='white'>
               Delete: ** {movie.name} **
             </AlertDialogHeader>
 
-            <AlertDialogBody color='red'>
+            <AlertDialogBody color='yellow' fontSize={{base:'13px', sm:'16px'}}>
               Are you sure? You can't undo this action afterwards.
             </AlertDialogBody>
 
-            <AlertDialogFooter>
+            <AlertDialogFooter margin='auto'>
               <Button ref={cancelRef} onClick={onClose} colorScheme='purple'>
                 Cancel
               </Button>
