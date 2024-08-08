@@ -4,7 +4,7 @@ import GoBack from '../../components/GoBack/GoBack'
 import { useTrailer } from '../../services/useTrailer'
 
 const Trailers = () => {
-  const { trailer,playing,gif,handlePlay}= useTrailer()
+  const { trailer,playing,gif,handlePlay,place}= useTrailer()
   return (
     <Flex align="center" justify="center" width="100%" minH="100svh" flexDir="column" gap="20px" 
     bgGradient="linear(to-br, #f9eb0a, #ec008c, #005caf)">
@@ -31,7 +31,7 @@ const Trailers = () => {
         handlePlay()
       }}>PLAY / STOP</Button>
     </Flex>
-    <GoBack goTo={`/movie/${trailer?._id}`} />
+    <GoBack goTo={`/movie/${trailer?._id}/${place}`} />
     </Flex>
   )
 }

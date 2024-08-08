@@ -7,7 +7,7 @@ import { getUserInfo } from "../reducer/UserInfoReducer/user.action";
 
 export const useUser = ()=>{
     const user = JSON.parse(localStorage.getItem("userName"))
-    const { id } = useParams();
+    const { id, place } = useParams();
     const navigate = useNavigate();
     const toast = useToast();
     const {state,dispatch}= useContext(UserContext)

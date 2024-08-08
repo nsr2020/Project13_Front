@@ -7,7 +7,7 @@ import { fetchGif, fetchTrailer } from "../reducer/TrailerReducer/trailer.action
 export const useTrailer = () =>{
     const {state,dispatch}=useContext(TrailerContext)
     const {trailer, playing , gif}= state;
-    const {id, platformName} = useParams()
+    const {id, platformName,place} = useParams()
     const user = localStorage.getItem("userName")
     const navigate = useNavigate()
   
@@ -24,6 +24,6 @@ export const useTrailer = () =>{
       fetchGif(platformName,dispatch)
     },[user])
     return{
-        trailer,playing,gif,handlePlay
+        trailer,playing,gif,handlePlay,place
     }
 }

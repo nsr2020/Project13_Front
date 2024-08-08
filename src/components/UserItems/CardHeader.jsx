@@ -1,7 +1,8 @@
-import { Avatar, Box, CardHeader, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { Avatar, Box, CardHeader, Flex, Heading, Image, Text, useToast } from '@chakra-ui/react'
 import { handleLogOutClick } from '../../utils/User/userFunctions'
+import LogOut from '../LogOut/LogOut'
 
-const CardHeaderUser = ({user, navigate}) => {
+const CardHeaderUser = ({user, navigate, toast}) => {
   return (
     <>
     <CardHeader >
@@ -21,17 +22,18 @@ const CardHeaderUser = ({user, navigate}) => {
                                         fontWeight="var(--nsr-fweight1)" 
                                         textAlign="center"> User Info, keep in mind that you can modify your details at any time, please send us an email.</Text>
                                     </Box>
-                                    <Image pos="var(--nsr-pos2)"
+                                  {/*   <Image pos="var(--nsr-pos2)"
                                      top={{ base: "10px", md: "20px" }}
                                      right={{ base: "10px", md: "20px" }}
                                      cursor="var(--nsr-cursor1)"
                                     src="/assets/logOut.png"w={{ base: "30px", md: "40px", lg: "50px" }} title="LogOut"
                                     transition="var(--nsr-transition)"
                                     _hover={{transform:"scale(1.1)"}}
-                                    onClick={()=>handleLogOutClick(navigate)}
-                                    />
+                                    onClick={()=>handleLogOutClick(navigate, toast)}
+                                    /> */}
                                 </Flex>
                             </Flex>
+                            <LogOut posDir="right"/>
                         </CardHeader></>
   )
 }

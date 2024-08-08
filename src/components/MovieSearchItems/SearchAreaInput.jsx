@@ -1,10 +1,10 @@
 import { Button, Divider, Flex, Input, Select } from "@chakra-ui/react";
 import { handleCleanInputMovieSearch, handleInputMovieSearch } from "../../utils/MoviesSearch/movieSearchFuntions";
-import { SearchIcon, DeleteIcon } from "@chakra-ui/icons";
+import { SearchIcon, DeleteIcon, PlusSquareIcon } from "@chakra-ui/icons";
 
 
 
-const SearchAreaInput = ({nameMovieRef, dispatch, platformName, toast, selectedGenre, selectGenreRef}) => {
+const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast, selectedGenre, selectGenreRef,rol}) => {
   
   const handleSelect = (e) => {
     dispatch({
@@ -12,6 +12,13 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName, toast, selectedG
       payload: e.target.value,
     });
   }
+  const widthButtons = rol !== "admin" ? "70px" : "50px";
+  const gapButtons = rol !== "admin" ? "6px": "10px"
+
+  const handlePostNewMovie =(platformName)=>{
+   window.location.href = `/formPost/${platformName}`
+  }
+ 
   
     return (
         <>
@@ -39,10 +46,10 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName, toast, selectedG
          />
          </Flex>
          <Flex  
-         gap={{ base: "5px", md: "var(--nsr-gap3)", lg: "var(--nsr-gap4)" }}
+         gap={{ base: gapButtons, md: "var(--nsr-gap3)", lg: "var(--nsr-gap4)" }}
          align="center" justify="center" >
           <Select
-      width={{ base: "70px", sm: "150px", md: "150px", lg: "150px" }}
+      width={{ base: widthButtons, sm: "150px", md: "150px", lg: "150px" }}
       height={{ base: "35px", sm: "40px", md: "40px", lg: "40px" }}
       fontSize={{ base: "10px", sm: "12px", md: "14px", lg: "16px" }}
       borderRadius="20px"
@@ -53,7 +60,7 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName, toast, selectedG
       sx={{
         "option": {
           fontWeight: "bold",
-          backgroundColor: "gray.100" // Fondo claro para opciones
+          backgroundColor: "gray.100" 
         },  
       }}
       value={selectedGenre}
@@ -71,21 +78,31 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName, toast, selectedG
           handleInputMovieSearch(nameMovieRef ,dispatch, platformName, toast,selectGenreRef)
          }}
          _hover={{transform:"scale(0.9)", transition:"var(--nsr-transition)"}}
-         width={{ base: "70px", sm: "120px", md: "120px", lg: "120px" }}
+         width={{ base: widthButtons, sm: "120px", md: "120px", lg: "120px" }}
       height={{ base: "30px", sm: "40px", md: "40px", lg: "40px" }}
       fontSize={{ base: "10px", sm: "12px", md: "14px", lg: "16px" }}
          leftIcon={<SearchIcon />}
          
-         >Search</Button>
+         >{rol !== "admin" ? "Search" :""}</Button>
          <Button onClick={()=>{
           handleCleanInputMovieSearch(nameMovieRef, dispatch, platformName,selectGenreRef);
          }}
          _hover={{transform:"scale(0.9)", transition:"var(--nsr-transition)"}}
-         width={{ base: "70px", sm: "120px", md: "120px", lg: "120px" }}
+         width={{ base: widthButtons, sm: "120px", md: "120px", lg: "120px" }}
          height={{ base: "30px", sm: "40px", md: "40px", lg: "40px" }}
          fontSize={{ base: "10px", sm: "12px", md: "14px", lg: "16px" }}
          leftIcon={<DeleteIcon />}
-         >CleanFilter</Button>  
+         >{rol !== "admin" ? "CleanFilter" : ""}</Button>  
+          {rol === "admin" && 
+          <Button onClick={()=>{
+          handlePostNewMovie(platformName)
+         }}
+         _hover={{transform:"scale(0.9)", transition:"var(--nsr-transition)"}}
+         width={{ base: widthButtons, sm: "120px", md: "120px", lg: "120px" }}
+         height={{ base: "30px", sm: "40px", md: "40px", lg: "40px" }}
+         fontSize={{ base: "10px", sm: "12px", md: "14px", lg: "16px" }}
+         leftIcon={<PlusSquareIcon/>}
+         >Post</Button> }
          </Flex>
          <Divider w="100%" />
          </Flex>

@@ -7,6 +7,9 @@ import MoviesSearch from "./pages/Movies_Search/MoviesSearch";
 import Trailers from "./pages/Trailers/Trailers";
 import User from "./pages/User/User";
 import NotFound from "./pages/NotFound/NotFound";
+import MoviesAdmin from "./pages/Movies_Admin/MoviesAdmin";
+import FormPost from "./pages/FormPost/FormPost";
+import FormPut from "./pages/FormPut/FormPut";
 
 const App = () => {
   
@@ -16,9 +19,12 @@ const App = () => {
     <Route path="/platforms" element= {<Platforms/>} />   
     <Route path="/movies/:platformName" element={<Movies/>}/>
     <Route path="/movies_Search/:platformName" element={<MoviesSearch/>}/>
+    <Route path="/moviesAdmin/:platformName" element={<MoviesAdmin/>}/>
+    <Route path="/formPost/:platformName" element= {<FormPost/>} /> 
+    <Route path="/formPut/:id/:platformName" element= {<FormPut/>} /> 
     <Route path="/movie/:id/:place" element={<Movie/>}/>
-    <Route path="/trailer/:id/:platformName" element={<Trailers/>}/>
-    <Route path="/user/:id" element={<User/>}/>
+    <Route path="/trailer/:id/:platformName/:place" element={<Trailers/>}/>
+    <Route path="/user/:id/:place" element={<User/>}/>
     <Route path="/" element={<StartPage/>}/>
     <Route path="*" element={<NotFound/>}/>
    </Routes>

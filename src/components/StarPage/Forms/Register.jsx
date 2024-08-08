@@ -53,7 +53,7 @@ const Register = ({
 								isValidPassword,
 								name,
 								lastName,
-                email,
+                                email,
 								isValidEmail,
 								dispatch
 							);

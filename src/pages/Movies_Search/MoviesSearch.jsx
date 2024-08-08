@@ -11,8 +11,6 @@ const MoviesSearch = () => {
   const { moviesSearch,nameMovieRef,dispatch,platformName,
   selectGenreRef, toast, navigate,selectedGenre }= useMoviesSearch()
 
- 
-
   return (
     <>
     {!moviesSearch.length && <Loading/>}
@@ -44,7 +42,7 @@ const MoviesSearch = () => {
           >
          <SearchMovieImage movie={movie}/>
          <Flex w="100%" h="30%" align="start" justifyContent="center">
-          <SearchMoviesCardItems movie={movie} navigate={navigate} place="MovieSearch"/>
+          <SearchMoviesCardItems movie={movie} navigate={navigate} place="MovieSearch" dispatch={dispatch}/>
           </Flex>
           </Flex>
           ))}
@@ -53,7 +51,7 @@ const MoviesSearch = () => {
         <GoBack goTo={`/movies/${platformName}`}/>
         <MenuComponent 
         platform={platformName} 
-        place="MovieSearch" 
+        place="MoviesSearch" 
         nameMovieRef={nameMovieRef} 
         moviesSearch={moviesSearch}
         selectGenreRef={selectGenreRef}

@@ -1,7 +1,28 @@
-import { Image, Text } from "@chakra-ui/react"
+import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button, Image, Text, useDisclosure, useToast } from "@chakra-ui/react"
 import { handleClickIconInfoMovie } from "../../utils/MoviesFunctions/movies"
+import { handleClickDeleteImage } from "../../utils/MoviesAdminFunctions/moviesAdminFunctions"
+import React from "react"
 
-const SearchMoviesCardItems = ({movie, navigate, place}) => {
+
+/* handleClickDeleteImage(movie._id,dispatch,toast, movie.platform,navigate) */
+
+const SearchMoviesCardItems = ({movie, navigate, place, rol, dispatch}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = React.useRef()
+ const toast = useToast()
+ const id = movie?._id
+ const platformName = movie?.platform
+
+ const handleDelete =  () => {
+  try { 
+       handleClickDeleteImage(movie._id, dispatch, toast, movie.platform, navigate); 
+       onClose()
+    
+    
+  } catch (error) {
+    console.error("Error deleting movie:", error);
+  }
+};
   return (
     <>
      <Text color="var(--nsr-color1)" mt="var(--nsr-margin1)" textAlign="center" 
@@ -9,10 +30,11 @@ const SearchMoviesCardItems = ({movie, navigate, place}) => {
      overflow="hidden"
      whiteSpace="nowrap"
      textOverflow="ellipsis"
+     
      >
               {movie.name}
             </Text>
-            <Image src='/assets/info3.png'
+            { rol !== "admin" ? <Image src='/assets/info3.png'
               w={{ base: "20px", sm: "25px", md: "30px" }}
               h={{ base: "20px", sm: "25px", md: "30px" }}
               pos="var(--nsr-pos2)" cursor="var(--nsr-cursor1)" 
@@ -23,6 +45,58 @@ const SearchMoviesCardItems = ({movie, navigate, place}) => {
               handleClickIconInfoMovie(movie._id, navigate, place)
             }}
             />
+            :
+            <>
+            <Image src='/assets/actualizar1.png'
+              w={{ base: "20px", sm: "25px", md: "30px" }}
+              h={{ base: "20px", sm: "25px", md: "30px" }}
+              pos="var(--nsr-pos2)" cursor="var(--nsr-cursor1)" 
+            bottom="5px"
+            left="15%"
+            transition="var(--nsr-transition)"
+            _hover={{transform:"scale(1.2)"}}
+            onClick={()=>{
+              navigate(`/formPut/${id}/${platformName}`)
+            }}
+            />
+            <Image src='/assets/borrar1.png'
+              w={{ base: "20px", sm: "25px", md: "30px" }}
+              h={{ base: "20px", sm: "25px", md: "30px" }}
+              pos="var(--nsr-pos2)" cursor="var(--nsr-cursor1)" 
+            bottom="5px"
+            right="15%"
+            transition="var(--nsr-transition)"
+            _hover={{transform:"scale(1.2)"}}
+            onClick={onOpen}
+            />
+            <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay >
+          <AlertDialogContent backgroundColor='pink'>
+            <AlertDialogHeader fontSize='lg' fontWeight='bold' color='blue'>
+              Delete: ** {movie.name} **
+            </AlertDialogHeader>
+
+            <AlertDialogBody color='red'>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose} colorScheme='purple'>
+                Cancel
+              </Button>
+              <Button colorScheme='red' onClick={handleDelete} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+            </>
+            }
     </>
   )
 }

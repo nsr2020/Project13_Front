@@ -1,3 +1,5 @@
 export const handleGoBack = (goTo, navigate) => {
-    navigate(goTo);
+    
+    navigate(goTo,{replace: true});
+    
 };

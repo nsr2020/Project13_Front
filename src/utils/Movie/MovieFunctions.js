@@ -1,7 +1,7 @@
 import { urlMovieById } from "../infoFetchUrl/fetchUrl";
 
-export const handleClickButtonTrailer = (id, platformName ,navigate) =>{
-    navigate(`/trailer/${id}/${platformName}`)
+export const handleClickButtonTrailer = (id, platformName ,navigate,place) =>{
+    navigate(`/trailer/${id}/${platformName}/${place}`)
 }
 
 /* export const fetchMovie =(id, setMovie)=>{

@@ -7,7 +7,7 @@ import AccordionUser from "../../components/UserItems/AccordionUser";
 import { useUser } from "../../services/useUser";
 
 const User = () => {
-	const { user, navigate, toast, dispatch, userMovies, id } = useUser();
+	const { user, navigate, toast, dispatch, userMovies, id, place } = useUser();
 
 	return (
 		<>
@@ -30,7 +30,7 @@ const User = () => {
 						pos="var(--nsr-pos1)"
 						bgImage="var(--nsr-bimage1)"
 					>
-						<CardHeaderUser user={user} navigate={navigate} />
+						<CardHeaderUser user={user} navigate={navigate} toast={toast}/>
 						<Divider />
 						<CardBody
 							mt="-40px"
@@ -62,7 +62,7 @@ const User = () => {
 							userMovies={userMovies}
 						/>
 					</Card>
-					<GoBack goTo={`/movie/${id}`} />
+					<GoBack goTo={`/movie/${id}/${place}`} />
 				</Flex>
 			)}
 		</>

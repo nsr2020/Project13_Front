@@ -3,7 +3,7 @@ import { handleClickButtonTrailer } from "../Movie/MovieFunctions"
 
 export const handleClickMenuVideos =  (platformName,place, moviesAction,toast,
   navigate, moviesSearch, nameMovieRef,selectGenreRef, dispatch) => {
-
+   
   if(place === "Movies")
       if(moviesAction[0].platform === platformName){
         toast({
@@ -17,7 +17,7 @@ export const handleClickMenuVideos =  (platformName,place, moviesAction,toast,
         navigate(`/movies/${platformName}`)
       }
     
-else{
+else if(place === "MoviesSearch"){
   
   if(moviesSearch[0].platform === platformName){
     toast({
@@ -33,20 +33,36 @@ else{
     dispatch({ type: "SELECT_GENRE", payload: "All" }); 
     navigate(`/movies_Search/${platformName}`)
   }
+}else if(place === "MoviesAdmin") {
+  if(moviesSearch[0].platform === platformName){
+    toast({
+      title: "You already are at platform" +" "+ platformName,
+      status: "warning",
+      duration: 500,
+      isClosable: true,
+    })
+    return
+  }else if(moviesSearch[0].platform !== platformName){
+    nameMovieRef.current.value = ""
+    selectGenreRef.current.value ="All"
+    dispatch({ type: "SELECT_GENRE", payload: "All" }); 
+    navigate(`/moviesAdmin/${platformName}`)
+  }
+
 }
 }
 
-export const handleClickMenuVideo = (type, id, navigate, user, toast, platformName) => {
+export const handleClickMenuVideo = (type, id, navigate, user, toast, platformName,place) => {
      
     switch (type) {
         case "trailer":
-            handleClickButtonTrailer(id,platformName,navigate)
+            handleClickButtonTrailer(id,platformName,navigate,place)
             break;
         case "add":
             handleAddMovieToList(id, user, toast)
             break;
         case "user":
-            navigate(`/user/${id}`)
+            navigate(`/user/${id}/${place}`)
             break;
         default:
             break;

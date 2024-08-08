@@ -1,3 +1,4 @@
+import { useToast } from "@chakra-ui/react";
 import { API } from "../../API/API";
 import { getUserInfo } from "../../reducer/UserInfoReducer/user.action";
 
@@ -55,8 +56,15 @@ export const handleDeleteMovie = async (id, dispatch, user, toast) => {
     }
   };
 
-export const handleLogOutClick = (navigate) => {
+export const handleLogOutClick = (navigate,toast) => {
     localStorage.removeItem("userName");
     localStorage.removeItem("token");
     navigate("/");
+    toast({
+      title: "Session Closed successfully",
+      description: "",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+  });
 };

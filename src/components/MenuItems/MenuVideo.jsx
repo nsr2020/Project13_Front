@@ -4,7 +4,7 @@ import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader,
 import { handleClickMenuVideo } from "../../utils/Menu/menuFunctions";
 
 const MenuVideo = ({placement, navigate, isOpen, onClose, 
-  onOpen, id, platformName, toast}) => {
+  onOpen, id, platformName, toast, place }) => {
   const  user = JSON.parse(localStorage.getItem('userName'))
   
 
@@ -37,7 +37,7 @@ const MenuVideo = ({placement, navigate, isOpen, onClose,
              <Image src="/assets/trailer.png"  w="100px" h="100px" cursor="var(--nsr-cursor1)" 
              transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
-                handleClickMenuVideo("trailer", id, navigate,user,toast, platformName)
+                handleClickMenuVideo("trailer", id, navigate,user,toast, platformName, place)
              }}
              />
             </Flex>
@@ -46,7 +46,7 @@ const MenuVideo = ({placement, navigate, isOpen, onClose,
              <Image src="/assets/checked.png" w="100px" h="100px" cursor="var(--nsr-cursor1)"
              transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
-                handleClickMenuVideo("add", id, navigate, user, toast,platformName)
+                handleClickMenuVideo("add", id, navigate, user, toast,platformName, place)
              }}
              />
            </Flex>
@@ -55,7 +55,7 @@ const MenuVideo = ({placement, navigate, isOpen, onClose,
              <Image src="/assets/usericon.png" w="100px" h="100px" cursor="var(--nsr-cursor)"
              transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
              onClick={()=>{
-                handleClickMenuVideo("user", id, navigate, user, toast,platformName)
+                handleClickMenuVideo("user", id, navigate, user, toast,platformName, place)
              }}
              />
           </Flex>     

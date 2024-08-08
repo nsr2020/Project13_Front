@@ -11,7 +11,7 @@ const Movie = () => {
     <>
     {!movie && <Loading/>}
     {movie && (
-     <MovieCardInfo movie={movie}/>
+     <MovieCardInfo movie={movie} place={place}/>
     )}
     <GoBack goTo={place === "movies" ?`/movies/${movie?.platform}` : `/movies_Search/${movie?.platform}`} />
     <MenuComponent id={movie?._id} platformName={movie?.platform}/>

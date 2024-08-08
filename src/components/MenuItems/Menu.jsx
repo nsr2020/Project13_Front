@@ -26,7 +26,7 @@ const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch,
   )}
   {!platform && (
        <>
-      <MenuVideo placement={placement} setPlacement={placement}
+      <MenuVideo placement={placement} setPlacement={placement} place={place}
        navigate={navigate} isOpen={isOpen} 
        onClose={onClose} onOpen={onOpen} id={id} 
        platformName={platformName} toast={toast}/>

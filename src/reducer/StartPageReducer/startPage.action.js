@@ -23,7 +23,18 @@ export const handleSubmitLogin = async ( userName, password, toast, navigate, di
                 isClosable: true,
               })
               setTimeout(() => {
-                navigate("/platforms")
+                if(response.data.user.rol === "user"){
+                  navigate("/platforms")
+                  dispatch({type:"IS_LOADING_LOGIN", payload:false})
+                  dispatch({type:"IS_FORMS_AREA"})
+                  
+                }else{
+                  const platformName = "Netflix"
+                  navigate(`/movies_Admin/${platformName}`) 
+                  dispatch({type:"IS_LOADING_LOGIN", payload:false})
+                  dispatch({type:"IS_FORMS_AREA"})
+                }
+                
               },2000)
             
         } else { 

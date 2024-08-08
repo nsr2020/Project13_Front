@@ -11,27 +11,33 @@ import MenuProvider from "./providers/MenuProvider.jsx";
 import TrailerProvider from "./providers/TrailerProvider.jsx";
 import UserProvider from "./providers/UserProvider.jsx";
 import StartPageProvider from "./providers/StartPageProvider.jsx";
+import FormPostProvider from "./providers/FormPostProvider.jsx";
+import FormPutProvider from "./providers/FormPutProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<BrowserRouter>
 		<ChakraProvider>
-    <StartPageProvider>
-			<PlatformsProvider>
-				<MoviesProvider>
-					<MoviesSearchProvider>
-						<MenuProvider>
-							<MovieProvider>
-								<TrailerProvider>
-                  <UserProvider>
-									<App />
-                  </UserProvider>
-								</TrailerProvider>
-							</MovieProvider>
-						</MenuProvider>
-					</MoviesSearchProvider>
-				</MoviesProvider>
-			</PlatformsProvider>
-      </StartPageProvider>
+			<StartPageProvider>
+				<PlatformsProvider>
+					<MoviesProvider>
+						<MoviesSearchProvider>
+							<MenuProvider>
+								<MovieProvider>
+									<TrailerProvider>
+										<UserProvider>
+											<FormPostProvider>
+												<FormPutProvider>
+												<App />
+												</FormPutProvider>
+											</FormPostProvider>
+										</UserProvider>
+									</TrailerProvider>
+								</MovieProvider>
+							</MenuProvider>
+						</MoviesSearchProvider>
+					</MoviesProvider>
+				</PlatformsProvider>
+			</StartPageProvider>
 		</ChakraProvider>
 	</BrowserRouter>
 );

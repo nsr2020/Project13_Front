@@ -3,7 +3,7 @@ import { Rate } from "antd"
 import { useNavigate } from "react-router";
 import { customStyle, handleClickButtonTrailer } from "../../utils/Movie/MovieFunctions";
 
-const MovieCardInfo = ({movie}) => {
+const MovieCardInfo = ({movie, place}) => {
     const navigate = useNavigate();
   return (
     <>
@@ -37,7 +37,7 @@ const MovieCardInfo = ({movie}) => {
       <CardFooter display="flex" align="center" justify="center" >
           <Button variant='solid' colorScheme='teal'
           onClick={()=>{
-            handleClickButtonTrailer(movie._id,movie.platform ,navigate);
+            handleClickButtonTrailer(movie._id,movie.platform ,navigate,place);
           }}
           >
             Watch Trailer
