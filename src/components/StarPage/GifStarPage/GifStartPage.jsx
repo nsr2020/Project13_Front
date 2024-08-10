@@ -1,8 +1,13 @@
 import {  Button, Flex, Image} from "@chakra-ui/react"
 import Forms from "../Forms/Forms"
+import { useStartPage } from "../../../services/useStartPage"
 
-const GifStartPage = ({IsFormsArea, dispatch, form, isLoadingLogin, isButtonDisabledLogin, isLoadingRegister, isButtonDisabledRegister}) => {
- 
+const GifStartPage = () => {
+  const {IsFormsArea,dispatch,
+    isLoadingLogin,
+    isButtonDisabledLogin,
+    isLoadingRegister,
+    isButtonDisabledRegister} = useStartPage()
   return (
     <>
     {!IsFormsArea ? (
@@ -24,8 +29,7 @@ const GifStartPage = ({IsFormsArea, dispatch, form, isLoadingLogin, isButtonDisa
           >START</Button>
        </Flex>
     ):(  
-       <Forms dispatch={dispatch} form={form} isLoadingLogin={isLoadingLogin} isButtonDisabledLogin={isButtonDisabledLogin}
-       isLoadingRegister={isLoadingRegister} isButtonDisabledRegister={isButtonDisabledRegister}
+       <Forms 
        />    
     )}
    

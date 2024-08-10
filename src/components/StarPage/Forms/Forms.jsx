@@ -1,9 +1,10 @@
 import {  Flex, Tab, TabList, Tabs} from "@chakra-ui/react";
 import Login from "./Login";
 import Register from "./Register";
+import { useStartPage } from "../../../services/useStartPage";
 
-const Forms = ({dispatch, form, isLoadingLogin, isButtonDisabledLogin,isLoadingRegister, isButtonDisabledRegister}) => {
-
+const Forms = () => {
+ const {form,dispatch} = useStartPage()
   return (
     <Flex justify="center" align="center" flexDir="var(--nsr-direction1)" 
     gap="var(--nsr-gap1)">
@@ -17,10 +18,10 @@ const Forms = ({dispatch, form, isLoadingLogin, isButtonDisabledLogin,isLoadingR
 </Tabs>
     </Flex>
       {form ? (
-        <Login dispatch={dispatch} isLoadingLogin={isLoadingLogin} isButtonDisabledLogin={isButtonDisabledLogin}
+        <Login 
         />
       ):(
-        <Register dispatch={dispatch} isLoadingRegister={isLoadingRegister} isButtonDisabledRegister={isButtonDisabledRegister}/>
+        <Register/>
       )}
 </Flex>
   )

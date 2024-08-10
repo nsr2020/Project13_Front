@@ -9,8 +9,11 @@ import {
 } from "@chakra-ui/react";
 import { handleChangeInputLogin, handleSubmitLogin } from "../../../reducer/StartPageReducer/startPage.action";
 import { useLogin } from "../../../services/useLogin";
+import { useStartPage } from "../../../services/useStartPage";
 
-const Login = ({ dispatch, isLoadingLogin, isButtonDisabledLogin }) => {
+const Login = () => {
+
+	const {dispatch,isLoadingLogin,isButtonDisabledLogin}=useStartPage()
     const {toast,navigate,userNameRef,passwordRef,
         userName,password,isValidPassword} = useLogin()
 	return (

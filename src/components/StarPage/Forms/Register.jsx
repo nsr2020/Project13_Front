@@ -13,14 +13,12 @@ import {
 	handleSubmitRegister,
 } from "../../../reducer/StartPageReducer/startPage.action";
 import { useRegister } from "../../../services/useRegister";
+import { useStartPage } from "../../../services/useStartPage";
 
-const Register = ({
-	dispatch,
-	isLoadingRegister,
-	isButtonDisabledRegister,
-}) => {
-  const {toast,userNameRef,passwordRef,nameRef,lastNameRef,emailRef,imageRef,navigate,
-    userName,password,name,lastName,email,avatar,isValidEmail,isValidPassword } = useRegister()
+const Register = () => {
+	const  {dispatch,isLoadingRegister,isButtonDisabledRegister}= useStartPage()
+    const {toast,userNameRef,passwordRef,nameRef,lastNameRef,emailRef,imageRef,navigate,
+    userName,password,name,lastName,email,avatar,isValidEmail,isValidPassword }=useRegister()
 	return (
 		<Stack
 			mb="var(--nsr-margin7)"
