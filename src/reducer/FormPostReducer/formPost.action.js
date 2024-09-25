@@ -61,7 +61,7 @@ export const handleOnchangePostForm = (name,image,category,trailer,stars,platfor
         image &&
         category.length &&
         trailer.length &&
-        !isNaN(starsValue) &&
+        ((starsValue >=0 & starsValue <= 5)) &&
         platform.length
     ){        dispatch({ type: "IS_BUTTON_DISABLED_POST", payload: false });
     } else {
