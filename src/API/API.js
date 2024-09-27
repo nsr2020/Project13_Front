@@ -29,6 +29,12 @@
           data: []
         };
       }
+      if (res.status === 400) {
+        return {
+          status: 400,
+          data: []
+        };
+      }
   
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
