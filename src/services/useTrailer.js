@@ -20,6 +20,10 @@ export const useTrailer = () =>{
         navigate("/")
         return
       }
+      if(JSON.parse(user).rol === "admin"){
+        navigate(`/moviesAdmin/${platformName}`)
+        return;
+      }
       fetchTrailer(id,dispatch)
       fetchGif(platformName,dispatch)
     },[user])

@@ -21,9 +21,13 @@ const useMoviesSearch = ()=>{
       if(!user){
         window.location.href = '/'
       }
+      if(JSON.parse(user).rol === "admin"){
+        navigate(`/moviesAdmin/${platformName}`)
+        return
+      }
       getMovieSearch(platformName, dispatch) 
     },[user,platformName,selectGenreRef])
-    
+
     return{
         moviesSearch,nameMovieRef,dispatch,platformName,
         selectGenreRef, toast, navigate,selectedGenre

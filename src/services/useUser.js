@@ -12,12 +12,17 @@ export const useUser = ()=>{
     const toast = useToast();
     const {state,dispatch}= useContext(UserContext)
     const {userMovies} = state;
+    const platformName = place || "Netflix"
 
     useEffect(() => {
         if (!user) {
             navigate("/");
             return;
         }
+        if(JSON.parse(user).rol === "admin"){
+            navigate(`/moviesAdmin/${platformName}`)
+            return;
+          }
         getUserInfo(user._id, dispatch)
     }, []);
     return{

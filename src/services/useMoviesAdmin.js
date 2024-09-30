@@ -19,6 +19,7 @@ const rol = JSON.parse(user).rol
 useEffect(()=>{
   if(!user || rol!== 'admin'){
     navigate("/")
+    return
 }
   getMovieSearch(platformName, dispatch) 
 },[user,platformName, dispatch])

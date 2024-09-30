@@ -10,10 +10,15 @@ export const usePlatforms = () =>{
   const {platforms} = state;
   
   const user = localStorage.getItem("userName");
+  const platformName = "Netflix"
 
 useEffect(()=>{
   if(user === null){
     navigate("/")
+    }
+    if(JSON.parse(user).rol === "admin"){
+      navigate(`/moviesAdmin/${platformName}`)
+      return
     }
       getPlatforms(dispatch)
     

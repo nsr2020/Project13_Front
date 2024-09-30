@@ -17,6 +17,10 @@ const useMovies = ()=>{
           window.location.href = "/"; 
           return;
         }
+        if(JSON.parse(user).rol === "admin"){
+          navigate(`/moviesAdmin/${platformName}`)
+          return
+        }
         fetchMovies(platformName, dispatch)
       }, [platformName, user]);
 

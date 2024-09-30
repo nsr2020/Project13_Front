@@ -9,10 +9,15 @@ const useMovie = () => {
   const navigate = useNavigate();
   const { state, dispatch } = useContext(MovieContext);
   const { movie } = state;
+  const platformName = movie?.platform 
 
   useEffect(() => {
     if (!user) {
       navigate("/");
+      return;
+    }
+    if(JSON.parse(user).rol === "admin"){
+      navigate(`/moviesAdmin/${platformName}`)
       return;
     }
     fetchMovie(id, dispatch);
