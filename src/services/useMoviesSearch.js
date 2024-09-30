@@ -22,7 +22,8 @@ const useMoviesSearch = ()=>{
         window.location.href = '/'
       }
       getMovieSearch(platformName, dispatch) 
-    },[user,platformName])
+    },[user,platformName,selectGenreRef])
+    
     return{
         moviesSearch,nameMovieRef,dispatch,platformName,
         selectGenreRef, toast, navigate,selectedGenre

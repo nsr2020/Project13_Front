@@ -1,6 +1,6 @@
 import React from 'react'
 import Loading from '../../components/Loading/Loading'
-import { Flex, useDisclosure } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import SearchAreaInput from '../../components/MovieSearchItems/SearchAreaInput'
 import SearchMovieImage from '../../components/MovieSearchItems/SearchMovieImage'
 import SearchMoviesCardItems from '../../components/MovieSearchItems/SearchMoviesCardItems'
@@ -9,8 +9,6 @@ import useMoviesAdmin from '../../services/useMoviesAdmin'
 import LogOut from '../../components/LogOut/LogOut'
 
 const MoviesAdmin = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const cancelRef = React.useRef()
     const { moviesSearch,nameMovieRef,dispatch,platformName,
         selectGenreRef, toast, navigate,selectedGenre,rol }= useMoviesAdmin()
  

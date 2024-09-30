@@ -23,7 +23,8 @@ const MoviesSearch = () => {
         pos="var(--nsr-pos1)"
         >
         <SearchAreaInput nameMovieRef={nameMovieRef} dispatch={dispatch}
-        platformName={platformName} toast={toast} selectedGenre={selectedGenre} selectGenreRef={selectGenreRef}/>
+        platformName={platformName} toast={toast} 
+        selectedGenre={selectedGenre} selectGenreRef={selectGenreRef} />
          <Flex w="100%" minH="60svh" justify="center" wrap="wrap" >
           { moviesSearch.map((movie)=>(
             <Flex

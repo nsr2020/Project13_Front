@@ -31,19 +31,19 @@ const MenuVideos = ({placement, navigate, isOpen, onClose,
            <Image src="/assets/hbologo1.png"  w="150px" h="150px" cursor="var(--nsr-cursor1)" 
            transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
            onClick={()=>{
-            handleClickMenuVideos("Hbo Max",place, moviesAction,toast,navigate, moviesSearch, nameMovieRef,selectGenreRef, dispatch)
+            handleClickMenuVideos("Hbo Max",place, moviesAction,toast,navigate, moviesSearch, nameMovieRef,selectGenreRef, dispatch,onClose)
            }}
            />
            <Image src="/assets/primelogo1.png" w="150px" h="150px" cursor="var(--nsr-cursor1)"
            transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
            onClick={()=>{
-            handleClickMenuVideos("Prime Video", place, moviesAction,toast,navigate, moviesSearch, nameMovieRef,selectGenreRef,dispatch)
+            handleClickMenuVideos("Prime Video", place, moviesAction,toast,navigate, moviesSearch, nameMovieRef,selectGenreRef,dispatch,onClose)
            }}
            />
            <Image src="/assets/net.png" w="150px" h="150px" cursor="var(--nsr-cursor1)"
            transition="var(--nsr-transition)" _hover={{ transform: "scale(0.8)"}}
            onClick={()=>{
-            handleClickMenuVideos("Netflix", place, moviesAction,toast,navigate, moviesSearch, nameMovieRef,selectGenreRef,dispatch)
+            handleClickMenuVideos("Netflix", place, moviesAction,toast,navigate, moviesSearch, nameMovieRef,selectGenreRef,dispatch, onClose)
            }}
            />
          </DrawerBody>

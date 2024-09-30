@@ -3,15 +3,16 @@ import { handleCleanInputMovieSearch, handleInputMovieSearch } from "../../utils
 import { SearchIcon, DeleteIcon, PlusSquareIcon } from "@chakra-ui/icons";
 
 
-
-const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast, selectedGenre, selectGenreRef,rol}) => {
+const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast, 
+  selectedGenre, selectGenreRef,rol, }) => {
   
-  const handleSelect = (e) => {
+
+  /* const handleSelect = (e) => {
     dispatch({
       type: "SELECT_GENRE",
       payload: e.target.value,
     });
-  }
+  } */
   const widthButtons = rol !== "admin" ? "70px" : "50px";
   const gapButtons = rol !== "admin" ? "6px": "10px"
 
@@ -19,7 +20,7 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast,
    window.location.href = `/formPost/${platformName}`
   }
  
-  
+
     return (
         <>
         <Flex w="100%" 
@@ -35,11 +36,10 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast,
         <Flex align="center" justify="center" w="100%">
          <Input  w={{ base: "90%", md: "60%", lg: "50%" }} 
           mt="50px" id='name' ref={nameMovieRef} type='text'
-          
          placeholder="Busca por nombre o por letra"
          bg="var(--nsr-color6)"
-      color="var(--nsr-color1)"
-      _placeholder={{ 
+         color="var(--nsr-color1)"
+         _placeholder={{ 
         color: 'var(--nsr-color1)',
         fontSize: { base: "12px", sm: "14px", md: "16px", lg: "18px" } 
       }}
@@ -65,7 +65,7 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast,
       }}
       value={selectedGenre}
       ref={selectGenreRef}
-      onChange={(e) => handleSelect(e)}
+      onChange={(e) => dispatch({ type: "SELECT_GENRE", payload: e.target.value })}
     >
             <option  value="All" >All</option>
             <option  value="Action">Action</option>
@@ -75,17 +75,17 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast,
             <option  value="Releases">Releases</option>
           </Select>
          <Button onClick={()=>{
-          handleInputMovieSearch(nameMovieRef ,dispatch, platformName, toast,selectGenreRef)
+          handleInputMovieSearch(nameMovieRef ,dispatch, platformName, toast,selectGenreRef,)
          }}
          _hover={{transform:"scale(0.9)", transition:"var(--nsr-transition)"}}
          width={{ base: widthButtons, sm: "120px", md: "120px", lg: "120px" }}
-      height={{ base: "30px", sm: "40px", md: "40px", lg: "40px" }}
-      fontSize={{ base: "10px", sm: "12px", md: "14px", lg: "16px" }}
+          height={{ base: "30px", sm: "40px", md: "40px", lg: "40px" }}
+          fontSize={{ base: "10px", sm: "12px", md: "14px", lg: "16px" }}
          leftIcon={<SearchIcon />}
          
          >{rol !== "admin" ? "Search" :""}</Button>
          <Button onClick={()=>{
-          handleCleanInputMovieSearch(nameMovieRef, dispatch, platformName,selectGenreRef);
+          handleCleanInputMovieSearch(nameMovieRef, dispatch, platformName,selectGenreRef, );
          }}
          _hover={{transform:"scale(0.9)", transition:"var(--nsr-transition)"}}
          width={{ base: widthButtons, sm: "120px", md: "120px", lg: "120px" }}

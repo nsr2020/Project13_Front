@@ -4,8 +4,6 @@ import { useNavigate, useParams } from "react-router";
 import { MoviesSearchContext } from "../providers/MoviesSearchProvider";
 import { getMovieSearch } from "../reducer/MoviesSearchReducer/moviesSearch.action";
 
-
-
 const useMoviesAdmin = ()=>{
 
 const {platformName} = useParams()
@@ -23,7 +21,7 @@ useEffect(()=>{
     navigate("/")
 }
   getMovieSearch(platformName, dispatch) 
-},[user,platformName])
+},[user,platformName, dispatch])
 
 return{
     moviesSearch,nameMovieRef,dispatch,platformName,

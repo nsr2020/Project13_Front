@@ -18,54 +18,124 @@ import { getMovieSearch } from "../../reducer/MoviesSearchReducer/moviesSearch.a
     }
   }
  */
+ 
   let beforeSelectValue = ""
-   export const handleInputMovieSearch = async (nameMovie, dispatch, platformName, toast, selectGenreRef) => {
+  let inputValueBefore = "";
+  let selectValueBefore = "";
+  let counter = 0;
+  let searchBefore = false
+   export const handleInputMovieSearch = async (nameMovie, dispatch, platformName, 
+    toast, selectGenreRef ) => {
     const inputValue = nameMovie.current.value
     const selectValue = selectGenreRef.current.value
+    
+    
+    if(inputValue === "" && selectValue === "All" && beforeSelectValue === ""  ){
+      console.log('hola');
+      return
+    }
+   
 
-    if(beforeSelectValue !== "" && inputValue === "" && selectValue === "All"){
+    if(beforeSelectValue !== "" && inputValue === "" && selectValue === "All" ){
+      console.log('holaa');
       const moviesInput = await API(
         {endpoint:`/movies/search/*/${platformName}/*`
   
         })
         dispatch({type:'GET_MOVIES_SEARCH', payload:moviesInput.data})
-        if (moviesInput.status === 404) {
-          let noMovies = true;
-          getMovieSearch(platformName, dispatch, noMovies, toast);
-        }
         beforeSelectValue = ""
+        inputValueBefore = "";
+        selectValueBefore = "";
+        counter = 0;
         return
     }
-   
-    if(inputValue === "" && selectValue === "All"){
-      return
-    }
+    
        beforeSelectValue = selectValue
+       if(counter ===0 ){
+        inputValueBefore = inputValue
+        selectValueBefore = selectValue
+       }
+       if(counter > 0 ){ 
+        if(inputValueBefore === inputValue && selectValueBefore === selectValue){
+          toast({
+            title: 'You have already searched this option',
+            description: "Please try again with another search.",
+            status: 'error',
+            duration: 1000,
+            isClosable: true,
+          })
+          return
+        }else{
+          counter = 0
+        } 
+      }
+      
       const moviesInput = await API(
-        {endpoint:`/movies/search/${inputValue === "" ? "*": inputValue}/*/${selectValue === "All" ? "*": selectValue}`
+        {endpoint:`/movies/search/${inputValue === "" ? "*": inputValue}/${platformName}/${selectValue === "All" ? "*": selectValue}`
   
         })
-        dispatch({type:'GET_MOVIES_SEARCH', payload:moviesInput.data})
         if (moviesInput.status === 404) {
-          let noMovies = true;
+          toast({
+            title: 'No movies found.',
+            description: "Try another search.",
+            status: 'error',
+            duration: 3000,
+            isClosable: true,
+          })
+          searchBefore = true
           handleCleanInputMovieSearch(nameMovie, dispatch, platformName,selectGenreRef)
-          getMovieSearch(platformName, dispatch, noMovies, toast);
+        }
+        if(moviesInput.status === 200){
+          inputValueBefore = inputValue;
+          selectValueBefore = selectValue;
+          counter++
+          dispatch({type:'GET_MOVIES_SEARCH', payload:moviesInput.data})
+          searchBefore = true
         }
     
     
     }
 
-    export const handleCleanInputMovieSearch = (nameMovie, dispatch, platformName,selectedGenreRef) => {
-        if(nameMovie.current.value !== "" || selectedGenreRef.current.value !== "All"){
+    export const handleCleanInputMovieSearch = (nameMovie, dispatch, platformName,selectGenreRef,comeFromMenu=false) => {
+        if(comeFromMenu){
             nameMovie.current.value = ""
-            selectedGenreRef.current.value = "All"
+            selectGenreRef.current.value = "All"
             dispatch({type:"SELECT_GENRE", payload:"All"})
-            getMovieSearch(platformName, dispatch) 
-        }else if(nameMovie.current.value === "" && selectedGenreRef.current.value === "All"){
+            searchBefore = false
+            console.log(nameMovie.current.value );
+            console.log(selectGenreRef.current.value)
             return
         }
-        
-        
+
+        if((nameMovie.current.value !== "" || selectGenreRef.current.value !== "All") && !searchBefore){
+            nameMovie.current.value = ""
+            selectGenreRef.current.value = "All"
+            dispatch({type:"SELECT_GENRE", payload:"All"})
+            console.log('hola');
+            return             
+        }
+        if((nameMovie.current.value !== "" || selectGenreRef.current.value !== "All") && searchBefore){
+          nameMovie.current.value = ""
+          selectGenreRef.current.value = "All"
+          dispatch({type:"SELECT_GENRE", payload:"All"})
+          searchBefore = false
+          getMovieSearch(platformName, dispatch)
+          console.log('hola');
+          return             
+      }
+
+        if(nameMovie.current.value === "" && selectGenreRef.current.value === "All" && !searchBefore){
+          console.log('hola');
+          return
+        }  
+        if(nameMovie.current.value === "" && selectGenreRef.current.value === "All" && searchBefore){
+          getMovieSearch(platformName, dispatch)
+          searchBefore = false
+          console.log('hola');
+          
+          return
+        }  
+      
       }
 
       export  const customStyle = {

@@ -1,9 +1,10 @@
 import { API } from "../../API/API"
 import { handleClickButtonTrailer } from "../Movie/MovieFunctions"
+import { handleCleanInputMovieSearch } from "../MoviesSearch/movieSearchFuntions";
 
 export const handleClickMenuVideos =  (platformName,place, moviesAction,toast,
-  navigate, moviesSearch, nameMovieRef,selectGenreRef, dispatch) => {
-   
+  navigate, moviesSearch, nameMovieRef,selectGenreRef, dispatch,onClose) => {
+    let comeFromMenu = true 
   if(place === "Movies")
       if(moviesAction[0].platform === platformName){
         toast({
@@ -23,15 +24,17 @@ else if(place === "MoviesSearch"){
     toast({
       title: "You already are at platform" +" "+ platformName,
       status: "warning",
-      duration: 500,
+      duration: 1000,
       isClosable: true,
     })
     return
   }else if(moviesSearch[0].platform !== platformName){
-    nameMovieRef.current.value = ""
-    selectGenreRef.current.value ="All"
-    dispatch({ type: "SELECT_GENRE", payload: "All" }); 
+    /* nameMovieRef.current.value = ""
+    selectGenreRef.current.value = "All"
+    dispatch({type:"SELECT_GENRE", payload:"All"}) */
     navigate(`/movies_Search/${platformName}`)
+    onClose()
+    handleCleanInputMovieSearch(nameMovieRef, dispatch, platformName,selectGenreRef,comeFromMenu)
   }
 }else if(place === "MoviesAdmin") {
   if(moviesSearch[0].platform === platformName){
@@ -43,12 +46,13 @@ else if(place === "MoviesSearch"){
     })
     return
   }else if(moviesSearch[0].platform !== platformName){
-    nameMovieRef.current.value = ""
+   /*  nameMovieRef.current.value = ""
     selectGenreRef.current.value ="All"
-    dispatch({ type: "SELECT_GENRE", payload: "All" }); 
+    dispatch({ type: "SELECT_GENRE", payload: "All" });  */
+    handleCleanInputMovieSearch(nameMovieRef, dispatch, platformName,selectGenreRef,comeFromMenu)
     navigate(`/moviesAdmin/${platformName}`)
+    onClose()
   }
-
 }
 }
 
