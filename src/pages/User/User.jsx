@@ -7,7 +7,7 @@ import AccordionUser from "../../components/UserItems/AccordionUser";
 import { useUser } from "../../services/useUser";
 
 const User = () => {
-	const { user, navigate, toast, dispatch, userMovies, id, place } = useUser();
+	const { user,navigate,toast,dispatch,userMovies,id,place } = useUser();
 
 	return (
 		<>

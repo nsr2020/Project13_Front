@@ -14,7 +14,7 @@ const Movie = () => {
      <MovieCardInfo movie={movie} place={place}/>
     )}
     <GoBack goTo={place === "movies" ?`/movies/${movie?.platform}` : `/movies_Search/${movie?.platform}`} />
-    <MenuComponent id={movie?._id} platformName={movie?.platform}/>
+    <MenuComponent id={movie?._id} platformName={movie?.platform} place={place}/>
     </>
   )
 }

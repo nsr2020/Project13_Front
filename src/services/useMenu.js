@@ -10,8 +10,9 @@ export const useMenu = ()=>{
     const {placement}= state;
     const toast = useToast()
     const navigate = useNavigate()
+    const  user = JSON.parse(localStorage.getItem('userName'))
      
   return{
-    isOpen,onOpen,onClose,dispatch,toast,navigate,placement
+    isOpen,onOpen,onClose,dispatch,toast,navigate,placement,user
   }
 }

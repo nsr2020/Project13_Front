@@ -3,41 +3,29 @@ import App from "./App.jsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
-import MovieProvider from "./providers/MovieProvider.jsx";
-import MoviesProvider from "./providers/MoviesProvider.jsx";
 import MoviesSearchProvider from "./providers/MoviesSearchProvider.jsx";
-import PlatformsProvider from "./providers/PlatformsProvider.jsx";
 import MenuProvider from "./providers/MenuProvider.jsx";
-import TrailerProvider from "./providers/TrailerProvider.jsx";
-import UserProvider from "./providers/UserProvider.jsx";
-import StartPageProvider from "./providers/StartPageProvider.jsx";
 import FormPostProvider from "./providers/FormPostProvider.jsx";
 import FormPutProvider from "./providers/FormPutProvider.jsx";
+import MoviesProvider from "./providers/MoviesProvider.jsx";
+import MovieProvider from "./providers/MovieProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<BrowserRouter>
 		<ChakraProvider>
-			<StartPageProvider>
-				<PlatformsProvider>
-					<MoviesProvider>
-						<MoviesSearchProvider>
-							<MenuProvider>
-								<MovieProvider>
-									<TrailerProvider>
-										<UserProvider>
-											<FormPostProvider>
-												<FormPutProvider>
-												<App />
-												</FormPutProvider>
-											</FormPostProvider>
-										</UserProvider>
-									</TrailerProvider>
-								</MovieProvider>
-							</MenuProvider>
-						</MoviesSearchProvider>
-					</MoviesProvider>
-				</PlatformsProvider>
-			</StartPageProvider>
+		<MoviesProvider>
+		<MovieProvider>
+			<MoviesSearchProvider>
+				<MenuProvider>
+					<FormPostProvider>
+						<FormPutProvider>
+							<App />
+						</FormPutProvider>
+					</FormPostProvider>
+				</MenuProvider>
+			</MoviesSearchProvider>
+			</MovieProvider>
+			</MoviesProvider>
 		</ChakraProvider>
 	</BrowserRouter>
 );

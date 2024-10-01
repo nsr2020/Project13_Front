@@ -19,14 +19,14 @@ export const useUser = ()=>{
             navigate("/");
             return;
         }
-        if(JSON.parse(user).rol === "admin"){
+        if(user.rol === "admin"){
             navigate(`/moviesAdmin/${platformName}`)
             return;
           }
         getUserInfo(user._id, dispatch)
     }, []);
     return{
-       user,navigate,toast,dispatch,userMovies,id
+       user,navigate,toast,dispatch,userMovies,id,place
     }
 
 }

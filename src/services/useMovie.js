@@ -4,7 +4,7 @@ import { fetchMovie } from '../reducer/MovieReducer/movie.action';
 import { MovieContext } from '../providers/MovieProvider'; 
 
 const useMovie = () => {
-  const { id, place="movies" } = useParams();
+  const { id, place } = useParams();
   const user = localStorage.getItem('userName');
   const navigate = useNavigate();
   const { state, dispatch } = useContext(MovieContext);

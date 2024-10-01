@@ -1,9 +1,9 @@
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Image, RadioGroup } from "@chakra-ui/react"
 import { handleClickMenuVideos } from "../../utils/Menu/menuFunctions"
+import { useMenu } from "../../services/useMenu"
 
-const MenuVideos = ({placement, navigate, isOpen, onClose, 
-  onOpen, place, nameMovieRef, moviesSearch , moviesAction, 
-  selectGenreRef, dispatch,toast}) => {
+const MenuVideos = ({ nameMovieRef, moviesSearch , moviesAction, selectGenreRef,}) => {
+    const {isOpen,onOpen,onClose,dispatch,toast,navigate,placement}=useMenu()
   return (
     <>
     <RadioGroup defaultValue={placement} onChange={placement}>
