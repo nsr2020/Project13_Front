@@ -92,8 +92,6 @@ import { getMovieSearch } from "../../reducer/MoviesSearchReducer/moviesSearch.a
           dispatch({type:'GET_MOVIES_SEARCH', payload:moviesInput.data})
           searchBefore = true
         }
-    
-    
     }
 
     export const handleCleanInputMovieSearch = (nameMovie, dispatch, platformName,selectGenreRef,comeFromMenu=false) => {
@@ -143,3 +141,7 @@ import { getMovieSearch } from "../../reducer/MoviesSearchReducer/moviesSearch.a
         backgroundColor: 'transparent',
       };
 
+
+     export const handlePostNewMovie =(platformName)=>{
+        window.location.href = `/formPost/${platformName}`
+       }

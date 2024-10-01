@@ -1,7 +1,9 @@
 import { Text } from "@chakra-ui/react"
+import useMovies from "../../../services/useMovies"
 
 
-const TextMoviesCard = ({movies, indexAction, indexComedy, indexHorror, indexKids, indexReleases}) => {
+const TextMoviesCard = ({movies}) => {
+  const { indexAction, indexComedy, indexHorror, indexKids, indexReleases } = useMovies()
   return (
     <>
      <Text color="var(--nsr-color12)" textTransform="uppercase" 

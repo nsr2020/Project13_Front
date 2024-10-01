@@ -2,8 +2,8 @@ import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, Dra
 import { handleClickMenuVideos } from "../../utils/Menu/menuFunctions"
 import { useMenu } from "../../services/useMenu"
 
-const MenuVideos = ({ nameMovieRef, moviesSearch , moviesAction, selectGenreRef,}) => {
-    const {isOpen,onOpen,onClose,dispatch,toast,navigate,placement}=useMenu()
+const MenuVideos = ({place, nameMovieRef, moviesSearch , moviesAction, selectGenreRef}) => {
+    const {isOpen,onOpen,onClose,dispatch,toast,navigate,placement} = useMenu()
   return (
     <>
     <RadioGroup defaultValue={placement} onChange={placement}>

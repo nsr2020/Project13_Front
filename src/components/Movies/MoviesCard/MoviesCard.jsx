@@ -7,8 +7,8 @@ import {  handleClickIconInfoMovie } from "../../../utils/MoviesFunctions/movies
 import { handleClickCardImage } from "../../../reducer/MoviesReducer/movies.action";
 import useMovies from "../../../services/useMovies";
 
-const MoviesCard = ({movies, /* platformName, indexAction, indexComedy, indexHorror, indexKids, indexReleases,dispatch, */ place}) => { 
-  const { navigate, platformName, indexAction, indexComedy, indexHorror, indexKids, indexReleases, dispatch } = useMovies()
+const MoviesCard = ({movies, place}) => { 
+  const { navigate, indexAction, indexComedy, indexHorror, indexKids, indexReleases, dispatch } = useMovies()
   /*   useEffect(() =>{
         dispatch({type:"INDEX_ACTION", payload:0})
         dispatch({type:"INDEX_COMEDY", payload:0})

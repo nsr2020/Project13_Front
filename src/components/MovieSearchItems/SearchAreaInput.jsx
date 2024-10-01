@@ -1,26 +1,10 @@
 import { Button, Divider, Flex, Input, Select } from "@chakra-ui/react";
-import { handleCleanInputMovieSearch, handleInputMovieSearch } from "../../utils/MoviesSearch/movieSearchFuntions";
+import { handleCleanInputMovieSearch, handleInputMovieSearch, handlePostNewMovie } from "../../utils/MoviesSearch/movieSearchFuntions";
 import { SearchIcon, DeleteIcon, PlusSquareIcon } from "@chakra-ui/icons";
 
 
 const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast, 
   selectedGenre, selectGenreRef,rol, }) => {
-  
-
-  /* const handleSelect = (e) => {
-    dispatch({
-      type: "SELECT_GENRE",
-      payload: e.target.value,
-    });
-  } */
-  const widthButtons = rol !== "admin" ? "70px" : "50px";
-  const gapButtons = rol !== "admin" ? "6px": "10px"
-
-  const handlePostNewMovie =(platformName)=>{
-   window.location.href = `/formPost/${platformName}`
-  }
- 
-
     return (
         <>
         <Flex w="100%" 
@@ -46,10 +30,10 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast,
          />
          </Flex>
          <Flex  
-         gap={{ base: gapButtons, md: "var(--nsr-gap3)", lg: "var(--nsr-gap4)" }}
+         gap={{ base: rol !== "admin" ? "6px": "10px", md: "var(--nsr-gap3)", lg: "var(--nsr-gap4)" }}
          align="center" justify="center" >
           <Select
-      width={{ base: widthButtons, sm: "150px", md: "150px", lg: "150px" }}
+      width={{ base: rol !== "admin" ? "70px" : "50px", sm: "150px", md: "150px", lg: "150px" }}
       height={{ base: "35px", sm: "40px", md: "40px", lg: "40px" }}
       fontSize={{ base: "10px", sm: "12px", md: "14px", lg: "16px" }}
       borderRadius="20px"
@@ -78,7 +62,7 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast,
           handleInputMovieSearch(nameMovieRef ,dispatch, platformName, toast,selectGenreRef,)
          }}
          _hover={{transform:"scale(0.9)", transition:"var(--nsr-transition)"}}
-         width={{ base: widthButtons, sm: "120px", md: "120px", lg: "120px" }}
+         width={{ base: rol !== "admin" ? "70px" : "50px", sm: "120px", md: "120px", lg: "120px" }}
           height={{ base: "30px", sm: "40px", md: "40px", lg: "40px" }}
           fontSize={{ base: "10px", sm: "12px", md: "14px", lg: "16px" }}
          leftIcon={<SearchIcon />}
@@ -88,7 +72,7 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast,
           handleCleanInputMovieSearch(nameMovieRef, dispatch, platformName,selectGenreRef, );
          }}
          _hover={{transform:"scale(0.9)", transition:"var(--nsr-transition)"}}
-         width={{ base: widthButtons, sm: "120px", md: "120px", lg: "120px" }}
+         width={{ base: rol !== "admin" ? "70px" : "50px", sm: "120px", md: "120px", lg: "120px" }}
          height={{ base: "30px", sm: "40px", md: "40px", lg: "40px" }}
          fontSize={{ base: "10px", sm: "12px", md: "14px", lg: "16px" }}
          leftIcon={<DeleteIcon />}
@@ -98,7 +82,7 @@ const SearchAreaInput = ({nameMovieRef, dispatch, platformName="Netflix", toast,
           handlePostNewMovie(platformName)
          }}
          _hover={{transform:"scale(0.9)", transition:"var(--nsr-transition)"}}
-         width={{ base: widthButtons, sm: "120px", md: "120px", lg: "120px" }}
+         width={{ base: rol !== "admin" ? "70px" : "50px", sm: "120px", md: "120px", lg: "120px" }}
          height={{ base: "30px", sm: "40px", md: "40px", lg: "40px" }}
          fontSize={{ base: "10px", sm: "12px", md: "14px", lg: "16px" }}
          leftIcon={<PlusSquareIcon/>}

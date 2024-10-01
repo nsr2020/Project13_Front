@@ -6,7 +6,7 @@ import { useMenu } from "../../services/useMenu";
 
 const MenuVideo = ({ place, id, platformName}) => {
 
-  const {isOpen,onOpen,onClose,toast,navigate,placement,user}=useMenu()
+  const {isOpen,onOpen,onClose,toast,navigate,placement,user} = useMenu()
   
   return (
     <>

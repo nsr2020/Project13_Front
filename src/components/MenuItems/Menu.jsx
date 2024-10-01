@@ -1,7 +1,6 @@
 import {  memo, useEffect } from "react"
 import MenuVideos from "./MenuVideos"
 import MenuVideo from "./MenuVideo"
-import { useMenu } from "../../services/useMenu"
 
 const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch,
    moviesAction, platformName,selectGenreRef }) => {

@@ -1,7 +1,8 @@
 import { API } from "../../API/API"
+import { handleCleanInputMovieSearch } from "../MoviesSearch/movieSearchFuntions";
 
 
-export const  handleClickDeleteImage = async(movieId,dispatch,toast,platformName,navigate) => {
+export const  handleClickDeleteImage = async(movieId,toast,platformName) => {
 
 try{
     const response = await API({
@@ -18,6 +19,7 @@ try{
             isClosable: true,
           });
           /* navigate(`/moviesAdmin/${platformName}`) */
+          /* handleCleanInputMovieSearch(nameMovie, dispatch, platformName,selectGenreRef)  */
           window.location.href = `/moviesAdmin/${platformName}`
           /* getMovieSearch(platformName, dispatch, false, toast)   */
         

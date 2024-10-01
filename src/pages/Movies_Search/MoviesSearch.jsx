@@ -43,7 +43,7 @@ const MoviesSearch = () => {
           >
          <SearchMovieImage movie={movie}/>
          <Flex w="100%" h="30%" align="start" justifyContent="center">
-          <SearchMoviesCardItems movie={movie} navigate={navigate} place="MovieSearch" dispatch={dispatch}/>
+          <SearchMoviesCardItems movie={movie} navigate={navigate} place="MovieSearch"/>
           </Flex>
           </Flex>
           ))}

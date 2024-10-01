@@ -6,7 +6,7 @@ import React from "react"
 
 /* handleClickDeleteImage(movie._id,dispatch,toast, movie.platform,navigate) */
 
-const SearchMoviesCardItems = ({movie, navigate, place, rol, dispatch}) => {
+const SearchMoviesCardItems = ({movie, navigate, place, rol}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const cancelRef = React.useRef()
  const toast = useToast()
@@ -15,7 +15,7 @@ const SearchMoviesCardItems = ({movie, navigate, place, rol, dispatch}) => {
 
  const handleDelete =  () => {
   try { 
-       handleClickDeleteImage(movie._id, dispatch, toast, movie.platform, navigate); 
+       handleClickDeleteImage(movie._id, toast, platformName); 
        setTimeout(()=>{
         onClose()
        },200)
