@@ -1,7 +1,7 @@
 
 
 export const handleClickButtonTrailer = (id, platformName ,navigate,place) =>{
-    navigate(`/trailer/${id}/${platformName}/${place}`)
+    navigate(`/trailer/${id}/${platformName}/${place}`, {state:{demo:"demo"}})
 }
 
 /* export const fetchMovie =(id, setMovie)=>{

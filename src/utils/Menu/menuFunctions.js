@@ -15,7 +15,7 @@ export const handleClickMenuVideos =  (platformName,place, moviesAction,toast,
         })
         return
       } else{
-        navigate(`/movies/${platformName}`)
+        navigate(`/movies/${platformName}`, {state:{demo:"demo"}})
       }
     
 else if(place === "MoviesSearch"){

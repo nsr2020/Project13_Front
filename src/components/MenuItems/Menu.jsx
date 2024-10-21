@@ -7,7 +7,6 @@ const MenuComponent = ({platform, id=null, place, nameMovieRef, moviesSearch,
 
     useEffect(() => {},[platform]) 
     
-
   return (
    <>
    {platform && (

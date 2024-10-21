@@ -21,6 +21,7 @@ export const useRegister = ()=>{
 	const avatar = imageRef?.current?.files[0] || "/assets/fotoperfil.jpg";
 	const isValidPassword = (password) => /^(?=.*[A-Z]).{5,}$/.test(password);
 	const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+	
 
     return{
       toast,userNameRef,passwordRef,nameRef,lastNameRef,emailRef,imageRef,navigate,

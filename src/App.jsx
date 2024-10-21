@@ -10,7 +10,6 @@ import NotFound from "./pages/NotFound/NotFound";
 import MoviesAdmin from "./pages/Movies_Admin/MoviesAdmin";
 import FormPost from "./pages/FormPost/FormPost";
 import FormPut from "./pages/FormPut/FormPut";
-import StartPageProvider from "./providers/StartPageProvider";
 import PlatformsProvider from "./providers/PlatformsProvider";
 import TrailerProvider from "./providers/TrailerProvider";
 import UserProvider from "./providers/UserProvider";
@@ -20,7 +19,7 @@ const App = () => {
   return (
    <>
    <Routes>
-    <Route path="/platforms" element= {<PlatformsProvider><Platforms/></PlatformsProvider>} />   
+    <Route path="/platforms" element= {<Platforms/>} />   
     <Route path="/movies/:platformName" element={<Movies/>}/>
     <Route path="/movies_Search/:platformName" element={<MoviesSearch/>}/>
     <Route path="/moviesAdmin/:platformName" element={<MoviesAdmin/>}/>
@@ -29,7 +28,7 @@ const App = () => {
     <Route path="/movie/:id/:place" element={<Movie/>}/>
     <Route path="/trailer/:id/:platformName/:place" element={<TrailerProvider><Trailers/></TrailerProvider>}/>
     <Route path="/user/:id/:place" element={<UserProvider><User/></UserProvider>}/>
-    <Route path="/" element={<StartPageProvider><StartPage/></StartPageProvider>}/>
+    <Route path="/" element={<StartPage/>}/>
     <Route path="*" element={<NotFound/>}/>
    </Routes>
    </>

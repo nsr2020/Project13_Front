@@ -1,5 +1,6 @@
 import { Image } from "@chakra-ui/react"
 import { handleClickPlatform } from "../../utils/PlatformsFunctions/platforms"
+import { usePlatforms } from "../../services/usePlatforms"
 
 const ImagesPlatform = ({navigate, platforms}) => {
     

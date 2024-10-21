@@ -24,7 +24,7 @@ export const handleSubmitLogin = async ( userName, password, toast, navigate, di
               })
               setTimeout(() => {
                 if(response.data.user.rol === "user"){
-                  navigate("/platforms")
+                  navigate(`/platforms`)
                   dispatch({type:"IS_LOADING_LOGIN", payload:false})
                   dispatch({type:"IS_FORMS_AREA"})
                   
