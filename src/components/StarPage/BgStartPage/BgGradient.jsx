@@ -9,6 +9,10 @@ const BgGradient = ({children}) => {
       w="100%"
       minH="100vh"
       bgGradient="linear(to-br, var(--nsr-color13), var(--nsr-color14), var(--nsr-color15))"
+      /* bgImage={"url('/assets/aven1.jpg')"}
+      bgRepeat='no-repeat'
+      bgSize='cover'
+      bgPos='center' */
     >
      {children}
     </Flex>

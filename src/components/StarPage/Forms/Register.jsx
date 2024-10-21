@@ -231,7 +231,7 @@ const Register = () => {
 							avatar,
 							toast,
 							navigate,
-							dispatch
+							dispatch,
 						);
 					}}
 					isLoading={isLoadingRegister}

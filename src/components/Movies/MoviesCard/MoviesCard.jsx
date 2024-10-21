@@ -1,14 +1,17 @@
 import { Flex, Image } from "@chakra-ui/react";
-import { useEffect } from "react";
 import { customScrollStyles } from "../../../utils/MoviesFunctions/customScroll";
 import TextMoviesCard from "./TextMoviesCard";
 import {  handleClickIconInfoMovie } from "../../../utils/MoviesFunctions/movies";
 
 import { handleClickCardImage } from "../../../reducer/MoviesReducer/movies.action";
 import useMovies from "../../../services/useMovies";
+import { handleClickButtonTrailer } from "../../../utils/Movie/MovieFunctions";
 
 const MoviesCard = ({movies, place}) => { 
-  const { navigate, indexAction, indexComedy, indexHorror, indexKids, indexReleases, dispatch } = useMovies()
+
+  const { navigate, indexAction, indexComedy, indexHorror, indexKids, indexReleases, dispatch, demo} = useMovies()
+  console.log(demo);
+  
   /*   useEffect(() =>{
         dispatch({type:"INDEX_ACTION", payload:0})
         dispatch({type:"INDEX_COMEDY", payload:0})
@@ -80,7 +83,8 @@ const MoviesCard = ({movies, place}) => {
                 onClick={() => 
                 handleClickCardImage(idx, movie.category,dispatch)}
               />
-                <Image pos="var(--nsr-pos2)" src="/assets/informa.png"
+               {!demo  ? (
+                 <Image pos="var(--nsr-pos2)" src="/assets/informa.png"
                  w={{ base: "20px", md: "25px", lg: "30px" }}
                  h={{ base: "20px", md: "25px", lg: "30px" }} 
                 bottom="10px" right="10px" cursor="var(--nsr-cursor1)"
@@ -90,6 +94,18 @@ const MoviesCard = ({movies, place}) => {
                     handleClickIconInfoMovie(movie._id, navigate, place)
                 }}
                 />
+               ):(
+                <Image pos="var(--nsr-pos2)" src="/assets/claqueta1.png"
+                w={{ base: "20px", md: "25px", lg: "30px" }}
+                h={{ base: "20px", md: "25px", lg: "30px" }} 
+               bottom="10px" right="10px" cursor="var(--nsr-cursor1)"
+               transition="var(--nsr-transition)"
+               _hover={{ transform: "scale(1.1)" }}
+               onClick={()=>{
+                   handleClickButtonTrailer(movie._id, movie.platform ,navigate, place)
+               }}
+               />
+               )}
             </Flex>
           ))}
         </Flex>
